@@ -1,0 +1,32 @@
+---
+- name: Prepare configuration and upgrade/install Helm chart
+  vars:
+    # Handling "undefined", "null", "empty" and "boolean" values all at once.
+    disable_helm_chart_bool: "{{ specification.disable_helm_chart | default(false, true) | bool }}"
+
+  when: not disable_helm_chart_bool
+
+  delegate_to: localhost
+  become: false
+  run_once: true
+
+  block:
+    - name: Download Filebeat's Chart File
+      include_role:
+        name: download
+        tasks_from: download_file
+      vars:
+        file_name: "{{ filebeat_helm_chart_file_name }}"
+        repository_url: "{{ custom_repository_url | default('http://localhost/lsrepo', true) }}"
+
+    - name: Copy configuration Helm chart file (custom-chart-values.yml.j2)
+      template:
+        dest: "{{ download_directory }}/custom-chart-values.yml"
+        src: custom-chart-values.yml.j2
+
+    - name: Install Filebeat using custom Helm chart (custom-chart-values.yml)
+      command: |
+        helm -n {{ logging_chart_namespace }} upgrade --install \
+          -f {{ download_directory }}/custom-chart-values.yml \
+          {{ filebeat_helm_chart_name }} \
+          {{ download_directory }}/{{ filebeat_helm_chart_file_name }} --create-namespace

@@ -1,0 +1,53 @@
+---
+
+- name: Create jmx-exporter group
+  group:
+    name: "{{ specification.jmx_exporter_group }}"
+    system: yes
+
+- name: Create jmx-exporter user
+  user:
+    name: "{{ specification.jmx_exporter_user }}"
+    group: "{{ specification.jmx_exporter_group }}"
+    shell: "/usr/sbin/nologin"
+    createhome: false
+    system: yes
+
+- name: jmx-exporter | create directories
+  become: yes
+  file:
+    path: "{{ item }}"
+    recurse: yes
+    owner: root
+    group: "{{ specification.jmx_exporter_group }}"
+    mode: 0750
+    state: directory
+  with_items:
+  - "{{ specification.jmx_jars_directory }}"
+
+- name: Set JMX Exporter file name to install
+  set_fact:
+    exporter_file_name: "{{ specification.file_name }}"
+
+- name: Download JMX Exporter binaries
+  include_role:
+    name: download
+    tasks_from: download_file
+  vars:
+    file_name: "{{ exporter_file_name }}"
+
+- name: Copy JMX Exporter binaries
+  copy:
+    src: "{{ download_directory }}/{{ exporter_file_name }}"
+    dest: "/opt/jmx-exporter/{{ exporter_file_name }}"
+    owner: "{{ specification.jmx_exporter_user }}"
+    group: "{{ specification.jmx_exporter_group }}"
+    remote_src: yes
+
+- name: Prometheus jmx | symlink jar
+  become: yes
+  file:
+    src: "/opt/jmx-exporter/{{ exporter_file_name }}"
+    path: "{{ specification.jmx_path }}"
+    force: yes
+    state: link

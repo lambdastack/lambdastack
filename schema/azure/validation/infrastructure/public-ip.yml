@@ -1,0 +1,13 @@
+"$id": "#/specification"
+title: "Public-ip specification schema"
+description: "Public-ip specification schema"
+type: object
+properties:
+  name:
+    type: string
+  allocation_method:
+    type: string
+  idle_timeout_in_minutes:
+    type: integer
+  sku:
+    type: string

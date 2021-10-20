@@ -1,0 +1,11 @@
+---
+
+- hosts: all
+  gather_facts: yes
+  tasks: [ ]  
+
+- hosts: jmx_exporter
+  become: true
+  become_method: sudo
+  roles:
+    - jmx_exporter

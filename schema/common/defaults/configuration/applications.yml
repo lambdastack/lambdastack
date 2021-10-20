@@ -1,0 +1,182 @@
+kind: configuration/applications
+title: "Kubernetes Applications Config"
+name: default
+specification:
+  applications:
+
+## --- ignite ---
+
+  - name: ignite-stateless
+    enabled: false
+    image_path: "lambdastackplatform/ignite:2.9.1" # it will be part of the image path: {{local_repository}}/{{image_path}}
+    use_local_image_registry: true
+    namespace: ignite
+    service:
+      rest_nodeport: 32300
+      sql_nodeport: 32301
+      thinclients_nodeport: 32302
+    replicas: 1
+    enabled_plugins:
+    - ignite-kubernetes # required to work on K8s
+    - ignite-rest-http
+
+# Abstract these configs to separate default files and add
+# the ability to add custom application roles.
+
+## --- rabbitmq ---
+
+  - name: rabbitmq
+    enabled: false
+    image_path: rabbitmq:3.8.9
+    use_local_image_registry: true
+    #image_pull_secret_name: regcred # optional
+    service:
+      name: rabbitmq-cluster
+      port: 30672
+      management_port: 31672
+      replicas: 2
+      namespace: queue
+    rabbitmq:
+      #amqp_port: 5672 #optional - default 5672
+      plugins: # optional list of RabbitMQ plugins
+        - rabbitmq_management
+        - rabbitmq_management_agent
+      policies: # optional list of RabbitMQ policies
+        - name: ha-policy2
+          pattern: ".*"
+          definitions:
+            ha-mode: all
+      custom_configurations: #optional list of RabbitMQ configurations (new format -> https://www.rabbitmq.com/configure.html)
+        - name: vm_memory_high_watermark.relative
+          value: 0.5
+      cluster:
+        #is_clustered: true #redundant in in-Kubernetes installation, it will always be clustered
+        #cookie: "cookieSetFromDataYaml" #optional - default value will be random generated string
+
+## --- auth-service ---
+
+  - name: auth-service # requires PostgreSQL to be installed in cluster
+    enabled: false
+    image_path: lambdastackplatform/keycloak:14.0.0
+    use_local_image_registry: true
+    #image_pull_secret_name: regcred
+    service:
+      name: as-testauthdb
+      port: 30104
+      replicas: 2
+      namespace: namespace-for-auth
+      admin_user: auth-service-username
+      admin_password: PASSWORD_TO_CHANGE
+    database:
+      name: auth-database-name
+      #port: "5432" # leave it when default
+      user: auth-db-user
+      password: PASSWORD_TO_CHANGE
+
+## --- pgpool ---
+
+  - name: pgpool # this service requires PostgreSQL to be installed in cluster
+    enabled: false
+    image:
+      path: bitnami/pgpool:4.2.4
+      debug: false # ref: https://github.com/bitnami/minideb-extras/#turn-on-bash-debugging
+    use_local_image_registry: true
+    namespace: postgres-pool
+    service:
+      name: pgpool
+      port: 5432
+    replicas: 3
+    pod_spec:
+      affinity:
+        podAntiAffinity: # prefer to schedule replicas on different nodes
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - pgpool
+                topologyKey: kubernetes.io/hostname
+      nodeSelector: {}
+      tolerations: {}
+    resources: # Adjust to your configuration, see https://www.pgpool.net/docs/41/en/html/resource-requiremente.html
+      limits:
+        # cpu: 900m # Set according to your env
+        memory: 310Mi
+      requests:
+        cpu: 250m # Adjust to your env, increase if possible
+        memory: 310Mi
+    pgpool:
+      # https://github.com/bitnami/bitnami-docker-pgpool#configuration + https://github.com/bitnami/bitnami-docker-pgpool#environment-variables
+      env:
+        PGPOOL_BACKEND_NODES: autoconfigured # you can use custom value like '0:pg-node-1:5432,1:pg-node-2:5432'
+        # Postgres users
+        PGPOOL_POSTGRES_USERNAME: ls_pgpool_postgres_admin # with SUPERUSER role to use connection slots reserved for superusers for K8s liveness probes, also for user synchronization
+        PGPOOL_SR_CHECK_USER: ls_pgpool_sr_check # with pg_monitor role, for streaming replication checks and health checks
+        # ---
+        PGPOOL_ADMIN_USERNAME: ls_pgpool_admin # Pgpool administrator (local pcp user)
+        PGPOOL_ENABLE_LOAD_BALANCING: true # set to 'false' if there is no replication
+        PGPOOL_MAX_POOL: 4
+        PGPOOL_CHILD_LIFE_TIME: 300 # Default value, read before you change: https://www.pgpool.net/docs/42/en/html/runtime-config-connection-pooling.html
+        PGPOOL_POSTGRES_PASSWORD_FILE: /opt/bitnami/pgpool/secrets/pgpool_postgres_password
+        PGPOOL_SR_CHECK_PASSWORD_FILE: /opt/bitnami/pgpool/secrets/pgpool_sr_check_password
+        PGPOOL_ADMIN_PASSWORD_FILE: /opt/bitnami/pgpool/secrets/pgpool_admin_password
+      secrets:
+        pgpool_postgres_password: PASSWORD_TO_CHANGE
+        pgpool_sr_check_password: PASSWORD_TO_CHANGE
+        pgpool_admin_password: PASSWORD_TO_CHANGE
+      # https://www.pgpool.net/docs/41/en/html/runtime-config.html
+      pgpool_conf_content_to_append: |
+        #------------------------------------------------------------------------------
+        # CUSTOM SETTINGS (appended by LambdaStack to override defaults)
+        #------------------------------------------------------------------------------
+        # num_init_children = 32
+        connection_life_time = 900
+        reserved_connections = 1
+      # https://www.pgpool.net/docs/42/en/html/runtime-config-connection.html
+      pool_hba_conf: autoconfigured
+
+## --- pgbouncer ---
+
+  - name: pgbouncer
+    enabled: false
+    image_path: bitnami/pgbouncer:1.16.0
+    init_image_path: bitnami/pgpool:4.2.4
+    use_local_image_registry: true
+    namespace: postgres-pool
+    service:
+      name: pgbouncer
+      port: 5432
+    replicas: 2
+    resources:
+      requests:
+        cpu: 250m
+        memory: 128Mi
+      limits:
+        cpu: 500m
+        memory: 128Mi
+    pgbouncer:
+      env:
+        DB_HOST: pgpool.postgres-pool.svc.cluster.local
+        DB_LISTEN_PORT: 5432
+        MAX_CLIENT_CONN: 150
+        DEFAULT_POOL_SIZE: 25
+        RESERVE_POOL_SIZE: 25
+        POOL_MODE: session
+        CLIENT_IDLE_TIMEOUT: 0
+
+## --- istio ---
+
+  - name: istio
+    enabled: false
+    use_local_image_registry: true
+    namespaces:
+      operator: istio-operator # namespace where operator will be deployed
+      watched: # list of namespaces which operator will watch
+        - istio-system
+      istio: istio-system # namespace where istio control plane will be deployed
+    istio_spec:
+      profile: default # Check all possibilities https://istio.io/latest/docs/setup/additional-setup/config-profiles/
+      name: istiocontrolplane

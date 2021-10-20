@@ -1,0 +1,55 @@
+---
+# Common Redhat family of specific tasks
+
+# Subscriptions with certs: subscription-manager repos --enable "rhel-*-optional-rpms" --enable "rhel-*-extras-rpms"
+# w/o subscription https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+
+- name: Install the latest version of ca-certificates package
+  yum:
+    name:
+      - ca-certificates
+    update_cache: true
+    state: latest
+  register: result
+  retries: 3
+  delay: 1
+  until: result is succeeded
+
+- name: Install RedHat family packages
+  yum:
+    name:
+      - bash-completion
+      - curl
+      - ebtables
+      - ethtool
+      - fping
+      - htop
+      - iftop
+      - jq
+      - libselinux-python
+      - libsemanage-python
+      - logrotate
+      - nc
+      - net-tools  # required by Ansible (module listen_ports_facts)
+      - openssl
+      - python-setuptools
+      - python3
+      - rsync
+      - sysstat
+      - tar
+      - telnet
+      - tmux
+      - unzip
+      - vim
+      - yum-utils
+      - yum-versionlock
+    state: present
+  register: result
+  retries: 3
+  delay: 1
+  until: result is succeeded
+
+- name: Append prompt to .bash_profile
+  lineinfile:
+    path: /home/{{ admin_user.name }}/.bash_profile
+    line: source /etc/profile.d/operations.sh

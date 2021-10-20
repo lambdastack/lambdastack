@@ -1,0 +1,9 @@
+---
+
+- name: Uninstall Helm release "{{ node_exporter_helm_chart_name }}"
+
+  delegate_to: localhost
+  become: false
+  run_once: true
+
+  command: helm uninstall {{ node_exporter_helm_chart_name }}

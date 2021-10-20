@@ -1,0 +1,41 @@
+---
+- name: Set Alertmanager file name to install
+  set_fact:
+    binary_file_name: "{{ alertmanager.file_name[ansible_architecture] }}"
+
+- name: Download Alertmanager binaries
+  include_role:
+    name: download
+    tasks_from: download_file
+  vars:
+    file_name: "{{ binary_file_name }}"
+
+- name: Unpack Alertmanager binary
+  become: true
+  unarchive:
+    remote_src: yes
+    src: "{{ download_directory }}/{{ binary_file_name }}"
+    dest: "/usr/local/bin"
+    creates: "/usr/local/bin/alertmanager"
+    extra_opts: [--strip-components=1]
+    mode: u=rwx,go=rx
+    owner: prometheus
+    group: prometheus
+  check_mode: false
+
+- name: Create Alertmanager data directory
+  file:
+    path: /var/lib/prometheus/alertmanager
+    state: directory
+    owner: prometheus
+    group: prometheus
+
+- name: Create Alertmanager systemd service unit
+  template:
+    src: alertmanager.service.j2
+    dest: /etc/systemd/system/alertmanager.service
+    owner: root
+    group: root
+    mode: u=rw,go=r
+  notify:
+    - Restart Alertmanager

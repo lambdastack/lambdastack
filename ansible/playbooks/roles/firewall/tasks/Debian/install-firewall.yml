@@ -1,0 +1,45 @@
+---
+- name: Get service facts
+  service_facts:
+
+- name: Stop ufw service
+  systemd:
+    name: ufw
+    state: stopped
+    enabled: no
+  when: ansible_facts.services['ufw'] is defined
+
+- name: Remove ufw package
+  apt:
+    name: ufw
+    state: absent
+    purge: yes
+
+- name: Install firewalld package
+  block:
+    - name: Install firewalld package
+      apt:
+        name: firewalld
+        state: present
+      register: install_firewalld
+
+    - name: Stop and mask service for consistency with RHEL
+      block:
+        # On Ubuntu firewalld service starts automatically after installing package
+        # Stop to avoid unexpected blocking and for consistency with RHEL
+        - name: Stop firewalld service
+          systemd:
+            name: firewalld
+            state: stopped
+            enabled: no
+
+        # On RHEL firewalld service is initially masked, so mask it for consistency
+        # This task is separated by purpose to mask service AFTER it was stopped
+        - name: Mask firewalld service
+          systemd:
+            name: firewalld
+            masked: yes
+      when:
+        - install_firewalld.changed
+  when:
+    - specification.Debian.install_firewalld

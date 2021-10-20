@@ -1,0 +1,19 @@
+---
+local_repository_url: "http://{{ hostvars[groups.repository[0]].ansible_default_ipv4.address }}/lsrepo"
+repository_url: "{{ custom_repository_url | default(local_repository_url, true) }}"
+
+local_image_registry: "{{ groups.image_registry[0] }}:5000"
+image_registry_address: "{{ custom_image_registry_address | default(local_image_registry, true) }}"
+
+kubeconfig:
+  local: "{{ inventory_dir }}/kubeconfig"
+  remote: /etc/kubernetes/admin.conf
+
+# https://github.com/ansible/ansible/issues/57189
+yum_lock_timeout: 300
+
+global_architecture_alias:
+  x86_64: amd64
+  aarch64: arm64
+
+

@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "ls-dummy.fullname" . }}-test-connection"
+  labels:
+    {{- include "ls-dummy.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test-success
+spec:
+  containers:
+    - name: wget
+      # NOTE: We do not have busybox image in lsrepo, so this test will not work in offline mode.
+      image: busybox
+      command: ['wget']
+      args: ['{{ include "ls-dummy.fullname" . }}:{{ .Values.service.port }}']
+  restartPolicy: Never

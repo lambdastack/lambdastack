@@ -1,0 +1,136 @@
+---
+
+- name: Print admin_user.name
+  debug:
+    msg: "{{ admin_user.name }}"
+
+# Common main as the entry point
+
+- name: Execute OS-specific tasks (common)
+  block:
+    - include_tasks: "{{ ansible_os_family }}.yml"
+  module_defaults:
+    yum: { lock_timeout: "{{ yum_lock_timeout }}" }
+
+- name: Print environment variables
+  debug:
+    msg: "{{ ansible_env }}"
+
+- name: Adjust swappiness parameter
+  sysctl:
+    name: vm.swappiness
+    reload: true
+    state: present
+    value: "1"
+  tags:
+    - sysctl
+
+- name: Remove swap from /etc/fstab
+  mount:
+    backup: yes
+    fstype: swap
+    path: swap
+    state: absent
+  tags:
+    - disableswap
+
+- name: Disable swap
+  command: swapoff -a
+  when: ansible_swaptotal_mb > 0
+  tags:
+    - disableswap
+
+# Azure specific and Redhat. It's here to stay with other swap related items
+- name: Check if waagent.conf exists
+  stat:
+    path: /etc/waagent.conf
+  register: waagent
+  tags:
+    - disableswap
+
+- name: Disable swap (azure)
+  lineinfile:
+    dest: /etc/waagent.conf
+    regexp: "^ResourceDisk.EnableSwap"
+    line: "ResourceDisk.EnableSwap=n"
+    state: present
+  when: waagent.stat.exists
+  tags:
+    - disableswap
+
+- name: Set swap size to 0 (azure)
+  lineinfile:
+    dest: /etc/waagent.conf
+    regexp: "^ResourceDisk.SwapSizeMB"
+    line: "ResourceDisk.SwapSizeMB=0"
+    state: present
+  when: waagent.stat.exists
+  tags:
+    - disableswap
+  notify: restart waagent
+
+- name: Disable SELinux at next reboot
+  selinux:
+    state: disabled
+  ignore_errors: yes
+  when: ansible_selinux is defined and ansible_selinux != False and ansible_selinux.status == 'enabled'
+
+- name: Set SELinux in permissive mode until the machine is rebooted
+  command: setenforce 0
+  ignore_errors: true
+  changed_when: false
+  when: ansible_selinux is defined and ansible_selinux != False and ansible_selinux.status == 'enabled'
+
+# motd is not used as Ubuntu has its own update-motd framework for dynamic motd generation
+# while for RedHat there is only /etc/motd that doesn't support simple configuration for colored output
+- name: Configure login message
+  template:
+    src: motd.j2
+    dest: /etc/profile.d/motd.sh
+    mode: u=rwx,go=rx
+    owner: root
+    group: root
+
+- name: Prompt colors
+  copy:
+    src: operations.sh
+    dest: /etc/profile.d/operations.sh
+    owner: root
+    group: root
+
+- name: Hosts
+  template:
+    src: hosts.j2
+    dest: /etc/hosts
+    mode: 0644
+    owner: root
+    group: root
+
+- include_tasks: lsuser.yml
+  tags:
+    - lsuser
+
+- include_tasks: os_users.yml
+  when:
+    - specification.users is defined and specification.users | list | length > 0
+  tags:
+    - os_users
+
+- include_tasks: security.yml
+  tags:
+    - security
+
+- include_tasks: set-hostname.yml
+
+- name: Include logrotate configuration tasks
+  include_tasks: configure-logrotate.yml
+
+- name: Create LambdaStack directories
+  file:
+    path: "{{ item.path }}"
+    state: directory
+    mode: "{{ item.mode | default('u=rwx,go=rx') }}"
+    owner: root
+    group: root
+  loop:
+    - { path: /var/lib/lambdastack/upgrade/state }

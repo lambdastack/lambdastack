@@ -1,0 +1,11 @@
+---
+
+- hosts: all
+  gather_facts: yes
+  tasks: [ ]  
+
+- hosts: kafka_exporter
+  become: true
+  become_method: sudo
+  roles:
+    - kafka_exporter

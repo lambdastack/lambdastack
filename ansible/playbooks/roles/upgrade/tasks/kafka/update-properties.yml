@@ -1,0 +1,30 @@
+---
+- name: Check if current_kafka_version property is defined
+  shell: >-
+    set -o pipefail &&
+    grep "^CURRENT_KAFKA_VERSION" /opt/kafka/config/server.properties
+  register: current_kafka_version_property
+  failed_when:
+    - result.rc == 2
+  changed_when: False
+
+- name: Add current_kafka_version property
+  lineinfile:
+    path: /opt/kafka/config/server.properties
+    line: "CURRENT_KAFKA_VERSION={{ kafka_version.old }}"
+  when: current_kafka_version_property.stdout == ""
+
+- name: Check if inter.broker.protocol.version property is defined
+  shell: >-
+    set -o pipefail &&
+    grep "^inter.broker.protocol.version" /opt/kafka/config/server.properties
+  register: inter_broker_protocol_version_property
+  failed_when:
+    - result.rc == 2
+  changed_when: False
+
+- name: Add inter.broker.protocol.version property
+  lineinfile:
+    path: /opt/kafka/config/server.properties
+    line: "inter.broker.protocol.version={{ kafka_version.old }}"
+  when: inter_broker_protocol_version_property.stdout == ""

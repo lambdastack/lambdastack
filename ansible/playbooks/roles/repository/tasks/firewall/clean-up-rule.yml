@@ -1,0 +1,73 @@
+---
+- name: Set firewall facts
+  include_tasks: firewall/set-common-vars.yml
+
+# Note: Current zone when run 'teardown' may be different than was while 'setup'
+
+- name: Check if {{ firewall_rule_added_flag_file }} file exists
+  stat:
+    path: "{{ firewall_rule_added_flag_file }}"
+  register: firewall_rule_added_flag_file_stat
+
+- name: Get firewall settings from LambdaStack configuration
+  block:
+    - name: Include vars from firewall role
+      include_vars:
+        file: roles/firewall/vars/main.yml
+        name: firewall_role_config
+      failed_when: false # to not fail if firewall role is disabled
+
+    - name: Get firewall settings from LambdaStack configuration
+      set_fact:
+        managed_zone: "{{ firewall_role_config.specification.managed_zone_name }}"
+        apply_firewall_configuration: "{{ firewall_role_config.specification.apply_configuration }}"
+      when:
+        - firewall_role_config.specification is defined
+  when:
+    - "'firewall' in group_names"
+
+- name: Remove temporary firewall rule for lsrepo added by repository role
+  block:
+    - name: Get name of modified zone from file
+      set_fact:
+        modified_zone: "{{ lookup('file', modified_zone_name_file) }}"
+
+    - name: Restore configuration of {{ modified_zone | default('modified') }} zone from backup
+      copy:
+        src: "{{ zone_config_backup_dest_dir }}/{{ modified_zone }}.xml.bak"
+        dest: /etc/firewalld/zones/{{ modified_zone }}.xml
+        remote_src: yes
+        mode: preserve
+      register: restore_modified_zone_from_backup
+      when:
+        - apply_firewall_configuration is undefined
+          or not apply_firewall_configuration
+          or managed_zone is undefined
+          or managed_zone != modified_zone
+
+    - name: Clean up temporary firewall files
+      file:
+        path: "{{ item }}"
+        state: absent
+      loop: [ firewall_rule_added_flag_file, modified_zone_name_file, "{{ zone_config_backup_dest_dir }}/{{ modified_zone }}.xml.bak" ]
+  when:
+    - firewall_rule_added_flag_file_stat.stat.exists
+
+- name: Remove temporary firewall rule for lsrepo added by firewall role
+  blockinfile:
+    path: /etc/firewalld/zones/{{ managed_zone }}.xml
+    marker_begin: BEGIN
+    marker_end: END
+    marker: <!-- {mark} ANSIBLE MANAGED TEMPORARY BLOCK -->
+    state: absent
+  register: remove_http_service_from_managed_zone
+  when:
+    - apply_firewall_configuration is defined
+    - apply_firewall_configuration
+
+- name: Reload firewalld to apply permanent configuration to runtime
+  command: firewall-cmd --reload
+  when:
+    - firewall_state == 'running'
+    - restore_modified_zone_from_backup.changed
+      or remove_http_service_from_managed_zone.changed

@@ -1,0 +1,86 @@
+---
+- name: Ensure grafana configuration directories exist
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: root
+    group: grafana
+    mode: ug=rwx,o=
+  loop:
+    - /etc/grafana/datasources
+    - /etc/grafana/provisioning/datasources
+    - /etc/grafana/ssl
+
+- name: Generate self signed SSL certificates
+  command: >
+    openssl req
+      -new
+      -newkey rsa:4096
+      -days 365
+      -nodes
+      -x509
+      -subj "/C=US/ST=NY/L=NY/O=NA/CN=localhost"
+      -keyout /etc/grafana/ssl/grafana_key.key
+      -out /etc/grafana/ssl/grafana_cert.pem
+  args:
+    creates: /etc/grafana/ssl/grafana_cert.pem
+
+- name: Ensure grafana ssl directory permissions are correct
+  file:
+    path: /etc/grafana/ssl
+    state: directory
+    owner: root
+    group: grafana
+    mode: ug+rw,o=
+    recurse: true
+
+- name: Create grafana main configuration file
+  template:
+    src: grafana.ini.j2
+    dest: /etc/grafana/grafana.ini
+    owner: root
+    group: grafana
+    mode: ug=rw,o=
+  notify: restart grafana
+  no_log: true
+
+- name: Create grafana LDAP configuration file
+  template:
+    src: ldap.toml.j2
+    dest: "{{ grafana_auth.ldap.config_file | default('/etc/grafana/ldap.toml') }}"
+    owner: root
+    group: grafana
+    mode: ug=rw,o=
+  when:
+    - "'ldap' in grafana_auth"
+    - "'enabled' not in grafana_auth.ldap or grafana_auth.ldap.enabled"
+  notify: restart grafana
+  no_log: true
+
+- name: Create grafana directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: grafana
+    group: grafana
+    mode: ug=rwx,o=
+  with_items:
+    - "{{ grafana_logs_dir }}"
+    - "{{ grafana_data_dir }}/dashboards"
+    - "{{ grafana_data_dir }}/plugins"
+
+- name: Enable grafana to ports lower than port 1024
+  capabilities:
+    path: /usr/sbin/grafana-server
+    capability: CAP_NET_BIND_SERVICE+ep
+    state: present
+  when:
+    - grafana_port | int <= 1024
+    - grafana_cap_net_bind_service
+
+- name: Enable and start Grafana systemd unit
+  systemd:
+    name: grafana-server
+    state: started
+    enabled: true
+    daemon_reload: true

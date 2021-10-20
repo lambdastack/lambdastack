@@ -1,0 +1,90 @@
+---
+- import_tasks: gather-facts.yml
+
+- name: Load images and run local registry
+  when:
+    - not custom_image_registry_address
+    - inventory_hostname in target_image_registry_hostnames
+  block:
+    - name: Check if Docker is installed
+      command: docker --version
+      register: check_docker
+      failed_when:
+        - check_docker.rc not in [0, 2] # 2 means command not found
+      changed_when: false
+
+    # run docker role only if Docker is not installed, since it could upgrade it implicitly (before K8s)
+    - name: Install and configure Docker
+      import_role:
+        name: docker
+      when:
+        - check_docker.rc != 0
+
+    - name: Reconfigure Docker if necessary
+      block:
+        - name: Include get-registries.yml from docker role # this sets result
+          include_role:
+            name: docker
+            tasks_from: get-registries
+
+        - name: Reconfigure Docker # this restarts Docker daemon
+          include_role:
+            name: docker
+            tasks_from: configure-docker
+          when:
+            - not image_registry_address in result.stdout
+      when:
+        - check_docker.rc == 0
+
+    - name: Load registry image
+      include_tasks: load-image.yml
+      vars:
+        docker_image: "{{ specification.registry_image }}"
+
+    - name: Check if registry is running
+      become: true
+      command: docker ps -q -f 'ancestor=registry:2' -f 'status=running'
+      register: regitry_up_check
+      changed_when: false
+
+    # todo run registry with SSL - generate/copy certs, mount it to registry container
+    - name: Run registry
+      become: true
+      command: >-
+        docker run -d -e REGISTRY_HTTP_ADDR=0.0.0.0:5000 -p 5000:5000 --restart=always
+        --name LambdaStack-registry {{ specification.registry_image.name }}
+      when: regitry_up_check.stdout | length == 0
+
+    - name: Set images to load
+      set_fact:
+        generic_and_current_images: "{{ specification.images_to_load[ansible_architecture].generic + specification.images_to_load[ansible_architecture].current }}"
+        legacy_images: "{{ specification.images_to_load[ansible_architecture].legacy }}"
+
+    - name: Load generic and current version images
+      vars:
+        docker_image: "{{ item }}"
+      include_tasks: load-image.yml
+      loop: "{{ generic_and_current_images }}"
+
+    - name: Push generic and current version images to registry
+      vars:
+        docker_image: "{{ item }}"
+      include_tasks: push-image.yml
+      loop: "{{ generic_and_current_images }}"
+
+    - name: Load legacy version images to registry when upgrading
+      when: is_upgrade_run
+      block:
+        - name: Load legacy version images
+          vars:
+            docker_image: "{{ item }}"
+          include_tasks: load-image.yml
+          loop: "{{ legacy_images }}"
+          when: legacy_images | count > 0
+
+        - name: Push legacy version images to registry
+          vars:
+            docker_image: "{{ item }}"
+          include_tasks: push-image.yml
+          loop: "{{ legacy_images }}"
+          when: legacy_images | count > 0

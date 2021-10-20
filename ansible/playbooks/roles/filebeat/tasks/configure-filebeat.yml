@@ -1,0 +1,86 @@
+---
+# This file is meant to be also used by upgrade playbook
+
+- name: Load defaults from postgresql role
+  include_vars:
+    file: roles/postgresql/defaults/main.yml
+    name: postgresql_defaults
+  when: "'postgresql' in group_names"
+
+# Do not select Kibana configured to use ES deployed by 'opendistro_for_elasticsearch' role
+- name: Set value for setup.kibana.host
+  set_fact:
+    setup_kibana_host: >-
+      {{ hostvars[groups.kibana|intersect(groups.logging)|first]['ansible_hostname'] }}
+  when:
+    - not is_upgrade_run
+    - groups.kibana[0] is defined
+    - groups.logging is defined
+    - groups.kibana | intersect(groups.logging) | length
+
+- name: Copy configuration file (filebeat.yml)
+  template:
+    dest: /etc/filebeat/filebeat.yml
+    src: filebeat.yml.j2
+    mode: u=rw,go=
+  register: modify_filebeat_yml
+
+- name: Set Filebeat to be started after Docker
+  when: (groups['kubernetes_master'] is defined and inventory_hostname in groups['kubernetes_master'])
+     or (groups['kubernetes_node'] is defined and inventory_hostname in groups['kubernetes_node'])
+  block:
+    - name: Create directory (filebeat.service.d)
+      file:
+        path: /etc/systemd/system/filebeat.service.d
+        state: directory
+
+    - name: Copy drop-in configuration file (extra-dependencies.conf)
+      template:
+        dest: /etc/systemd/system/filebeat.service.d/extra-dependencies.conf
+        src: extra-dependencies.conf.j2
+      register: modify_filebeat_unit_dependencies
+
+    - name: Run systemctl daemon-reload
+      systemd:
+        daemon_reload: true
+      when: modify_filebeat_unit_dependencies.changed
+
+- name: Start/restart and enable filebeat service
+  when: groups.logging[0] is defined
+  block:
+    - name: Enable auditd module
+      command: filebeat modules enable auditd
+      register: enable_module
+      changed_when: "'Enabled auditd' in enable_module.stdout"
+
+    - name: Restart filebeat service
+      systemd:
+        name: filebeat
+        state: restarted
+      when: modify_filebeat_yml.changed
+         or modify_filebeat_unit_dependencies.changed
+         or enable_module.changed
+         or install_filebeat_package.changed
+
+    - name: Enable and start filebeat service
+      systemd:
+        name: filebeat
+        state: started
+        enabled: true
+
+    - name: Wait for filebeat service to be running
+      service_facts:
+      register: service_facts
+      until:
+        - service_facts.ansible_facts.services['filebeat.service'].state is defined
+        - service_facts.ansible_facts.services['filebeat.service'].state == "running"
+      retries: 10
+      delay: 1
+      no_log: true  # to reduce log output
+
+- name: Stop and disable filebeat service
+  systemd:
+    name: filebeat
+    state: stopped
+    enabled: false
+  when: groups.logging[0] is undefined

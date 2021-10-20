@@ -1,0 +1,40 @@
+---
+# This file is meant to be also used by upgrade playbook
+
+- name: Copy auditd configuration file (audit-ls.rules)
+  template:
+    dest: /etc/audit/rules.d/audit-ls.rules
+    src: audit-ls.rules.j2
+  register: modify_audit_ls_rules
+
+- name: Start/restart and enable auditd service
+  block:
+    - name: Restart auditd service
+      # In general this cannot be "systemd" module because auditd is often configured
+      # with "RefuseManualStop=yes" inside its unit file.
+      service:
+        name: auditd
+        use: service
+        state: restarted
+      register: result
+      until: result is success
+      retries: 3  # to avoid error "job for auditd.service failed because a timeout was exceeded"
+      delay: 1
+      when: modify_audit_ls_rules.changed
+         or install_auditd_package.changed
+
+    - name: Enable and start auditd service
+      systemd:
+        name: auditd
+        state: started
+        enabled: true
+
+    - name: Wait for auditd service to be running
+      service_facts:
+      register: service_facts
+      until:
+        - service_facts.ansible_facts.services['auditd.service'].state is defined
+        - service_facts.ansible_facts.services['auditd.service'].state == "running"
+      retries: 10
+      delay: 1
+      no_log: true  # to reduce log output

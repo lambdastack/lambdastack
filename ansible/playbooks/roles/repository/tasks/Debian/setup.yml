@@ -1,0 +1,34 @@
+---
+- name: Create lsrepo and start HTTP server
+  block:
+    - name: Create lsrepo repository
+      shell: >-
+        set -o pipefail &&
+        /tmp/ls-repository-setup-scripts/create-repository.sh {{ specification.apache_lsrepo_path }} {{ offline_mode | lower }} |&
+        tee /tmp/ls-repository-setup-scripts/create-repository.log
+      args:
+        executable: /bin/bash
+
+    - name: Ensure HTTP port is not blocked by firewall
+      include_tasks: firewall/add-rule.yml
+
+    - name: Ensure Apache HTTP server is running
+      service:
+        name: apache2
+        state: started
+  when:
+    - not custom_repository_url
+    - inventory_hostname in target_repository_hostnames
+
+- name: Disable system repositories and set up lsrepo
+  block:
+    - name: Create list of enabled repositories
+      shell: /tmp/ls-repository-setup-scripts/create-enabled-system-repos-list.sh
+    - name: Disable system repositories
+      shell: /tmp/ls-repository-setup-scripts/disable-system-repos.sh
+    - name: Add and enable lsrepo
+      shell: >-
+        /tmp/ls-repository-setup-scripts/add-lsrepo-client.sh {{ repository_url }} |&
+        tee /tmp/ls-repository-setup-scripts/add-lsrepo-client.log
+      args:
+        executable: /bin/bash

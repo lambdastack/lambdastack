@@ -1,0 +1,18 @@
+---
+- name: Remove conflicting grafana packages
+  package:
+    name: grafana-data
+    state: absent
+
+- include_tasks: install-packages-{{ ansible_os_family }}.yml
+  vars:
+    _package_url: "{{ repository_url }}/files/{{ grafana_package.filename[ansible_os_family][ansible_architecture] }}"
+
+- name: Recursively chown /etc/grafana (fix permissions)
+  file:
+    path: /etc/grafana
+    state: directory
+    owner: root
+    group: grafana
+    mode: ug+rw,o=
+    recurse: true

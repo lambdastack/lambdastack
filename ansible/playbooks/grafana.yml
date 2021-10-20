@@ -1,0 +1,10 @@
+---
+- hosts: all
+  gather_facts: true
+  tasks: []
+
+- hosts: grafana
+  become: true
+  become_method: sudo
+  roles:
+    - grafana

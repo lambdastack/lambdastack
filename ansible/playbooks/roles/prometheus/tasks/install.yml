@@ -1,0 +1,71 @@
+---
+- name: Create Prometheus system group
+  group:
+    name: prometheus
+    system: true
+    state: present
+
+- name: Create Prometheus system user
+  user:
+    name: prometheus
+    system: true
+    shell: "/usr/sbin/nologin"
+    group: prometheus
+    createhome: false
+
+- name: Create Prometheus data directory
+  file:
+    path: "{{ specification.storage.data_directory }}"
+    state: directory
+    owner: prometheus
+    group: prometheus
+    mode: u=rwx,g=rx,o=rx
+
+- name: Create Prometheus configuration directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: prometheus
+    group: prometheus
+    mode: u=rwx,g=rx,o=
+  with_items:
+    - "{{ specification.config_directory }}"
+    - "{{ specification.config_directory }}/rules"
+    - "{{ specification.config_directory }}/file_sd"
+
+- name: Set Prometheus file name to install
+  set_fact:
+    binary_file_name: "{{ prometheus.file_name[ansible_architecture] }}"
+
+- name: Package
+  debug: msg="{{ binary_file_name }}"
+
+- name: Download Prometheus binaries
+  include_role:
+    name: download
+    tasks_from: download_file
+  vars:
+    file_name: "{{ binary_file_name }}"
+
+- name: Unpack Prometheus binary
+  become: true
+  unarchive:
+    src: "{{ download_directory }}/{{ binary_file_name }}"
+    remote_src: yes
+    dest: "/usr/local/bin"
+    creates: "/usr/local/bin/prometheus"
+    extra_opts: [--strip-components=1]
+    mode: u=rwx,go=rx
+    owner: prometheus
+    group: prometheus
+  check_mode: false
+
+- name: Create systemd service unit
+  template:
+    src: prometheus.service.j2
+    dest: /etc/systemd/system/prometheus.service
+    owner: root
+    group: root
+    mode: u=rw,go=r
+  notify:
+    - Restart Prometheus

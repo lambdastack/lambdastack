@@ -1,0 +1,20 @@
+---
+- include_tasks: update-daemon-config.yml
+
+- name: Enable and ensure Docker is started
+  systemd:
+    name: docker
+    state: started
+    enabled: true
+
+# Get log driver for verification
+- name: Get Docker logging driver
+  shell: docker info | grep -i 'Logging Driver'
+  register: docker_log_driver
+  changed_when: false
+
+- name: Verify logging driver  # 'json-file' is needed for K8s metadata in Filebeat and log rotation
+  assert:
+    that: "'json-file' in docker_log_driver.stdout"
+    fail_msg: "Unexpected logging driver, docker_log_driver.stdout: '{{ docker_log_driver.stdout }}'"
+    quiet: true

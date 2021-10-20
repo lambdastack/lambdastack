@@ -1,0 +1,33 @@
+---
+# https://infosec.mozilla.org/guidelines/openssh.html
+- name: Register sftp-server location
+  find:
+    paths: /usr
+    patterns: sftp-server
+    file_type: file
+    recurse: true
+  register: sftp_server_path
+
+- name: Process template and copy new sshd config
+  template:
+    src: sshd_config.j2
+    dest: /etc/ssh/sshd_config
+    owner: root
+    group: root
+    mode: '0644'
+    backup: true
+
+# Ansible's replace module hangs without an error,
+# so shell is used
+- name: Deactivate short Diffie-Hellman moduli
+  shell: |-
+    awk '$5 >= 3071' /etc/ssh/moduli > /etc/ssh/moduli.tmp
+  args:
+    executable: /bin/bash
+
+- name: Replace moduli file
+  copy:
+    dest: /etc/ssh/moduli
+    src: /etc/ssh/moduli.tmp
+    remote_src: true
+  notify: restart ssh

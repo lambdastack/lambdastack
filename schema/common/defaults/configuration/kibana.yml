@@ -1,0 +1,5 @@
+kind: configuration/kibana
+title: "Kibana"
+name: default
+specification:
+  kibana_log_dir: /var/log/kibana

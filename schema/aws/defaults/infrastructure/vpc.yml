@@ -1,0 +1,11 @@
+kind: infrastructure/vpc
+title: "VPC Config"
+provider: aws
+name: default
+specification:
+  name: SET_BY_AUTOMATION
+  address_pool: SET_BY_AUTOMATION
+  instance_tenancy: default
+  enable_dns_support: true
+  enable_dns_hostnames: true
+  cluster_name: SET_BY_AUTOMATION

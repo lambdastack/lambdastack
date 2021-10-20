@@ -1,0 +1,7 @@
+"$id": "#/specification"
+title: "Helm specification schema"
+description: "Helm specification schema"
+type: object
+properties:
+  apache_lsrepo_path:
+    type: string

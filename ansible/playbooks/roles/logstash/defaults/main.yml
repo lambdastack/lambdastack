@@ -1,0 +1,4 @@
+---
+versions:
+  RedHat: "7.12.0"
+  Debian: "1:7.12.0*"

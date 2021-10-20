@@ -1,0 +1,142 @@
+---
+- name: Create Zookeeper group
+  group:
+    name: "{{ zookeeper_group }}"
+    system: yes
+
+- name: Create Zookeeper user
+  user:
+    name: "{{ zookeeper_user }}"
+    group: "{{ zookeeper_group }}"
+    system: yes
+    shell: "/usr/sbin/nologin"
+
+- name: Install Java package
+  package:
+    name: "{{ _packages[ansible_os_family] }}"
+    state: present
+  vars:
+    _packages:
+      Debian:
+        - openjdk-8-jre-headless
+      RedHat:
+        - java-1.8.0-openjdk-headless
+  module_defaults:
+    yum: { lock_timeout: "{{ yum_lock_timeout }}" }
+
+- name: Check if jmx exporter is available
+  stat:
+    path: "{{ prometheus_jmx_path }}"
+  register: exporter
+
+- name: Set Zookeeper variable with version name
+  set_fact:
+    zookeeper_name: "zookeeper-{{ zookeeper_version }}"
+  changed_when: false
+
+- name: Set Zookeeper install dir for {{ zookeeper_name }}
+  set_fact:
+    zookeeper_install_dir: "/opt/{{ zookeeper_name }}"
+
+- name: Set Zookeeper file name to install
+  set_fact:
+    zookeeper_file_name: "{{ zookeeper_bin_filename }}"
+
+- name: Download Zookeeper binaries
+  include_role:
+    name: download
+    tasks_from: download_file
+  vars:
+    file_name: "{{ zookeeper_file_name }}"
+
+- name: Create {{ zookeeper_install_dir }} directories
+  become: yes
+  file:
+    path: "{{ item }}"
+    recurse: yes
+    owner: "{{ zookeeper_user }}"
+    group: "{{ zookeeper_group }}"
+    mode: u=rwx,g=rx,o=
+    state: directory
+  with_items:
+  - "{{ zookeeper_install_dir }}"
+
+- name: Unpack {{ zookeeper_name }} binary
+  become: true
+  unarchive:
+    remote_src: yes
+    src: "{{ download_directory }}/{{ zookeeper_file_name }}"
+    dest: "{{ zookeeper_install_dir }}"
+    creates: "{{ zookeeper_install_dir }}/bin"
+    extra_opts: [--strip-components=1]
+    mode: u=rwx,g=rx,o=rx
+    owner: "{{ zookeeper_user }}"
+    group: "{{ zookeeper_group }}"
+  check_mode: false
+
+- name: Create directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ zookeeper_user }}"
+    group: "{{ zookeeper_group }}"
+  with_items:
+    - "{{ zookeeper_data_dir }}"
+    - "{{ zookeeper_log_dir }}"
+    - "{{ zookeeper_install_dir }}/conf"
+    - "/etc/zookeeper/conf"
+
+- name: Create Zookeeper service
+  template:
+    src: zookeeper.service.j2
+    dest: /lib/systemd/system/zookeeper.service
+  when: ansible_service_mgr == 'systemd'
+  notify:
+    - Reload systemctl daemon
+    - Restart zookeeper
+
+- name: Set Zookeeper server id
+  copy:
+    content: "{{ (groups.zookeeper.index(inventory_hostname) + 1) }}\n"
+    dest: /var/lib/zookeeper/myid
+    owner: "{{ zookeeper_user }}"
+    group: "{{ zookeeper_group }}"
+  notify: Restart zookeeper
+
+- name: Configure Zookeeper
+  template:
+    src: zoo.cfg.j2
+    dest: "{{ zookeeper_install_dir }}/conf/zoo.cfg"
+    owner: "{{ zookeeper_user }}"
+    group: "{{ zookeeper_group }}"
+  notify: Restart zookeeper
+
+- name: Link /opt/zookeeper to the right version
+  file: path=/opt/zookeeper state=link src="{{ zookeeper_install_dir }}"
+
+- name: Add Zookeeper's bin dir to the PATH
+  copy:
+    content: "export PATH=$PATH:/opt/zookeeper/bin"
+    dest: "/etc/profile.d/zookeeper_path.sh"
+    mode: u=rwx,g=rx,o=rx
+
+- name: Update the log4j config with saner production values
+  template:
+    src: log4j.properties.j2
+    dest: "{{ zookeeper_install_dir }}/conf/log4j.properties"
+  notify:
+    - Restart zookeeper
+
+- name: Enable Zookeeper service
+  service:
+    name: zookeeper
+    enabled: yes
+
+- name: Start Zookeeper
+  service:
+    name: zookeeper
+    state: started
+    enabled: yes
+
+- include_tasks: metrics.yml
+  when: exporter.stat.exists

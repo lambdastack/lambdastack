@@ -1,0 +1,17 @@
+---
+# download-requirements-done.flag file is used to avoid re-downloading requirements (to save time)
+# this is to be optimized in the future
+
+- name: |-
+    Run download-requirements script, this can take a long time
+    You can check progress on repository host with: journalctl -f -t download-requirements.sh
+  shell: >-
+    set -o pipefail && /tmp/ls-download-requirements/download-requirements.sh /var/www/html/lsrepo --no-logfile |&
+    tee >(systemd-cat --identifier=download-requirements.sh)
+  args:
+    executable: /bin/bash
+
+- name: Create flag file to not re-download requirements next time
+  file:
+    path: /tmp/ls-download-requirements/download-requirements-done.flag
+    state: touch

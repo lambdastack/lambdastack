@@ -1,0 +1,80 @@
+---
+- import_tasks: gather-facts.yml
+
+- name: Restore repositories to initial state
+  block:
+    - name: Re-enable system repositories
+      shell: /tmp/ls-repository-setup-scripts/enable-system-repos.sh
+    - name: Disable lsrepo
+      shell: /tmp/ls-repository-setup-scripts/disable-lsrepo-client.sh
+
+- name: Restore /etc/cron.daily/rhui-update-client
+  when:
+    - ansible_os_family == "RedHat"
+    - specification.provider in ['azure', 'any']  # any for AzBI module
+  block:
+    - name: Check if /var/tmp/rhui-update-client file exists
+      stat:
+        path: /var/tmp/rhui-update-client
+        get_attributes: false
+        get_checksum: false
+        get_mime: false
+      register: stat_rhui_update_client_to_restore
+
+    - name: Restore /etc/cron.daily/rhui-update-client
+      command: mv /var/tmp/rhui-update-client /etc/cron.daily/rhui-update-client
+      when: stat_rhui_update_client_to_restore.stat.exists
+
+- name: Remove lsrepo packages directory
+  file:
+    state: absent
+    path: "{{ apache_lsrepo_path }}/packages"
+  when:
+    - specification.teardown.remove.packages is defined
+    - specification.teardown.remove.packages
+
+- name: Remove Helm charts from lsrepo
+  file:
+    state: absent
+    path: "{{ apache_lsrepo_path }}/charts"
+  when:
+    - specification.teardown.remove.helm_charts is defined
+    - specification.teardown.remove.helm_charts
+
+- name: Remove Docker images from lsrepo
+  file:
+    state: absent
+    path: "{{ apache_lsrepo_path }}/images"
+  when:
+    - specification.teardown.remove.images is defined
+    - specification.teardown.remove.images
+
+- name: Remove files directory from lsrepo
+  file:
+    state: absent
+    path: "{{ apache_lsrepo_path }}/files"
+  when:
+    - specification.teardown.remove.files is defined
+    - specification.teardown.remove.files
+
+- name: Disable lsrepo and clean up firewall rule
+  block:
+    - name: Disable lsrepo server
+      shell: /tmp/ls-repository-setup-scripts/disable-repository-server.sh
+
+    - name: Clean up temporary firewall rule for HTTP server
+      include_tasks: firewall/clean-up-rule.yml
+  when:
+    - not custom_repository_url
+    - inventory_hostname in target_repository_hostnames
+    - specification.teardown.disable_http_server
+
+- name: Clean up temporary files
+  file:
+    state: absent
+    path: "{{ item }}"
+  loop:
+    - /tmp/ls-download-requirements
+    - /tmp/ls-repository-setup-scripts
+    - /var/tmp/enabled-system-repos.txt
+    - /var/tmp/enabled-system-repos.tar

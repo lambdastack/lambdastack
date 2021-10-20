@@ -1,0 +1,7 @@
+kind: infrastructure/resource-group
+title: "Resource Group"
+provider: azure
+name: default
+specification:
+  name: SET_BY_AUTOMATION
+  region: SET_BY_AUTOMATION

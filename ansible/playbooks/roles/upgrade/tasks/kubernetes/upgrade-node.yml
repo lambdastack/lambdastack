@@ -1,0 +1,56 @@
+---
+- name: k8s/node | Drain node in preparation for maintenance
+  include_tasks: utils/drain.yml
+
+- name: k8s/node | Upgrade Docker  # this may restart Docker daemon
+  include_tasks: docker.yml
+
+# This is considered a bugfix for existing clusters created prior LambdaStack v0.10.x and after v0.5.x.
+- name: k8s/node | Replace cgroupfs driver with systemd driver
+  include_tasks: patch-cgroup-driver.yml
+  vars: { _requires_restart: true }
+  when:
+    - upgrade_to_final_version
+
+- name: Upgrade packages and perform upgrade
+  block:
+    - name: k8s/node | Install kubeadm
+      include_tasks: "{{ ansible_os_family }}/install-kubeadm.yml"
+
+    - name: k8s/node | Upgrade node config
+      command: >-
+        kubeadm upgrade node --kubelet-version v{{ version }}
+      register: result
+      until:
+        - result is succeeded
+      retries: 20
+      delay: 30
+
+    - name: k8s/node | Install packages
+      include_tasks: >-
+        {%- if cni_in_kubelet is undefined or not cni_in_kubelet -%}
+          {{ ansible_os_family }}/install-packages.yml
+        {%- else -%}
+          {{ ansible_os_family }}/install-packages-cni-in-kubelet.yml
+        {%- endif -%}
+
+- name: k8s/node | Upgrade CNI plugin pod
+  import_tasks: upgrade-cni-plugin-pod.yml
+  delegate_to: "{{ groups.kubernetes_master[0] }}"
+  when:
+    - upgrade_to_final_version
+
+- name: k8s/node | Restart kubelet
+  systemd:
+    state: restarted
+    daemon_reload: true
+    name: kubelet
+
+- name: k8s/node | Wait for cluster's readiness
+  include_tasks: utils/wait.yml
+
+- name: k8s/node | Uncordon node - mark node as schedulable
+  include_tasks: utils/uncordon.yml
+
+- name: k8s/node | Verify component versions and node status
+  include_tasks: verify-upgrade.yml

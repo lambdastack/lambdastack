@@ -1,0 +1,59 @@
+---
+- name: k8s/masterN | Drain master in preparation for maintenance
+  include_tasks: utils/drain.yml
+
+- name: Upgrade packages and perform upgrade
+  block:
+    - name: k8s/masterN | Install kubeadm
+      include_tasks: "{{ ansible_os_family }}/install-kubeadm.yml"
+
+    - name: k8s/masterN | Upgrade master {{ inventory_hostname }}
+      command: >-
+        kubeadm upgrade node
+      register: result
+      until:
+        - result is succeeded
+      retries: 20
+      delay: 30
+      changed_when: false
+
+    - name: k8s/masterN | Install kubelet and kubectl for {{ version }}
+      include_tasks: >-
+        {%- if cni_in_kubelet is undefined or not cni_in_kubelet -%}
+          {{ ansible_os_family }}/install-packages.yml
+        {%- else -%}
+          {{ ansible_os_family }}/install-packages-cni-in-kubelet.yml
+        {%- endif -%}
+      when:
+        - result is succeeded
+
+- name: k8s/masterN | Upgrade CNI plugin pod
+  import_tasks: upgrade-cni-plugin-pod.yml
+  delegate_to: "{{ groups.kubernetes_master[0] }}"
+  when:
+    - upgrade_to_final_version
+
+- name: k8s/masterN | Backup kubeadm-config.yml
+  include_tasks: backup-kubeadm-config.yml
+
+- name: k8s/masterN | Upgrade Docker  # this may restart Docker daemon
+  include_tasks: docker.yml
+
+# This is considered a bugfix for existing clusters created prior LambdaStack v0.10.x and after v0.5.x.
+- name: k8s/masterN | Replace cgroupfs driver with systemd driver
+  include_tasks: patch-cgroup-driver.yml
+  vars: { _requires_restart: false }  # it will be properly restarted anyways
+  when:
+    - upgrade_to_final_version
+
+- name: k8s/masterN | Restart kubelet and docker
+  include_tasks: utils/restart-kubelet-and-docker.yml
+
+- name: k8s/masterN | Wait for cluster's readiness
+  include_tasks: utils/wait.yml
+
+- name: k8s/masterN | Uncordon master - mark master as schedulable
+  include_tasks: utils/uncordon.yml
+
+- name: k8s/masterN | Verify component versions and node status
+  include_tasks: kubernetes/verify-upgrade.yml

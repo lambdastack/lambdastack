@@ -1,0 +1,22 @@
+---
+- name: restart grafana
+  service:
+    name: grafana-server
+    state: restarted
+
+- name: Set privileges on provisioned dashboards
+  file:
+    path: "{{ grafana_data_dir }}/dashboards"
+    recurse: true
+    owner: grafana
+    group: grafana
+    mode: u=rw,g=r,o=
+  listen: provisioned dashboards changed
+
+- name: Set privileges on provisioned dashboards directory
+  file:
+    path: "{{ grafana_data_dir }}/dashboards"
+    state: directory
+    recurse: false
+    mode: u=rwx,go=rx
+  listen: provisioned dashboards changed

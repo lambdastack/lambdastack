@@ -1,0 +1,3 @@
+--color
+--error-exit-code 1
+--failure-exit-code 0

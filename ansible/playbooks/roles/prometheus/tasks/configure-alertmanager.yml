@@ -1,0 +1,11 @@
+---
+- name: Configure Alertmanager
+  template:
+    src: "alertmanager.yml.j2"
+    dest: "{{ specification.config_directory }}/alertmanager.yml"
+    force: true
+    owner: prometheus
+    group: prometheus
+    mode: u=rx,go=r
+  notify:
+    - Restart Alertmanager

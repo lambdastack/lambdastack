@@ -1,0 +1,66 @@
+---
+- when: not kubernetes_common.node_already_joined
+  block:
+    - include_role:
+        name: kubernetes_common
+        tasks_from: ensure-token
+
+    - vars:
+        api_server_url: >-
+          {%- if use_ha_control_plane -%}
+            localhost:3446
+          {%- else -%}
+            {{ hostvars[groups.kubernetes_master.0].ansible_default_ipv4.address }}:6443
+          {%- endif -%}
+      block:
+        - name: Creates directory
+          file:
+            path: /etc/kubeadm/
+            state: directory
+            owner: root
+            group: root
+            mode: u=rw,go=r
+
+        - name: Create kubeadm JoinConfiguration
+          template:
+            src: kubeadm-join-node.yml.j2
+            dest: /etc/kubeadm/kubeadm-join-node.yml
+            owner: root
+            group: root
+            mode: u=rw,go=r
+
+        - block:
+            - name: Join to Kubernetes cluster
+              shell: |
+                kubeadm join \
+                  --config /etc/kubeadm/kubeadm-join-node.yml
+              args:
+                executable: /bin/bash
+              register: kubeadm_join_result
+
+          rescue:
+            - name: Join to cluster with ignores
+              shell: |
+                kubeadm join \
+                  --config /etc/kubeadm/kubeadm-join-node.yml \
+                  --ignore-preflight-errors all
+              args:
+                executable: /bin/bash
+              register: kubeadm_join_result
+
+          always:
+            - name: Display kubeadm join stderr if any
+              debug:
+                msg: |
+                  Joined with warnings
+                  {{ kubeadm_join_result.stderr_lines }}
+              when: kubeadm_join_result is failed
+
+            - name: Mark node regardless of join result
+              set_fact:
+                kubernetes_common: >-
+                  {{ kubernetes_common | default({}) | combine(set_fact, recursive=true) }}
+              vars:
+                set_fact:
+                  node_already_joined: >-
+                    {{ kubeadm_join_result is succeeded }}

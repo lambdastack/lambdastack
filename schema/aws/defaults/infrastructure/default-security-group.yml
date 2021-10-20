@@ -1,0 +1,16 @@
+kind: infrastructure/default-security-group
+title: "Default Security Group Config"
+provider: aws
+name: default-security-group
+specification:
+  name: default-security-group
+  vpc_name: SET_BY_AUTOMATION
+  rules: []
+#    - name: ssh
+#      description: Allow SSH
+#      direction: Inbound
+#      protocol: Tcp
+#      destination_port_range: "22"
+#      source_address_prefix: "10.1.0.0/22"
+#      destination_address_prefix: "*"
+

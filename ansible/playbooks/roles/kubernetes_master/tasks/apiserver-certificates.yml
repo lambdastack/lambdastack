@@ -1,0 +1,25 @@
+---
+- name: Copy apiserver.{crt,key}
+  copy:
+    dest: "{{ item }}.OLD"
+    src: "{{ item }}"
+    remote_src: true
+  loop:
+    - "{{ specification.advanced.certificates.location }}/apiserver.crt"
+    - "{{ specification.advanced.certificates.location }}/apiserver.key"
+
+- name: Delete apiserver.{crt,key}
+  file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - "{{ specification.advanced.certificates.location }}/apiserver.crt"
+    - "{{ specification.advanced.certificates.location }}/apiserver.key"
+
+- name: Render new certificates apiserver.{crt,key}
+  shell: |
+    kubeadm init phase certs apiserver \
+      --config /etc/kubeadm/kubeadm-config.yml
+  args:
+    executable: /bin/bash
+    creates: "{{ specification.advanced.certificates.location }}/apiserver.key"

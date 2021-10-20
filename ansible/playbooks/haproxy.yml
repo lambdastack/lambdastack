@@ -1,0 +1,11 @@
+---
+# Ansible playbook that installs HAProxy
+- hosts: all
+  gather_facts: yes
+  tasks: [ ]
+
+- hosts: haproxy
+  become: true
+  become_method: sudo
+  roles:
+    - haproxy

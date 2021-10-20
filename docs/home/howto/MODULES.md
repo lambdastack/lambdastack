@@ -49,10 +49,10 @@ Those "... Basic Infrastructure" modules are responsible to provide basic cloud 
 
 In each module, we provided a guide on how to use the module. Please refer:
 
-* [Azure Basic Infrastructure](https://github.com/lambdastack/m-azure-basic-infrastructure/blob/develop/README.md) (AzBI) module
-* [Azure AKS](https://github.com/lambdastack/m-azure-kubernetes-service/blob/develop/README.md) (AzKS) module
-* [AWS Basic Infrastructure](https://github.com/lambdastack/m-aws-basic-infrastructure/blob/develop/README.md) (AwsBI) module
-* [AWS EKS](https://github.com/lambdastack/m-aws-kubernetes-service/blob/develop/README.md) (AwsKS) module
+* [Azure Basic Infrastructure](https://github.com/lambdastack/m-azure-basic-infrastructure/blob/master/README.md) (AzBI) module
+* [Azure AKS](https://github.com/lambdastack/m-azure-kubernetes-service/blob/master/README.md) (AzKS) module
+* [AWS Basic Infrastructure](https://github.com/lambdastack/m-aws-basic-infrastructure/blob/master/README.md) (AwsBI) module
+* [AWS EKS](https://github.com/lambdastack/m-aws-kubernetes-service/blob/master/README.md) (AwsKS) module
 
 After deployment of EKS or AKS, you can perform LambdaStack installation on top of it.
 

@@ -4,7 +4,7 @@ Affected version: 0.7.x
 
 ## Goals
 
-This document is extension of high level design doc: [LambdaStack backup design document](https://github.com/lambdastack/lambdastack/blob/develop/docs/design-docs/backup/backups.md) and describes more detailed, operational point-of-view of this case.
+This document is extension of high level design doc: [LambdaStack backup design document](https://github.com/lambdastack/lambdastack/blob/master/docs/design-docs/backup/backups.md) and describes more detailed, operational point-of-view of this case.
 Document does not include Kubernetes and Kafka stack
 
 ## Components

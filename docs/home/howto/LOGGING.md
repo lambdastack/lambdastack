@@ -34,7 +34,7 @@ logging:
 ```
 
 > Optional feature (role) available for logging: **logstash**
-> more details here: [link](https://github.com/lambdastack/lambdastack/blob/develop/docs/home/howto/LOGGING.md#how-to-export-elasticsearch-data-to-csv-format)
+> more details here: [link](https://github.com/lambdastack/lambdastack/blob/master/docs/home/howto/LOGGING.md#how-to-export-elasticsearch-data-to-csv-format)
 
 The `logging` role replaced `elasticsearch` role. This change was done to enable Elasticsearch usage also for data
 storage - not only for logs as it was till 0.5.0.

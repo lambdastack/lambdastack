@@ -219,7 +219,7 @@ To upgrade applications on Kubernetes to the desired version after `lscli upgrad
 
 - generate new configuration manifest using `lscli init`
 - in case of generating minimal configuration manifest (without --full argument), copy and
-  paste [the default configuration](https://github.com/lambdastack/lambdastack/blob/develop/data/common/defaults/configuration/applications.yml)
+  paste [the default configuration](https://github.com/lambdastack/lambdastack/blob/master/data/common/defaults/configuration/applications.yml)
   into it
 - run `lscli apply`
 

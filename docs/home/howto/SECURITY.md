@@ -341,7 +341,7 @@ Prerequisites: LambdaStack Kubernetes cluster
 
     - ClientId - Application ID, which you find in details of previously registered app `Azure Active Directory => App registrations => your app`
 
-    - Resource - <https://graph.windows.net> is the service root of Azure AD Graph API. The Azure Active Directory (AD) Graph API provides programmatic access to Azure AD through OData REST API endpoints. You can construct your own Graph API URL. ([How to construct a Graph API URL](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-graph-api-quickstart))
+    - Resource - <https://graph.windows.net> is the service root of Azure AD Graph API. The Azure Active Directory (AD) Graph API provides programmatic access to Azure AD through OData REST API endpoints. You can construct your own Graph API URL. ([How to construct a Graph API URL](https://docs.microsoft.com/en-us/azure/active-directory/master/active-directory-graph-api-quickstart))
 
     - ClientSecret - Created secret key from 4. point.
 

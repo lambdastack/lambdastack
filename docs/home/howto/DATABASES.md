@@ -470,7 +470,7 @@ DROP EXTENSION IF EXISTS pgaudit;
 
 ## How to work with PostgreSQL connection pooling
 
-PostgreSQL connection pooling is described in [design documentaion page](https://github.com/lambdastack/lambdastack/blob/develop/docs/design-docs/postgresql/connection-pooling.md).
+PostgreSQL connection pooling is described in [design documentaion page](https://github.com/lambdastack/lambdastack/blob/master/docs/design-docs/postgresql/connection-pooling.md).
 Properly configured application (kubernetes service) to use fully HA configuration should be set up to connect to pgbouncer service (kubernetes) instead directly to database host. This configuration provides all the benefits of user PostgreSQL in clusteres HA mode (including database failover). Both pgbouncer and pgpool stores database users and passwords in configuration files and needs to be restarted (pods) in case of PostgreSQL authentication changes like: create, alter username or password. Pods during restart process are refreshing stored database credentials automatically.
 
 ## How to configure PostgreSQL replication

@@ -18,7 +18,7 @@ LambdaStack at its core is a full automation of Kubernetes and Docker plus addit
 The following target platforms are available: AWS, Azure and on-prem installation.
 
 LambdaStack can run on as few as one node (laptop, desktop, server) but the real value comes from running 3 or more nodes for scale and HA. Everything is data driven so simply changing the manifest data and running the automation will modify the environment.
-Kubernetes hosts (masters, nodes) and component VMs can be added depending on data in the initial manifest. More information [here](https://github.com/lambdastack/lambdastack/blob/develop/docs/home/howto/CLUSTER.md#how-to-scale-or-cluster-components).
+Kubernetes hosts (masters, nodes) and component VMs can be added depending on data in the initial manifest. More information [here](https://github.com/lambdastack/lambdastack/blob/master/docs/home/howto/CLUSTER.md#how-to-scale-or-cluster-components).
 
 Please note that currently LambdaStack supports only creating new masters and nodes and adding them to the Kubernetes cluster. It doesn't support downscale. To remove them from Kubernetes cluster you have to do it manually.
 

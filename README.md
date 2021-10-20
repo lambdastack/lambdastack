@@ -4,6 +4,8 @@
 
 ## Overview
 
+IMPORTANT - The latest version of LambdaStack is based of Epiphany, which I created in 2018, and being used by high-profile industries that require cross platform scalability and resiliency. There are a few areas and diagrams using the text Epiphany instead of LambdaStack for backwards compatibility (note - any broken links or diagrams due to this fork will be corrected). Going forward, LambdaStack will be addressing many industries and not just industrial Energy. Actually, LFEnergy (Linux Foundation Energy) should look at [Epiphany](https://github.com/epiphany-platform/epiphany) as their standard going forward.
+
 LambdaStack at its core is a full automation of Kubernetes and Docker plus additional builtin services/components like:
 
 - Kafka or RabbitMQ for high speed messaging/events
@@ -57,7 +59,7 @@ lscli apply -f demo.yml
 ```
 You will be asked for a password that will be used for encryption of some of build artifacts. More information [here](docs/home/howto/SECURITY.md#how-to-run-lscli-with-password)
 
-Since version 0.7 lscli has an option to backup/recovery some of its components. More information [here](https://github.com/lambdastack/lambdastack/blob/develop/docs/home/howto/BACKUP.md)
+Since version 0.7 lscli has an option to backup/recovery some of its components. More information [here](https://github.com/lambdastack/lambdastack/blob/master/docs/home/howto/BACKUP.md)
 ```shell
 lscli backup -f <file.yml> -b <build_folder>
 lscli recovery -f <file.yml> -b <build_folder>

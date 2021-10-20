@@ -1,0 +1,9 @@
+"$id": "#/specification"
+title: "Public-key specification schema"
+description: "Public-key specification schema"
+type: object
+properties:
+  name:
+    type: string
+  public_key:
+    type: string

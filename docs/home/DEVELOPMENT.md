@@ -1,8 +1,10 @@
 # Development
+## Build something great!
 
 <!-- TOC -->
 
 - [Development](#development)
+  - [Build something great!](#build-something-great)
   - [Introduction](#introduction)
   - [Prerequisites](#prerequisites)
   - [Preparing the environment](#preparing-the-environment)

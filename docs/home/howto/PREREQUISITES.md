@@ -2,30 +2,57 @@
 
 There are 2 ways to get the image, build it locally yourself or pull it from the LambdaStack docker registry.
 
-### Build LambdaStack image locally
+### Option 1 - Build LambdaStack image locally
+
+*Shows the option of pushing the locally generated image to Docker Hub as well.*
 
 1. Install the following dependencies:
 
     - Docker
 
-2. Open a terminal in the root directory of the LambdaStack source code and run (it should contain the /cli subdirectory. This also where the Dockerfile is located):
+2. Open a terminal in the root directory of the LambdaStack source code and run (it should contain the /cli subdirectory. This also where the Dockerfile is located). There are two options below, the first option builds and applies a specific tag/version to the image and the second option builds and applies a specific tag/version plus applies a 'latest' tag in the event the user only wanted the latest version:
 
 ```bash
 TAG=$(cat cli/version.txt.py)
-docker build --file Dockerfile --tag lambdastack:${TAG} .
+docker build --file Dockerfile --tag lambdastack/lambdastack:${TAG} .
 ```
 
-### Pull LambdaStack image from the registry
+OR
 
+```bash
+TAG=$(cat cli/version.txt.py)
+docker build --file Dockerfile --tag lambdastack/lambdastack:${TAG} --tag lambdastack/lambdastack:latest.
+```
+
+3. To push the image(s) to the default Docker Hub:
+   1. Make sure to create an account at [Docker](https://hub.docker.com). If you want to have more than one repo then create an Organization and add yourself as a member. If organization, then select or create repo name. For example, we use LambdaStack as the organization and lambdastack as a repo (lambdastack/lambdastack). We actually have a number of repos but you get the point.
+   2. Push the image(s) to Docker Hub as follows: (Note - 'latest' tag is optional and Docker will see it's the same and simply create latest reference link)
+
+```bash
+TAG=$(cat cli/version.txt.py)
+docker push lambdastack/lambdastack:${TAG}
+docker push lambdastack/lambdastack:latest
+```
+
+
+### Option 2a - Pull LambdaStack image from the registry
+
+>NOTE: This the default way. The latest version of LambdaStack will already be in the Docker Hub ready to be pulled down locally. If you built the image locally then it will already be in your local image so there is no need to pull it down - you can skip to doing a Docker Run like below.
+
+`TAG` is the specific version tag given to the image. If you don't know the specific version then use the second option and it will grab the latest version.
 ```bash
 docker pull lambdastack/lambdastack:TAG
 ```
 
-Where `TAG` should be replaced with an existing tag.
+OR
+
+```bash
+docker pull lambdastack/lambdastack:latest
+```
 
 *Check [here](https://cloud.docker.com/u/lambdastack/repository/docker/lambdastack/lambdastack) for the available tags.*
 
-### Running the LambdaStack image
+### Option 2b - Running the LambdaStack image
 
 To run the image:
 
@@ -37,11 +64,21 @@ Where:
 - `LOCAL_DIR` should be replaced with the local path to the directory for LambdaStack input (SSH keys, data yaml files) and output (logs, build states),
 - `TAG` should be replaced with an existing tag.
 
+>Example: docker run -it -v ~/projects/lambdastack/clusters --rm lambdastack/lambdastack:latest
+
+The lambdastack docker image will mount to **~/projects/lambdastack/cluster/shared**. It will expect any customized configs, SSH keys or data yaml files to be in that directory. The example above is for Linux based systems (including macs). See Windows method below.
+
 *Check [here](https://cloud.docker.com/u/lambdastack/repository/docker/lambdastack/lambdastack) for the available tags.*
+
+Let LambdaStack run (it will take a while depending on the options you selected)!
+
+*Notes below are only here if you run into issues with a corporate proxy or something like that or if you want to do development and add cool new features to LambdaStack :).*
+
+---
 
 ## LambdaStack development
 
-For setting up en LambdaStack development environment please refer to this dedicated document [here.](./../DEVELOPMENT.md)
+For setting up the LambdaStack development environment please refer to this dedicated document [here.](./../DEVELOPMENT.md)
 
 ## Important notes
 

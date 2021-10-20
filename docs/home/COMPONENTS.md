@@ -1,5 +1,7 @@
 # Component and dependency versions and licenses
 
+>Note - We do our best to keep these up to date but sometimes something slips through so just let us know if we forgot :).
+
 ## LambdaStack cluster components
 
 Note that versions are default versions and can be changed in certain cases through configuration. Versions that are marked with '-' are dependent on the OS distribution version and packagemanager.

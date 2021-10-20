@@ -2,7 +2,8 @@
 
 ## Introduction
 
-When installing a cluster LambdaStack sets up its own internal repository for serving:
+When installing a cluster, LambdaStack sets up its own internal repository for serving:
+>This **ONLY** applies to `airgapped` environments (no Internet access environments - high secure areas)
 
 - OS packages
 - Files

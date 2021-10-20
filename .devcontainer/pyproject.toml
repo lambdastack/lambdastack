@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "lambdastack-devcon"
+version = "0.10.0"
+description = "LambdaStack Dev Container"
+authors = ["LambdaStack"]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+pyyaml = "*"
+jinja2 = "*"
+boto3 = "*"
+jsonschema = "*"
+python-json-logger = "*"
+ansible = "==2.10.7"
+terraform-bin = "*"
+azure-cli = "==2.23.0"
+"ruamel.yaml" = "*"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

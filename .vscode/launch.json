@@ -1,0 +1,30 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "lscli",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/cli/lscli.py",
+            "cwd": "${workspaceFolder}",
+            "env": { "PYTHONPATH": "${workspaceFolder}" },
+            "console": "integratedTerminal",
+            // "args": ["--debug", "1", "apply", "-f", "${workspaceFolder}/clusters/<YOUR_CONFIG>.yml"]
+            // "args": ["--help"]
+            "args": ["apply", "-f", "${workspaceFolder}/clusters/<YOUR_CONFIG>.yml"]
+            // "args": ["apply", "-f", "${workspaceFolder}/clusters/<YOUR_CONFIG>.yml", "--vault-password", "<ANSIBLE_VAULT_PASSWORD>"]
+            // "args": ["apply", "-f", "${workspaceFolder}/clusters/<YOUR_CONFIG>.yml", "--offline-requirements", "${workspaceFolder}/downloads/lsrepo"]
+            // "args": ["delete", "-b", "${workspaceFolder}/clusters/build/<DIR>"]
+            // "args": ["init", "-p", "<PROVIDER>", "-n", "<NAME>"]
+            // "args": ["init", "-p", "<PROVIDER>", "-n", "<NAME>", "--full"]
+            // "args": ["prepare", "--os", "<OS>"]
+            // "args": ["test", "-b", "${workspaceFolder}/clusters/build/<DIR>"]
+            // "args": ["test", "-b", "${workspaceFolder}/clusters/build/<DIR>", "-g", "<TEST_GROUP>"]
+            // "args": ["upgrade", "-b", "${workspaceFolder}/clusters/build/<DIR>"]
+            // "args": ["upgrade", "-b", "${workspaceFolder}/clusters/build/<DIR>","--upgrade-components","kafka,ignite"]
+        }
+    ]
+}

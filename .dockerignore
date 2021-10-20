@@ -1,0 +1,14 @@
+# Exclude unnecessary files from the build context
+# This file is meant to be used as a whitelist
+
+# Exclude everything
+*
+
+# Include the following
+!.devcontainer/requirements.txt
+!cli/
+!schema/
+!ansible/
+!terraform/
+!tests/spec/
+

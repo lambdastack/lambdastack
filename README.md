@@ -4,7 +4,7 @@
 
 ## Overview
 
-IMPORTANT - The latest version of LambdaStack is based of Epiphany, which I created in 2018, and being used by high-profile industries that require cross platform scalability and resiliency. There are a few areas and diagrams using the text Epiphany instead of LambdaStack for backwards compatibility (note - any broken links or diagrams due to this fork will be corrected). Going forward, LambdaStack will be addressing many industries and not just industrial Energy. Actually, LFEnergy (Linux Foundation Energy) should look at [Epiphany](https://github.com/epiphany-platform/epiphany) as their standard going forward.
+IMPORTANT - The latest version of LambdaStack is based on Epiphany, which I created in 2018, and being used by high-profile industries that require cross platform scalability and resiliency. There are a few areas and diagrams using the text Epiphany instead of LambdaStack for backwards compatibility (note - any broken links or diagrams due to this fork will be corrected). Going forward, LambdaStack will be addressing many industries and not just industrial Energy. Actually, LFEnergy (Linux Foundation Energy) should look at [Epiphany](https://github.com/epiphany-platform/epiphany) as their standard going forward. The team I created at Hitachi Energy for Epiphany is very good.
 
 LambdaStack at its core is a full automation of Kubernetes and Docker plus additional builtin services/components like:
 

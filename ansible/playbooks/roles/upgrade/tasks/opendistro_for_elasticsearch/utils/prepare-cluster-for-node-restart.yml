@@ -32,7 +32,7 @@
     # https://www.elastic.co/guide/en/elasticsearch/reference/7.10/rolling-upgrades.html#_upgrading_your_cluster
     # Synced flush is deprecated (flush has the same effect as synced flush on Elasticsearch >= 7.6) and will be removed in ES 8.0.
     # Since synced flush fails under a large volume of incoming data (e.g. increased log level) it's replaced by flush.
-    # In lscli 0.7.x there is ES 7.3.2 but this step is optional.
+    # In lambdastack 0.7.x there is ES 7.3.2 but this step is optional.
     - name: Handle flush failure
       block:
         - name: ODFE | Perform a synced flush (optional step)

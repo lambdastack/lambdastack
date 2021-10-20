@@ -18,17 +18,17 @@ Version 0.10 won't be supported anymore. Instead, we introduced version 1.0 whic
 ### Fixed
 
 - [#1870](https://github.com/lambdastack/lambdastack/issues/1870) - Do not install Filebeat when there is no Elasticsearch
-- [#1881](https://github.com/lambdastack/lambdastack/issues/1881) - lscli: wrong informations in help messages
+- [#1881](https://github.com/lambdastack/lambdastack/issues/1881) - lambdastack: wrong informations in help messages
 - [#1959](https://github.com/lambdastack/lambdastack/issues/1959) - Network traffic not allowed from load balancer's subnet to Kubernetes's subnet in AWS
 - [#1991](https://github.com/lambdastack/lambdastack/issues/1991) - When custom repo is used backup/recovery stops working
 - [#1908](https://github.com/lambdastack/lambdastack/issues/1908) - Research why LambdaStack nodes hang when memory is overcommited
 - [#1979](https://github.com/lambdastack/lambdastack/issues/1979) - RabbitMQ fails on upgrade when 2 nodes are specified that are not clustered
 - [#1984](https://github.com/lambdastack/lambdastack/issues/1984) - RabbitMQ 3.7.10 fails on upgrade to 3.8.9: 'rabbitmqctl version' command not found
 - [#1824](https://github.com/lambdastack/lambdastack/issues/1824) - offline installation fails with error 'yum lockfile is held by another process' (Azure/RHEL)
-- [#2069](https://github.com/lambdastack/lambdastack/issues/2069) - [CentOS] lscli fails on task [repository : Create lsrepo repository]
+- [#2069](https://github.com/lambdastack/lambdastack/issues/2069) - [CentOS] lambdastack fails on task [repository : Create lsrepo repository]
 - [#2066](https://github.com/lambdastack/lambdastack/issues/2066) - [CentOS] download-requirements.sh fails on extracting tar with backed up repos
-- [#2067](https://github.com/lambdastack/lambdastack/issues/2067) - [CentOS] lscli fails on task "repository : Wait for yum lock to be released" on CentOS Minimal
-- [#2115](https://github.com/lambdastack/lambdastack/issues/2115) - LScli hangs on importing GPG keys for kubernetes repository on RHEL
+- [#2067](https://github.com/lambdastack/lambdastack/issues/2067) - [CentOS] lambdastack fails on task "repository : Wait for yum lock to be released" on CentOS Minimal
+- [#2115](https://github.com/lambdastack/lambdastack/issues/2115) - LambdaStack hangs on importing GPG keys for kubernetes repository on RHEL
 - [#2121](https://github.com/lambdastack/lambdastack/issues/2121) - [RedHat/CentOS] Erlang package versions specified in requirements are missing in external repository
 - [#2068](https://github.com/lambdastack/lambdastack/issues/2068) - Preflight role requires sudoer user
 - [#2136](https://github.com/lambdastack/lambdastack/issues/2136) - Replace Bintray repository
@@ -43,7 +43,7 @@ Version 0.10 won't be supported anymore. Instead, we introduced version 1.0 whic
 - [#1952](https://github.com/lambdastack/lambdastack/issues/1952) - Upgrade ansible to 2.10.x
 - [#1864](https://github.com/lambdastack/lambdastack/issues/1864) - Upgrade Hashicorp Vault (1.6.1), Vault Helm Chart (0.9.0), Vault-k8s (0.7.0)
 - [#2029](https://github.com/lambdastack/lambdastack/issues/2029) - Remove old ARM references.
-- [#1901](https://github.com/lambdastack/lambdastack/issues/1901) - Make LambdaStack upgrades selective (Kafka). Added new parameter for lscli (--upgrade-components)
+- [#1901](https://github.com/lambdastack/lambdastack/issues/1901) - Make LambdaStack upgrades selective (Kafka). Added new parameter for lambdastack (--upgrade-components)
 - [#2080](https://github.com/lambdastack/lambdastack/issues/2080) - Update RHEL images in CI pipelines and documentation to the current latest 7.9 version
 - [#1859](https://github.com/lambdastack/lambdastack/issues/1859) - Upgrade Open Distro for Elasticsearch to v1.13.x and elasticsearch-oss to v7.10.2
 - [#2142](https://github.com/lambdastack/lambdastack/issues/2142) - Update Ubuntu 18.04-LTS images to the latest version
@@ -54,4 +54,4 @@ Version 0.10 won't be supported anymore. Instead, we introduced version 1.0 whic
 
 ### Known issues
 
-- [#2115](https://github.com/lambdastack/lambdastack/issues/2115) - [RHEL/CentOS] lscli may hang or fail on importing GPG keys for Kubernetes rpm repository
+- [#2115](https://github.com/lambdastack/lambdastack/issues/2115) - [RHEL/CentOS] lambdastack may hang or fail on importing GPG keys for Kubernetes rpm repository

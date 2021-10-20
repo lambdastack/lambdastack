@@ -1,8 +1,8 @@
 # Troubleshooting
 
-## LScli container connection issues after hibernation/sleep on Windows
+## LambdaStack container connection issues after hibernation/sleep on Windows
 
-When running the LScli container on Windows you might get such errors when trying to run the apply command:
+When running the LambdaStack container on Windows you might get such errors when trying to run the apply command:
 
 Azure:
 ```
@@ -11,10 +11,10 @@ INFO cli.engine.terraform.TerraformCommand - Error: Error reading queue properti
 
 AWS:
 ```
-ERROR lscli - An error occurred (AuthFailure) when calling the DescribeImages operation: AWS was not able to validate the provided access credentials
+ERROR lambdastack - An error occurred (AuthFailure) when calling the DescribeImages operation: AWS was not able to validate the provided access credentials
 ```
 
-These issues might occur when the host machine you are running the LScli container on was put to sleep or hybernated for an extended period of time. Hyper-V might have issues syncing the time between the container and the host after it wakes up or is resumed. You can confirm this by checking the date and time in your container by running:
+These issues might occur when the host machine you are running the LambdaStack container on was put to sleep or hybernated for an extended period of time. Hyper-V might have issues syncing the time between the container and the host after it wakes up or is resumed. You can confirm this by checking the date and time in your container by running:
 
 ```shell
 Date
@@ -34,7 +34,7 @@ When public key is created by `ssh-keygen` sometimes it's necessary to convert i
 Otherwise such error occurs:
 
 ```text
-ERROR lscli - 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+ERROR lambdastack - 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
 ```
 
 ## Kafka

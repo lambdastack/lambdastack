@@ -205,7 +205,7 @@ class AnsibleVarsGenerator(Step):
             return None
 
         # Remove un-used supported_os list if present from shared/config from manifest so we avoid namedlist merging errors.
-        # This has been refactored in from LScli 1.0.x and no longer needed at this stage.
+        # This has been refactored in from LambdaStack 1.0.x and no longer needed at this stage.
         if hasattr(shared_config_doc.specification, 'supported_os'):
             del shared_config_doc.specification['supported_os']
 

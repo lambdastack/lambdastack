@@ -6,7 +6,7 @@ From LambdaStack v1.1.0 preliminary support for the ```arm64``` architecture was
 
 Below we give the current state of ```arm64``` support across the different providers, operating systems, components and applications. Make sure to check the ***notes*** for limitations that might still be present for supported components or applications.
 
-Besides making sure that the selected providers, operating systems, components and applications are supported with the tables below any other configuration for ```LScli``` will work the same on ```arm64``` as they do on ```x86_64```. ```LScli``` will return an error if any configuration is used that is not supported by the ```arm64``` architecture.
+Besides making sure that the selected providers, operating systems, components and applications are supported with the tables below any other configuration for ```LambdaStack``` will work the same on ```arm64``` as they do on ```x86_64```. ```LambdaStack``` will return an error if any configuration is used that is not supported by the ```arm64``` architecture.
 
 ### Providers
 

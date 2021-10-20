@@ -23,8 +23,8 @@
 - [#2082](https://github.com/lambdastack/lambdastack/issues/2082) - Check possibility of downloading packages for offline installation on different architecture than targeted one
 - [#2232](https://github.com/lambdastack/lambdastack/issues/2232) - Documentation added for spike about leader election for pods
 - [#2129](https://github.com/lambdastack/lambdastack/issues/2129) - [Upgrade] Add migration from ODFE demo certificates to generated ones
-- [#2288](https://github.com/lambdastack/lambdastack/issues/2288) - Allow to preserve OS images when run 'lscli apply' for existing cluster
-- [#2388](https://github.com/lambdastack/lambdastack/issues/2388) - Document troubleshooting during failed lscli run
+- [#2288](https://github.com/lambdastack/lambdastack/issues/2288) - Allow to preserve OS images when run 'lambdastack apply' for existing cluster
+- [#2388](https://github.com/lambdastack/lambdastack/issues/2388) - Document troubleshooting during failed lambdastack run
 - [#127](https://github.com/lambdastack/lambdastack/issues/127)   - Add predefined Grafana dashboards for both offline/online modes
 
 ### Fixed
@@ -39,9 +39,9 @@
 - [#2318](https://github.com/lambdastack/lambdastack/issues/2318) - [RHEL/Azure] RHUI client certificate expired for RHEL 7-LVM images
 - [#2332](https://github.com/lambdastack/lambdastack/issues/2332) - [Elasticsearch] Error when having multiple VMs and non-clustered mode
 - [#1576](https://github.com/lambdastack/lambdastack/issues/1576) - [Kafka] Incorrect number of brokers/queues available after scaling up/down
-- [#2381](https://github.com/lambdastack/lambdastack/issues/2381) - Kibana fails to upgrade from lscli v1.0 to v1.1 (version comparison issue)
+- [#2381](https://github.com/lambdastack/lambdastack/issues/2381) - Kibana fails to upgrade from lambdastack v1.0 to v1.1 (version comparison issue)
 - [#2345](https://github.com/lambdastack/lambdastack/issues/2345) - CoreDNS requires restart after scaling up nodes to be able to resolve new hostnames
-- [#2360](https://github.com/lambdastack/lambdastack/issues/2360) - [Upgrade] lscli may fail after re-running
+- [#2360](https://github.com/lambdastack/lambdastack/issues/2360) - [Upgrade] lambdastack may fail after re-running
 
 ### Updated
 

@@ -98,7 +98,7 @@ kind: infrastructure/server
 
 ## Proposed design - Big Picture
 
-![LambdaStack engine architecture proposal](LambdaStack-engine.svg)
+![LambdaStack engine architecture proposal](lambdastack-engine.svg)
 
 ### Input
 

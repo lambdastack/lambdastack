@@ -27,7 +27,7 @@ class Config:
             self._offline_requirements = ''
             self._wait_for_pods = False
             self._upgrade_components = []
-            self._vault_password_location = os.path.join(expanduser("~"), '.lscli/vault.cfg')
+            self._vault_password_location = os.path.join(expanduser("~"), '.lambdastack/vault.cfg')
 
         @property
         def docker_cli(self):

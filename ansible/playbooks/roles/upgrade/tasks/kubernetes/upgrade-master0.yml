@@ -65,7 +65,7 @@
   include_tasks: utils/wait.yml
 
 # 'kubeadm upgrade apply' overwrites LambdaStack's customized CoreDNS so we patch it again.
-# This task restores 'hosts' plugin and should be run each time K8s was upgraded in order to support "--wait-for-pods" lscli feature (issue #1218).
+# This task restores 'hosts' plugin and should be run each time K8s was upgraded in order to support "--wait-for-pods" lambdastack feature (issue #1218).
 - name: k8s/master0 | Customize CoreDNS
   include_tasks: upgrade-coredns.yml
 

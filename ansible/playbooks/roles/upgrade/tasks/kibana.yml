@@ -5,7 +5,7 @@
   when: ansible_facts.packages is undefined
 
 # Kibana is upgraded only when there is no 'kibana-oss' package (replaced by 'opendistroforelasticsearch-kibana' since v0.5).
-# This condition has been added to not fail when 'lscli upgrade' is run for LambdaStack v0.4 cluster.
+# This condition has been added to not fail when 'lambdastack upgrade' is run for LambdaStack v0.4 cluster.
 # We cannot upgrade Kibana to v7 having Elasticsearch v6.
 - name: Upgrade Kibana
   when: ansible_facts.packages['kibana-oss'] is undefined

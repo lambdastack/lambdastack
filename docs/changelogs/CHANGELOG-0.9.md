@@ -18,11 +18,11 @@
 - [#1833](https://github.com/lambdastack/lambdastack/issues/1833) - DaemonSets of Node Exporter and Filebeat deploy in default namespace
 - [#1872](https://github.com/lambdastack/lambdastack/issues/1872) - pythonPath in launch.json is not supported
 - [#1868](https://github.com/lambdastack/lambdastack/issues/1868) - Repository host runs Ubuntu on Azure/RHEL cluster
-- [#1875](https://github.com/lambdastack/lambdastack/issues/1875) - lscli upgrade fails when there is no kubernetes_master group in inventory
+- [#1875](https://github.com/lambdastack/lambdastack/issues/1875) - lambdastack upgrade fails when there is no kubernetes_master group in inventory
 - [#1834](https://github.com/lambdastack/lambdastack/issues/1834) - Kafka - Disable debug logging and make this option configurable
-- [#1888](https://github.com/lambdastack/lambdastack/issues/1888) - lscli upgrade of cluster created by LambdaStack v0.5 may fail
+- [#1888](https://github.com/lambdastack/lambdastack/issues/1888) - lambdastack upgrade of cluster created by LambdaStack v0.5 may fail
 - [#1884](https://github.com/lambdastack/lambdastack/issues/1884) - Prometheus is not able to scrape metrics from AKS/EKS nodes
-- [#1887](https://github.com/lambdastack/lambdastack/issues/1887) - lscli upgrade of cluster created by LambdaStack v0.6 fails on "Store preflight facts" task
+- [#1887](https://github.com/lambdastack/lambdastack/issues/1887) - lambdastack upgrade of cluster created by LambdaStack v0.6 fails on "Store preflight facts" task
 - [#1866](https://github.com/lambdastack/lambdastack/issues/1866) - No logs from K8s apps in Elasticsearch
 
 ### Updated

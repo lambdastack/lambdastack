@@ -32,43 +32,43 @@ We currently use Terraform and Ansible for our automation orchestration. All aut
 
 ## Quickstart
 
-### LScli
+### LambdaStack
 
 Use the following command to see a full run-down of all commands and flags:
 
 ```shell
-lscli --help
+lambdastack --help
 ```
 
 Generate a new minimum cluster definition:
 
 ```shell
-lscli init -p aws -n demo
+lambdastack init -p aws -n demo
 ```
 
 This minimum file definition is fine to start with, if you need more control over the infrastructure created you can also create a full definition:
 
 ```shell
-lscli init -p aws -n demo --full
+lambdastack init -p aws -n demo --full
 ```
 
 You will need to modify a few values (like your AWS secrets, directory path for SSH keys). Once you are done with `demo.yml` you can start cluster deployment by executing:
 
 ```shell
-lscli apply -f demo.yml
+lambdastack apply -f demo.yml
 ```
-You will be asked for a password that will be used for encryption of some of build artifacts. More information [here](docs/home/howto/SECURITY.md#how-to-run-lscli-with-password)
+You will be asked for a password that will be used for encryption of some of build artifacts. More information [here](docs/home/howto/SECURITY.md#how-to-run-lambdastack-with-password)
 
-Since version 0.7 lscli has an option to backup/recovery some of its components. More information [here](https://github.com/lambdastack/lambdastack/blob/master/docs/home/howto/BACKUP.md)
+Since version 0.7 lambdastack has an option to backup/recovery some of its components. More information [here](https://github.com/lambdastack/lambdastack/blob/master/docs/home/howto/BACKUP.md)
 ```shell
-lscli backup -f <file.yml> -b <build_folder>
-lscli recovery -f <file.yml> -b <build_folder>
+lambdastack backup -f <file.yml> -b <build_folder>
+lambdastack recovery -f <file.yml> -b <build_folder>
 ```
 
 To delete all deployed components following command should be used
 
 ```shell
-lscli delete -b <build_folder>
+lambdastack delete -b <build_folder>
 ```
 
 Find more information using table of contents below - especially the [How-to guides](docs/home/HOWTO.md).

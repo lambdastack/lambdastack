@@ -13,7 +13,7 @@
     file: manifest.yml
     name: postgresql_manifest
 
-# repmgr was introduced with lscli v0.6 but the following symlink was added in v0.7 so this task is to ensure it exists
+# repmgr was introduced with lambdastack v0.6 but the following symlink was added in v0.7 so this task is to ensure it exists
 - name: repmgr for PG {{ upgrade_defaults.pg.version }} | Debian | Ensure symlink to config file exists
   file:
     src: "{{ upgrade_defaults.repmgr.config_dir[ansible_os_family] }}/repmgr.conf"

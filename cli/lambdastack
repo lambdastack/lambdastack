@@ -1,0 +1,3 @@
+#!/bin/bash
+export PYTHONPATH=/lambdastack
+python3 -m cli.lambdastack "$@"

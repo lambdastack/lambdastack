@@ -5,9 +5,9 @@
 ### Added
 
 - [#1487](https://github.com//lambdastack/lambdastack/issues/1487) - Add RabbitMQ monitoring
-- [#2600](https://github.com/lambdastack/lambdastack/issues/2600) - Change lscli output structure
+- [#2600](https://github.com/lambdastack/lambdastack/issues/2600) - Change lambdastack output structure
 - [#2655](https://github.com/lambdastack/lambdastack/issues/2655) - Add 'repmgr node check' to upgrade preflight checks and auto-tests
-- [#2643](https://github.com/lambdastack/lambdastack/issues/2643) - Restructure LScli project folder
+- [#2643](https://github.com/lambdastack/lambdastack/issues/2643) - Restructure LambdaStack project folder
 - [#2666](https://github.com/lambdastack/lambdastack/issues/2666) - Project re-structure part 2
 - [#2547](https://github.com/lambdastack/lambdastack/issues/2547) - Refactoring and removal of old code from Ansible inventory creator and upgrade
 - [#2644](https://github.com/lambdastack/lambdastack/issues/2644) - Add validation to check hostnames for on-prem deployment
@@ -15,7 +15,7 @@
 
 ### Fixed
 
-- [#2497](https://github.com/lambdastack/lambdastack/issues/2497) - Fix lscli apply --full region values
+- [#2497](https://github.com/lambdastack/lambdastack/issues/2497) - Fix lambdastack apply --full region values
 - [#1743](https://github.com/lambdastack/lambdastack/issues/1743) - Virtual machine "kind" mismatch
 
 ### Updated

@@ -5,10 +5,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "lscli",
+            "name": "lambdastack",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/cli/lscli.py",
+            "program": "${workspaceFolder}/cli/lambdastack.py",
             "cwd": "${workspaceFolder}",
             "env": { "PYTHONPATH": "${workspaceFolder}" },
             "console": "integratedTerminal",

@@ -10,12 +10,12 @@
 
 ### Added
 
-- [#986](https://github.com/lambdastack/lambdastack/issues/986) - Add vim to LScli container and devcontainer
+- [#986](https://github.com/lambdastack/lambdastack/issues/986) - Add vim to LambdaStack container and devcontainer
 - [#1044](https://github.com/lambdastack/lambdastack/issues/1044) - Add ability to add subscriptionId to sp.yml on Azure
 
 ### Fixed
 
-- [#624](https://github.com/lambdastack/lambdastack/issues/624) - Don't run lscli as root in container
+- [#624](https://github.com/lambdastack/lambdastack/issues/624) - Don't run lambdastack as root in container
 - [#966](https://github.com/lambdastack/lambdastack/issues/966) - Ubuntu builds get stuck on 'Create lsrepo repository' task waiting for user input in offline mode
 - [#1043](https://github.com/lambdastack/lambdastack/issues/1043) - For vm template on Azure disk_size_gb is missing in storage_os_disk
 - [#1049](https://github.com/lambdastack/lambdastack/issues/1049) - Azure/RedHat specified disk size 30 GB is smaller than the size of the disk in the VM image
@@ -29,14 +29,14 @@
 
 ### Added
 
-- Upgraded LScli container and devcontainer from `python3.7-alpine` to `python:3.7-slim`
-- Moved `lscli delete` out of experimental mode
+- Upgraded LambdaStack container and devcontainer from `python3.7-alpine` to `python:3.7-slim`
+- Moved `lambdastack delete` out of experimental mode
 
 ### Fixed
 
-- [#940](https://github.com/lambdastack/lambdastack/issues/940) - LScli init does not include any infrastructure documents
-- [#611](https://github.com/lambdastack/lambdastack/issues/611) - Lack of configuration/rabbitmq and configuration/postgresql after running lscli init --full
-- [#736](https://github.com/lambdastack/lambdastack/issues/736) - Running lscli init -p any --full generates cloud sample configuration instead of bare metal config
+- [#940](https://github.com/lambdastack/lambdastack/issues/940) - LambdaStack init does not include any infrastructure documents
+- [#611](https://github.com/lambdastack/lambdastack/issues/611) - Lack of configuration/rabbitmq and configuration/postgresql after running lambdastack init --full
+- [#736](https://github.com/lambdastack/lambdastack/issues/736) - Running lambdastack init -p any --full generates cloud sample configuration instead of bare metal config
 - [#942](https://github.com/lambdastack/lambdastack/issues/942) - Additional security rules for NSGs are not applied properly for Azure
 - [#951](https://github.com/lambdastack/lambdastack/issues/951) - Fix PGBouncer to use v1.10 for all platforms
 - [#945](https://github.com/lambdastack/lambdastack/issues/945) - Disable NSG creation on Azure
@@ -56,12 +56,12 @@
 ### Fixed
 
 - [#906](https://github.com/lambdastack/lambdastack/issues/906) - Open Distro for Elasticsearch: Task 'Install Elasticsearch package' fails
-- [#909](https://github.com/lambdastack/lambdastack/issues/909) - Upgrade: Missing property 'name' when running lscli upgrade
+- [#909](https://github.com/lambdastack/lambdastack/issues/909) - Upgrade: Missing property 'name' when running lambdastack upgrade
 - [#869](https://github.com/lambdastack/lambdastack/issues/869) - Common: Issue installing Debian packages
 
 ### Known issues
 
-- [#922](https://github.com/lambdastack/lambdastack/issues/922) - Elasticsearch service not starting on RHEL after running lscli upgrade command
+- [#922](https://github.com/lambdastack/lambdastack/issues/922) - Elasticsearch service not starting on RHEL after running lambdastack upgrade command
 
 ## [0.5.1] 2020-01-23
 
@@ -91,7 +91,7 @@
 - [#749](https://github.com/lambdastack/lambdastack/issues/749) - Deploy stateless Apache Ignite on K8s
   - [Stateless setup](/docs/home/howto/DATABASES.md#how-to-start-working-with-apache-ignite-stateless-setup)
 - [#831](https://github.com/lambdastack/lambdastack/issues/831) - Build artifacts encryption (Kubernetes config) using ansible vault
-  - [lscli asks for password](/docs/home/howto/SECURITY.md#how-to-run-lscli-with-password)
+  - [lambdastack asks for password](/docs/home/howto/SECURITY.md#how-to-run-lambdastack-with-password)
 
 ### Changed
 

@@ -2,7 +2,7 @@
 
 ## Kubernetes applications - overview
 
-Currently, LambdaStack provides the following predefined applications which may be deployed with lscli:
+Currently, LambdaStack provides the following predefined applications which may be deployed with lambdastack:
 
 - ignite
 - rabbitmq
@@ -45,7 +45,7 @@ To see what version of the application image is in local image registry please r
    provider: <your-provider-here-replace-it>
    ```
 
-4. Run `lscli apply`.
+4. Run `lambdastack apply`.
 
 ## How to do Kubernetes RBAC
 
@@ -298,12 +298,12 @@ To set specific database host IP address for Keyclock you have to provide additi
       address: 10.0.0.2
 ```
 
-Note: If `database address` is not specified, lscli assumes that database instance doesn't exist and will create it.  
+Note: If `database address` is not specified, lambdastack assumes that database instance doesn't exist and will create it.  
 
 By default, if `database address` is not specified and if Postgres is HA mode, Keycloak uses PGBouncer ClusterIP service name as database address.  
 If Postgres is in standalone mode, and `database address` is not specified, then it uses first Postgres host address from `inventory`.
 
-4. Run `lscli apply` on your configuration manifest.
+4. Run `lambdastack apply` on your configuration manifest.
 
 5. Log into GUI
 

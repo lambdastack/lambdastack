@@ -13,12 +13,12 @@
 - [#407](https://github.com/lambdastack/lambdastack/issues/407) - Deployment/Application role fails because Kubernetes cluster is not ready after reboot.
 - [#410](https://github.com/lambdastack/lambdastack/issues/410) - Node_exporter ports are not present in defaults resulting in Prometheus not beeing able to scrape data with minimal cluster data.yaml.
 - [#433](https://github.com/lambdastack/lambdastack/issues/433) - Kafka exporter unnecessarily installed on RabbitMQ vms.
-- [#548](https://github.com/lambdastack/lambdastack/issues/548) - LScli fails on AWS when clustering RabbitMQ nodes.
+- [#548](https://github.com/lambdastack/lambdastack/issues/548) - LambdaStack fails on AWS when clustering RabbitMQ nodes.
 - [#549](https://github.com/lambdastack/lambdastack/issues/549) - Need to allow traffic on port 5432 to enable PostgreSQL replication on AWS.
 - [#839](https://github.com/lambdastack/lambdastack/issues/839) - Add ServerAliveInterval option to keep SSH connection for long running tasks
 - [#1016](https://github.com/lambdastack/lambdastack/issues/1016) - Disable verify, backup and recovery as they are not fully implemented
 - [#1105](https://github.com/lambdastack/lambdastack/issues/1105) - [v0.3] failing on task: Install container-selinux for RHEL
-- [#1106](https://github.com/lambdastack/lambdastack/issues/1106) - [v0.3] LScli exiting with exit code 0 despite errors
+- [#1106](https://github.com/lambdastack/lambdastack/issues/1106) - [v0.3] LambdaStack exiting with exit code 0 despite errors
 - [#1154](https://github.com/lambdastack/lambdastack/issues/1154) - Node exporter is not installed on logging vms
 - [#1163](https://github.com/lambdastack/lambdastack/issues/1163) - [v0.4, v0.3] Typo in the role name rabbitmq
 - Added default machines for rabbitmq and load_balancer components
@@ -28,7 +28,7 @@
 ### Added
 
 - Support for AWS cloud platform
-- New Python based CLI - lscli. Currently supports AWS and baremetal deployments only
+- New Python based CLI - lambdastack. Currently supports AWS and baremetal deployments only
 - Kubernetes automatic upgrade (experimental)
 - Server spec tests for cluster components
 - Added Canal as network plugin for Kubernetes

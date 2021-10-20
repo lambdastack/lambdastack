@@ -11,9 +11,9 @@
 - [#2434](https://github.com/lambdastack/lambdastack/issues/2434) - Python 3 installation
 - [#2346](https://github.com/lambdastack/lambdastack/issues/2346) - Allow more than 2 PostgreSQL nodes installation with repmgr
 - [#2124](https://github.com/lambdastack/lambdastack/issues/2124) - Added Internet connection test to download-requirements.sh
-- [#2531](https://github.com/lambdastack/lambdastack/issues/2531) - Add Pylint configuration to lscli devcontainer
-- [#1892](https://github.com/lambdastack/lambdastack/issues/1892) - Add ansible-lint to lscli devcontainer
-- [#2558](https://github.com/lambdastack/lambdastack/issues/2558) - Add rubocop to lscli devcontainer
+- [#2531](https://github.com/lambdastack/lambdastack/issues/2531) - Add Pylint configuration to lambdastack devcontainer
+- [#1892](https://github.com/lambdastack/lambdastack/issues/1892) - Add ansible-lint to lambdastack devcontainer
+- [#2558](https://github.com/lambdastack/lambdastack/issues/2558) - Add rubocop to lambdastack devcontainer
 - [#2271](https://github.com/lambdastack/lambdastack/issues/2271) - Add more retries for running ansible ping command
 
 ### Fixed
@@ -21,14 +21,14 @@
 - [#2406](https://github.com/lambdastack/lambdastack/issues/2406) - [Upgrade] [Filebeat] All settings for multiline feature are lost after upgrade
 - [#2380](https://github.com/lambdastack/lambdastack/issues/2380) - Unable to drain nodes with Istio application enabled due to PodDisruptionBudgets
 - [#2332](https://github.com/lambdastack/lambdastack/issues/2332) - [Elasticsearch] Error when having multiple VMs and non-clustered mode
-- [#1294](https://github.com/lambdastack/lambdastack/issues/1294) - Implement proper merging of lists of dictionaries for lscli yaml docs
-- [#1370](https://github.com/lambdastack/lambdastack/issues/1370) - LScli does not correctly generate vars for Postgres
+- [#1294](https://github.com/lambdastack/lambdastack/issues/1294) - Implement proper merging of lists of dictionaries for lambdastack yaml docs
+- [#1370](https://github.com/lambdastack/lambdastack/issues/1370) - LambdaStack does not correctly generate vars for Postgres
 - [#2425](https://github.com/lambdastack/lambdastack/issues/2425) - Feature-mapping - 'enabled: no' do nothing
 - [#2449](https://github.com/lambdastack/lambdastack/issues/2449) - [Grafana] Unable to add Grafana repository
 - [#2485](https://github.com/lambdastack/lambdastack/issues/2485) - [Upgrade] Refactor upgrade role to not include "specification" at top level
 - [#2521](https://github.com/lambdastack/lambdastack/issues/2521) - Fix 2 unit tests that are marked to be skipped during test execution
-- [#2542](https://github.com/lambdastack/lambdastack/issues/2542) - Non critical error in lscli if no 'path' is provided
-- [#1296](https://github.com/lambdastack/lambdastack/issues/1296) - LScli does not interpret alternative yaml boolean values as true booleans
+- [#2542](https://github.com/lambdastack/lambdastack/issues/2542) - Non critical error in lambdastack if no 'path' is provided
+- [#1296](https://github.com/lambdastack/lambdastack/issues/1296) - LambdaStack does not interpret alternative yaml boolean values as true booleans
 - [#1351](https://github.com/lambdastack/lambdastack/issues/1351) - Refactor Keycloak to work with Postgresql HA configuration
 
 ### Updated

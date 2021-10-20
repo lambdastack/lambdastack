@@ -26,12 +26,12 @@ Container_Boundary(LambdaStack, "LambdaStack managed environment"){
 
 }
 
-System(lscli, "LambdaStack Client", "Provides configuration, templating and management abstraction. ")
+System(lambdastack, "LambdaStack Client", "Provides configuration, templating and management abstraction. ")
 System(workload, "Application", "Provides business value.")
 
 System_Ext(provider, "Infrastructure provider", "Provides infrastructure to run LambdaStack services and hosted applications.")
 
-Rel(admin, lscli, "uses", "Console")
+Rel(admin, lambdastack, "uses", "Console")
 
 Rel(developer, orchestrator, "deploys applications to")
 Rel(developer, streams, "manages")
@@ -46,17 +46,17 @@ Rel(developer, workload, "provides")
 Rel(user, lb, "accesses", "TCP")
 Rel(user, orchestrator, "accesses", "TCP")
 
-Rel(lscli, provider, "operates")
-Rel(lscli, orchestrator, "operates")
-Rel(lscli, logging, "operates")
-Rel(lscli, monitoring, "operates")
-Rel(lscli, streams, "operates")
-Rel(lscli, rdb, "operates")
-Rel(lscli, lb, "operates")
-Rel(lscli, vault, "operates")
-Rel(lscli, repository, "operates")
-Rel(lscli, memdb, "operates")
-Rel(lscli, messages, "operates")
-Rel(lscli, auth, "operates")
+Rel(lambdastack, provider, "operates")
+Rel(lambdastack, orchestrator, "operates")
+Rel(lambdastack, logging, "operates")
+Rel(lambdastack, monitoring, "operates")
+Rel(lambdastack, streams, "operates")
+Rel(lambdastack, rdb, "operates")
+Rel(lambdastack, lb, "operates")
+Rel(lambdastack, vault, "operates")
+Rel(lambdastack, repository, "operates")
+Rel(lambdastack, memdb, "operates")
+Rel(lambdastack, messages, "operates")
+Rel(lambdastack, auth, "operates")
 
 @enduml

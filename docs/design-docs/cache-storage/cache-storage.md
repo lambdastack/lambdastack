@@ -34,7 +34,7 @@ Choice: **Apache Ignite**
 
 ## Design proposal
 
-[MVP] Add Ansible role to `lscli` that installs Apache Ignite and sets up cluster if there is more than one instance. Ansible playbook is also responsible for adding more nodes to existing cluster (scaling).
+[MVP] Add Ansible role to `lambdastack` that installs Apache Ignite and sets up cluster if there is more than one instance. Ansible playbook is also responsible for adding more nodes to existing cluster (scaling).
 
 Possible problems while implementing Ignite clustering:
 - Ignite uses multicast for node discovery which is not supported on AWS. Ignite distribution comes with `TcpDiscoveryS3IpFinder` so S3-based discovery can be used.

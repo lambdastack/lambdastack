@@ -4,7 +4,7 @@ Affected version: 1.1.x
 
 ## Goals
 
-This document outlines an aproach to add (partial) ARM support to LScli. The requirements:
+This document outlines an aproach to add (partial) ARM support to LambdaStack. The requirements:
 
 - ARMv8/ARM64 architecture
 - Centos 7
@@ -24,7 +24,7 @@ This document outlines an aproach to add (partial) ARM support to LScli. The req
 
 The 2 high level approaches that have been opted so far:
 
-1. Add “architecture” flag when using LScli
+1. Add “architecture” flag when using LambdaStack
 2. Add new OS (CentosARM64 fe.)
 
 Have 2 big disadvanges from the start:

@@ -2,7 +2,7 @@
 
 ## Introduction
 
-From LScli 0.4.2 and up the CLI has the ability to perform upgrades on certain components on a cluster. The components
+From LambdaStack 0.4.2 and up the CLI has the ability to perform upgrades on certain components on a cluster. The components
 it currently can upgrade and will add are:
 
 ---
@@ -20,12 +20,12 @@ check whether K8s version is supported before running upgrade.
 
 The component upgrade takes the existing Ansible build output and based on that performs the upgrade of the currently
 supported components. If you need to re-apply your entire LambdaStack cluster a **manual** adjustment of the input yaml is
-needed to the latest specification which then should be applied with `lscli apply...`. Please
+needed to the latest specification which then should be applied with `lambdastack apply...`. Please
 see [Run apply after upgrade](./UPGRADE.md#run-apply-after-upgrade) chapter for more details.
 
 Note about upgrade from pre-0.8 LambdaStack:
 
-- If you need to upgrade a cluster deployed with `lscli` in version earlier than 0.8, you should make sure that you've got enough disk space on master (which
+- If you need to upgrade a cluster deployed with `lambdastack` in version earlier than 0.8, you should make sure that you've got enough disk space on master (which
   is used as repository) host. If you didn't extend OS disk on master during deployment process, you probably have only
   32 GB disk which is not enough to properly upgrade cluster (we recommend at least 64 GB). Before you run upgrade, please extend
   OS disk on master machine according to cloud provider
@@ -55,15 +55,15 @@ Your airgapped existing cluster should meet the following requirements:
     - Has access to the SSH keys
     - Has access to the build output from when the cluster was first created.
     - Is on the same network as your cluster machines
-    - Has LScli 0.4.2 or up running.
-      *Note. To run LScli check the [Prerequisites](./PREREQUISITES.md)*
+    - Has LambdaStack 0.4.2 or up running.
+      *Note. To run LambdaStack check the [Prerequisites](./PREREQUISITES.md)*
 
 ### Start the online upgrade
 
 Start the upgrade with:
 
 ```shell
-lscli upgrade -b /buildoutput/
+lambdastack upgrade -b /buildoutput/
 ```
 
 This will backup and upgrade the Ansible inventory in the provided build folder `/buildoutput/` which will be used to
@@ -90,12 +90,12 @@ Your airgapped existing cluster should meet the following requirements:
     - Has access to the SSH keys
     - Has access to the build output from when the cluster was first created.
     - Is on the same network as your cluster machines
-    - Has LScli 0.4.2 or up running.
+    - Has LambdaStack 0.4.2 or up running.
 
 ---
 **NOTE**
 
-Before running `lscli`, check the [Prerequisites](./PREREQUISITES.md)
+Before running `lambdastack`, check the [Prerequisites](./PREREQUISITES.md)
 
 ---
 
@@ -106,7 +106,7 @@ To upgrade the cluster components run the following steps:
 1. First we need to get the tooling to prepare the requirements for the upgrade. On the provisioning machine run:
 
     ```shell
-    lscli prepare --os OS
+    lambdastack prepare --os OS
     ```
 
    Where OS should be `centos-7`, `redhat-7`, `ubuntu-18.04`. This will create a directory called `prepare_scripts` with the needed files inside.
@@ -124,16 +124,16 @@ To upgrade the cluster components run the following steps:
 3. Finally, start the upgrade with:
 
     ```shell
-    lscli upgrade -b /buildoutput/ --offline-requirements /requirementsoutput/
+    lambdastack upgrade -b /buildoutput/ --offline-requirements /requirementsoutput/
     ```
 
    This will backup and upgrade the Ansible inventory in the provided build folder `/buildoutput/` which will be used to
-   perform the upgrade of the components. The `--offline-requirements` flag tells LScli where to find the folder with
+   perform the upgrade of the components. The `--offline-requirements` flag tells LambdaStack where to find the folder with
    requirements (`/requirementsoutput/`) prepared in steps 1 and 2 which is needed for the offline upgrade.
 
 ## Additional parameters
 
-The `lscli upgrade` command has additional flags:
+The `lambdastack upgrade` command has additional flags:
 
 - `--wait-for-pods`. When this flag is added, the Kubernetes upgrade will wait until all pods are in the **ready** state
   before proceeding. This can be useful when a zero downtime upgrade is required. **Note: that this can also cause the
@@ -144,17 +144,17 @@ The `lscli upgrade` command has additional flags:
 
   Example:
    ```shell
-   lscli upgrade -b /buildoutput/ --upgrade-components "kafka,filebeat"
+   lambdastack upgrade -b /buildoutput/ --upgrade-components "kafka,filebeat"
    ```
 
 ## Run *apply* after *upgrade*
 
 Currently, LambdaStack does not fully support apply after upgrade. There is a possibility to re-apply configuration from
-newer version of LScli but this needs some manual work from Administrator. Re-apply on already upgraded cluster needs
+newer version of LambdaStack but this needs some manual work from Administrator. Re-apply on already upgraded cluster needs
 to be called with `--no-infra` option to skip Terraform part of configuration. If `apply` after `upgrade` is run
 with `--no-infra`, the used system images from the older LambdaStack version are preserved to prevent the destruction of
 the VMs. If you plan modify any infrastructure unit (e.g., add Kubernetes Node) you need to create machine by yourself
-and attach it into configuration yaml. While running `lscli apply...` on already upgraded cluster you should use yaml
+and attach it into configuration yaml. While running `lambdastack apply...` on already upgraded cluster you should use yaml
 config files generated in newer version of LambdaStack and apply changes you had in older one. If the cluster is upgraded
 to version 0.8 or newer you need also add additional feature mapping for repository role as shown on example below:
 
@@ -215,13 +215,13 @@ specification:
 
 ## Kubernetes applications
 
-To upgrade applications on Kubernetes to the desired version after `lscli upgrade` you have to:
+To upgrade applications on Kubernetes to the desired version after `lambdastack upgrade` you have to:
 
-- generate new configuration manifest using `lscli init`
+- generate new configuration manifest using `lambdastack init`
 - in case of generating minimal configuration manifest (without --full argument), copy and
   paste [the default configuration](https://github.com/lambdastack/lambdastack/blob/master/data/common/defaults/configuration/applications.yml)
   into it
-- run `lscli apply`
+- run `lambdastack apply`
 
 ---
 **NOTE**
@@ -280,7 +280,7 @@ opendistro_for_elasticsearch:
 ```
 
 They are accessible via the defaults of `upgrade`
-role (`/usr/local/lscli/data/common/ansible/playbooks/roles/upgrade/defaults/main.yml`).
+role (`/usr/local/lambdastack/data/common/ansible/playbooks/roles/upgrade/defaults/main.yml`).
 
 ## Node exporter upgrade
 
@@ -398,10 +398,10 @@ check these manually before doing any upgrade:
 Upgrade procedure is based on [PostgreSQL documentation](https://www.postgresql.org/docs/13/pgupgrade.html) and
 requires downtime as there is a need to stop old service(s) and start new one(s).
 
-There is a possibility to provide a custom configuration for upgrade with `lscli upgrade -f`, and there are a few
+There is a possibility to provide a custom configuration for upgrade with `lambdastack upgrade -f`, and there are a few
 limitations related to specifying parameters for upgrade:
 
-- If there were non-default values provided for installation (`lscli apply`), they have to be used again not to be
+- If there were non-default values provided for installation (`lambdastack apply`), they have to be used again not to be
   overwritten by defaults.
 
 - `wal_keep_segments` parameter for replication is replaced

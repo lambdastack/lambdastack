@@ -10,7 +10,7 @@ from cli.helpers.yaml_helpers import safe_load_all, safe_load
 from cli.helpers.objdict_helpers import dict_to_objdict
 
 
-BASE_DIR_PROD = '/lscli'
+BASE_DIR_PROD = '/lambdastack'
 BASE_DIR_DEV = os.path.join(os.path.dirname(__file__), '../../')
 BASE_DIR = (
     BASE_DIR_PROD

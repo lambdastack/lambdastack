@@ -66,7 +66,7 @@
     state: absent
     path: "{{ _apache_lsrepo_path }}/packages"
 
-# Only for lscli < 0.7
+# Only for lambdastack < 0.7
 - name: Remove leftovers from /tmp
   block:
     - name: Find leftovers in /tmp

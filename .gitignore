@@ -119,7 +119,7 @@ dmypy.json
 # pycharm settings
 .idea/
 
-# lscli specific
+# lambdastack specific
 external/
 test_results/
 .terraform

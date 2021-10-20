@@ -4,7 +4,7 @@ Affected version: 0.4.x
 
 ## Goals
 
-Provide backup functionality for LambdaStack - cluster created using lscli tool.
+Provide backup functionality for LambdaStack - cluster created using lambdastack tool.
 
 Backup will cover following areas:
 

@@ -1,8 +1,8 @@
-## Run LScli from Docker image
+## Run LambdaStack from Docker image
 
 There are 2 ways to get the image, build it locally yourself or pull it from the LambdaStack docker registry.
 
-### Build LScli image locally
+### Build LambdaStack image locally
 
 1. Install the following dependencies:
 
@@ -11,37 +11,37 @@ There are 2 ways to get the image, build it locally yourself or pull it from the
 2. Open a terminal in the root directory of the LambdaStack source code and run:
 
 ```bash
-TAG=$(cat core/src/lscli/cli/version.txt.py)
-docker build --file Dockerfile --tag lscli:${TAG} .
+TAG=$(cat core/src/lambdastack/cli/version.txt.py)
+docker build --file Dockerfile --tag lambdastack:${TAG} .
 ```
 
-### Pull LScli image from the registry
+### Pull LambdaStack image from the registry
 
 ```bash
-docker pull lambdastackplatform/lscli:TAG
+docker pull lambdastackplatform/lambdastack:TAG
 ```
 
 Where `TAG` should be replaced with an existing tag.
 
-*Check [here](https://cloud.docker.com/u/lambdastackplatform/repository/docker/lambdastackplatform/lscli) for the available tags.*
+*Check [here](https://cloud.docker.com/u/lambdastackplatform/repository/docker/lambdastackplatform/lambdastack) for the available tags.*
 
-### Running the LScli image
+### Running the LambdaStack image
 
 To run the image:
 
 ```bash
-docker run -it -v LOCAL_DIR:/shared --rm lambdastackplatform/lscli:TAG
+docker run -it -v LOCAL_DIR:/shared --rm lambdastackplatform/lambdastack:TAG
 ```
 
 Where:
-- `LOCAL_DIR` should be replaced with the local path to the directory for LScli input (SSH keys, data yaml files) and output (logs, build states),
+- `LOCAL_DIR` should be replaced with the local path to the directory for LambdaStack input (SSH keys, data yaml files) and output (logs, build states),
 - `TAG` should be replaced with an existing tag.
 
-*Check [here](https://cloud.docker.com/u/lambdastackplatform/repository/docker/lambdastackplatform/lscli) for the available tags.*
+*Check [here](https://cloud.docker.com/u/lambdastackplatform/repository/docker/lambdastackplatform/lambdastack) for the available tags.*
 
-## LScli development
+## LambdaStack development
 
-For setting up en LScli development environment please refer to this dedicated document [here.](./../DEVELOPMENT.md)
+For setting up en LambdaStack development environment please refer to this dedicated document [here.](./../DEVELOPMENT.md)
 
 ## Important notes
 
@@ -84,7 +84,7 @@ Use: [Checkout as-is, commit Unix-style](https://stackoverflow.com/questions/104
 
 ### Note about proxies
 
-To run LScli behind a proxy, environment variables need to be set.
+To run LambdaStack behind a proxy, environment variables need to be set.
 
 When running a development container (upper and lowercase are needed because of an issue with the Ansible dependency):
 
@@ -103,7 +103,7 @@ Or when running from a Docker image (upper and lowercase are needed because of a
 
 ### Note about custom CA certificates
 
-In some cases it might be that a company uses custom CA certificates or CA bundles for providing secure connections. To use these with LScli you can do the following:
+In some cases it might be that a company uses custom CA certificates or CA bundles for providing secure connections. To use these with LambdaStack you can do the following:
 
 #### Devcontainer
 
@@ -112,9 +112,9 @@ Note that for the comments below the filenames of the certificate(s)/bundle do n
 1. If you have one CA certificate you can add it here with the ```crt``` extension.
 2. If you have multiple certificates in a chain/bundle you need to add them here individually with the ```crt``` extension and also add the single bundle with the ```pem``` extension containing the same certificates. This is needed because not all tools inside the container accept the single bundle.
 
-#### LScli release container
+#### LambdaStack release container
 
-If you are running LScli from one of the prebuilt release containers you can do the following to install the certificate(s):
+If you are running LambdaStack from one of the prebuilt release containers you can do the following to install the certificate(s):
 
   ```bash
   cp ./path/to/*.crt /usr/local/share/ca-certificates/

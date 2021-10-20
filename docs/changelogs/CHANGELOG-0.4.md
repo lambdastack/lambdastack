@@ -39,13 +39,13 @@
 
 ### Fixed
 
-- [#694](https://github.com/lambdastack/lambdastack/issues/694) - lscli apply does not remove from build files that were removed from sources
+- [#694](https://github.com/lambdastack/lambdastack/issues/694) - lambdastack apply does not remove from build files that were removed from sources
 
 ## [0.4.1] 2019-10-17
 
 ### Fixed
 
-- [#612](https://github.com/lambdastack/lambdastack/issues/612) - 'lscli delete' - cannot delete a partially built infrastructure
+- [#612](https://github.com/lambdastack/lambdastack/issues/612) - 'lambdastack delete' - cannot delete a partially built infrastructure
 - [#613](https://github.com/lambdastack/lambdastack/pull/613) - Hotfixes for Ubuntu offline installation in air-gap mode
 - [#614](https://github.com/lambdastack/lambdastack/pull/614) - Fixed RotatingFileHandler permission error (for Docker Toolbox on Windows)
 - [#615](https://github.com/lambdastack/lambdastack/issues/615) - Minor Azure bugs for 0.4.0 release
@@ -56,21 +56,21 @@
 ### Added
 
 - Offline installation
-- Azure cluster deployments with LScli
+- Azure cluster deployments with LambdaStack
 - Delete commands to remove clusters from cloud providers (AWS, Azure)
-- Devcontainer for LScli development using VSCode
-- Debug flag for LScli
+- Devcontainer for LambdaStack development using VSCode
+- Debug flag for LambdaStack
 
 ### Changed
 
-- Various improvements in LScli
+- Various improvements in LambdaStack
 - Documentation cleanup and updates
 
 ### Fixed
 
 - [#407](https://github.com/lambdastack/lambdastack/issues/407) - Deployment/Application role fails because Kubernetes cluster is not ready after reboot.
 - [#410](https://github.com/lambdastack/lambdastack/issues/410) - Node_exporter ports are not present in defaults resulting in Prometheus not beeing able to scrape data with minimal cluster data.yaml.
-- [#548](https://github.com/lambdastack/lambdastack/issues/548) - LScli fails on AWS when clustering RabbitMQ nodes.
+- [#548](https://github.com/lambdastack/lambdastack/issues/548) - LambdaStack fails on AWS when clustering RabbitMQ nodes.
 - [#549](https://github.com/lambdastack/lambdastack/issues/549) - Need to allow traffic on port 5432 to enable PostgreSQL replication on AWS.
 
 ### Known issues

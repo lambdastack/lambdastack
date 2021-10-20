@@ -1,4 +1,4 @@
-# Basic Infra ModuleS  VS LScli Infra
+# Basic Infra ModuleS  VS LambdaStack Infra
 
 ## Basic overview
 
@@ -8,7 +8,7 @@ This represents the current status on: 05-25-2021
 :x: : Not available
 :heavy_exclamation_mark: Check the notes
 
-| | | LScli Azure | LScli AWS | Azure BI |  AWS BI |
+| | | LambdaStack Azure | LambdaStack AWS | Azure BI |  AWS BI |
 | - | - | - | - | - | - |
 | Network | Virtual network | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | | Private subnets | :heavy_exclamation_mark: | :heavy_exclamation_mark: | :heavy_check_mark: | :heavy_check_mark: |
@@ -23,8 +23,8 @@ This represents the current status on: 05-25-2021
 
 ## Notes
 
-- On LScli AWS/Azure infrastructure we can either have a cluster with private or public subnets. As public IP`s can only be applied cluster wide and not on a VM "group" basis.
-- On LScli AWS we use Auto Scaling Groups to represent groups of similar VM`s. This approach however has lots of issues when it comes to scaling the group/component.
+- On LambdaStack AWS/Azure infrastructure we can either have a cluster with private or public subnets. As public IP`s can only be applied cluster wide and not on a VM "group" basis.
+- On LambdaStack AWS we use Auto Scaling Groups to represent groups of similar VM`s. This approach however has lots of issues when it comes to scaling the group/component.
 
 ## Missing for Modules
 

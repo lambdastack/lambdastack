@@ -33,7 +33,7 @@ Below the lifecycle of the LambdaStack repository:
 
 Downloading requirements is one of the most sensitive steps in deploying a new cluster because lots of resources are being downloaded from various sources.
 
-When you see the following output from lscli, requirements are being downloaded:
+When you see the following output from lambdastack, requirements are being downloaded:
 
 ```shell
 INFO cli.engine.ansible.AnsibleCommand - TASK [repository : Run download-requirements script, this can take a long time
@@ -74,7 +74,7 @@ When this file is present and it isn't older than defined amount of time (2 hour
 
 ### Restoring system repositories
 
-If during the component installation an issue will arise (e.g. network issue), it might be the case that the cluster machines are left in a state where step 5 of the repository lifecycle is not run. This might leave the machines with a broken repository setup making re-running ```lscli apply``` impossible as noted in issue [#2324](https://github.com/lambdastack/lambdastack/issues/2324).
+If during the component installation an issue will arise (e.g. network issue), it might be the case that the cluster machines are left in a state where step 5 of the repository lifecycle is not run. This might leave the machines with a broken repository setup making re-running ```lambdastack apply``` impossible as noted in issue [#2324](https://github.com/lambdastack/lambdastack/issues/2324).
 
 To restore the original repository setup on a machine, you can execute the following scripts:
 

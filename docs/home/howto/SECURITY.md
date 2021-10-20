@@ -198,7 +198,7 @@ that are required to copy or generate TLS certificates.
 ---
 **NOTE**
 
-To complete installation it's required to execute `lscli apply` the second time
+To complete installation it's required to execute `lambdastack apply` the second time
 with `stop_service` set to `false`
 
 ---
@@ -347,14 +347,14 @@ Prerequisites: LambdaStack Kubernetes cluster
 
 6. The service should return Access Token.
 
-## How to run lscli with password
+## How to run lambdastack with password
 
-LambdaStack encrypts Kubernetes artifacts (access tokens) stored in LambdaStack build directory. In order to achieve it, user is asked for password which will be used for encryption and decryption of artifacts. Remember to enter the same password for the same cluster - if password will not be the same, lscli will not be able to decrypt secrets.
+LambdaStack encrypts Kubernetes artifacts (access tokens) stored in LambdaStack build directory. In order to achieve it, user is asked for password which will be used for encryption and decryption of artifacts. Remember to enter the same password for the same cluster - if password will not be the same, lambdastack will not be able to decrypt secrets.
 
-Standard way of executing lscli has not been changed:
+Standard way of executing lambdastack has not been changed:
 
 ```shell
-lscli apply -f demo.yaml
+lambdastack apply -f demo.yaml
 ```
 
 But you will be asked to enter a password:
@@ -363,10 +363,10 @@ But you will be asked to enter a password:
 Provide password to encrypt vault:
 ```
 
-When running lscli from CI pipeline you can use new parameter for lscli:
+When running lambdastack from CI pipeline you can use new parameter for lambdastack:
 
 ```shell
-lscli apply -f demo.yaml --vault-password MYPWD
+lambdastack apply -f demo.yaml --vault-password MYPWD
 ```
 
 ## How to make kubectl work for non-root user on master node
@@ -569,7 +569,7 @@ Vault selfsigned certificates are generated automatically during vault setup if 
 In dedicated location user can add certificate (and private key). File names are important and have to be the same as provided in configuration and ```.pem``` file extensions are required.
 
 Dedicated location of custom certificates:
-```core/src/lscli/data/common/ansible/playbooks/roles/vault/files/tls-certs```
+```core/src/lambdastack/data/common/ansible/playbooks/roles/vault/files/tls-certs```
 
 Certificate files names configuration:
 

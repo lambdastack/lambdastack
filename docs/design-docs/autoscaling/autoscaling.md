@@ -17,7 +17,7 @@ We want to provide automatic scale up / down feature for cloud-based LambdaStack
 
 - Current LambdaStack codebase does not allow to scale-down Kubernetes clusters in the nice / proper way.
 - This is crucial for autoscaling to work, as we need to properly drain and delete physically-destroyed nodes from Kuberentes.
-- Also this step needs to be performed before terraform code is executed (which requires a refactor of lscli code).
+- Also this step needs to be performed before terraform code is executed (which requires a refactor of lambdastack code).
 
 ### PHASE 2: Moving terraform's state and LambdaStack-cluster-config to a shared place in the cloud.
 
@@ -28,20 +28,20 @@ We want to provide automatic scale up / down feature for cloud-based LambdaStack
 ### PHASE 3: Building packer images to quickly add new Kubernetes nodes.
 
 - Autoscaling is expected to react reasonably quickly. Providing pre-built images should result in great speed-ups.
-- Packer code should be added to the lscli codebase somewhere "before" the terraform code executes.
+- Packer code should be added to the lambdastack codebase somewhere "before" the terraform code executes.
 
 ### PHASE 4: Realistic provisioning minimalization and speedup.
 
 - Currently LambdaStack's automation takes lots of time to provision clusters.
 - [Limits](https://docs.ansible.com/ansible/latest/user_guide/intro_patterns.html#patterns-and-ansible-playbook-flags) and [tags](https://docs.ansible.com/ansible/latest/user_guide/playbooks_tags.html) can be used to filter-out unnecessary plays from ansible execution (for now, narrowing it just to the Kubernetes node provisioning).
 
-### PHASE 5: Adding ability to authenticate and run lscli from a pod.
+### PHASE 5: Adding ability to authenticate and run lambdastack from a pod.
 
-- To be able to execute lscli form a running LambdaStack cluster, it is required to deploy SSH keys and cloud access configuration (ie. Service Principal).
+- To be able to execute lambdastack form a running LambdaStack cluster, it is required to deploy SSH keys and cloud access configuration (ie. Service Principal).
 - SSH keys can be created and distributed automatically (in Ansible) just for the purpose of autoscaling.
 - For now, it seems resonable to store them in Kubernetes secrets (later the Hashicorp Vault will be used).
 
-### PHASE 6: Introducing python application that will execute lscli from a pod (in reaction to performance metrics) to scale the pool of worker nodes.
+### PHASE 6: Introducing python application that will execute lambdastack from a pod (in reaction to performance metrics) to scale the pool of worker nodes.
 
 - Metrics can be obtained from the [metrics server](https://github.com/kubernetes-sigs/metrics-server).
 - For simplicity, standard CPU / Memory metrics will be used, but later it should be posible to introduce [custom metrics](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#support-for-custom-metrics) taken from Prometheus.

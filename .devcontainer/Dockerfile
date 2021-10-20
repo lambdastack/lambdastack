@@ -59,4 +59,4 @@ RUN : SETUP USER AND OTHERS \
  && setcap 'cap_net_bind_service=+ep' /usr/bin/ssh
 
 RUN : SETUP EPICLI ALIAS \
- && echo alias lscli='"export PYTHONPATH=/workspaces/lambdastack && python3 -m cli.lscli"' >> /etc/bash.bashrc
+ && echo alias lambdastack='"export PYTHONPATH=/workspaces/lambdastack && python3 -m cli.lambdastack"' >> /etc/bash.bashrc

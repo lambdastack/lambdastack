@@ -1,5 +1,5 @@
 {
-    "name": "lscli",
+    "name": "lambdastack",
     "dockerFile": "Dockerfile",
     "extensions": [
         // Ansible

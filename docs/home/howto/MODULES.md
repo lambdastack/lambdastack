@@ -13,7 +13,7 @@ Those and multiple other factors (eg.: readability, reliability) influence this 
 
 ## User point of view
 
-From a user point of view, there will be no significant changes in the nearest future as it will be still possible to install LambdaStack "classic way" so with a single `lscli` configuration using a whole codebase as a monolith.
+From a user point of view, there will be no significant changes in the nearest future as it will be still possible to install LambdaStack "classic way" so with a single `lambdastack` configuration using a whole codebase as a monolith.
 
 For those who want to play with new features, or will need newly introduced possibilities, there will be a short transition period which we consider as a kind of "preview stage". In this period there will be a need to run each module separately by hand in the following order:
 
@@ -404,10 +404,10 @@ AWS:
   provider: any
   ```
 
-* Run `lscli` tool to install LambdaStack:
+* Run `lambdastack` tool to install LambdaStack:
 
   ```shell
-  lscli --auto-approve apply --file='/tmp/shared/ls.yml' --vault-password='secret'
+  lambdastack --auto-approve apply --file='/tmp/shared/ls.yml' --vault-password='secret'
   ```
 
   This will install PostgreSQL on one of the machines and configure PgBouncer, Pgpool and additional services to manage database connections.

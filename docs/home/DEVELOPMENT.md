@@ -11,7 +11,7 @@
   - [Running and debugging](#running-and-debugging)
   - [Running Python unit tests](#running-python-unit-tests)
   - [Running serverspec tests](#running-serverspec-tests)
-  - [LScli Python dependencies](#lscli-python-dependencies)
+  - [LambdaStack Python dependencies](#lambdastack-python-dependencies)
 
 <!-- /TOC -->
 
@@ -37,7 +37,7 @@ This document explains how to set up the preferred [VSCode](https://code.visuals
 
 ## Preparing the environment
 
-1. Open the lscli project folder ```/lambdastack/``` with VSCode.
+1. Open the lambdastack project folder ```/lambdastack/``` with VSCode.
 
 2. VSCode will tell you that the workspace has recommended extensions:
 
@@ -61,7 +61,7 @@ Now you have a fully working LambdaStack development environment!
 
 ## Supplying data to the devcontainer
 
-The entire working directory (```/lambdastack/```) is mounted inside the container. We recommend to create an additional directory called ```clusters``` there, in which you house your data YAMLs and SSH keys. This directory is already added to the .gitignore. When executing lscli commands from that directory this is also where any build output and logs are written to.
+The entire working directory (```/lambdastack/```) is mounted inside the container. We recommend to create an additional directory called ```clusters``` there, in which you house your data YAMLs and SSH keys. This directory is already added to the .gitignore. When executing lambdastack commands from that directory this is also where any build output and logs are written to.
 
 ## Note for Windows users
 
@@ -86,16 +86,16 @@ For debugging, open the VSCode's Debug tab:
 
 ![debug](../assets/images/development/debug.png)
 
-By default there is one launch configuration called ```lscli```. This launch configuration can be found in ```/lambdastack/.vscode/``` and looks like this:
+By default there is one launch configuration called ```lambdastack```. This launch configuration can be found in ```/lambdastack/.vscode/``` and looks like this:
 
   ```json
     ...
 
     {
-        "name": "lscli",
+        "name": "lambdastack",
         "type": "python",
         "request": "launch",
-        "program": "${workspaceFolder}/cli/lscli.py",
+        "program": "${workspaceFolder}/cli/lambdastack.py",
         "cwd": "${workspaceFolder}",
         "pythonPath": "${config:python.pythonPath}",
         "env": { "PYTHONPATH": "${workspaceFolder}" },
@@ -112,10 +112,10 @@ You can copy this configuration and change values (like below) to create differe
     ...
 
     {
-        "name": "lscli",
+        "name": "lambdastack",
         "type": "python",
         "request": "launch",
-        "program": "${workspaceFolder}/cli/lscli.py",
+        "program": "${workspaceFolder}/cli/lambdastack.py",
         "cwd": "${workspaceFolder}",
         "pythonPath": "${config:python.pythonPath}",
         "env": { "PYTHONPATH": "${workspaceFolder}" },
@@ -123,10 +123,10 @@ You can copy this configuration and change values (like below) to create differe
         "args": ["apply",  "-f",  "${workspaceFolder}/PATH_TO_YOUR_DATA_YAML"]
     },
     {
-        "name": "lscli show version",
+        "name": "lambdastack show version",
         "type": "python",
         "request": "launch",
-        "program": "${workspaceFolder}/cli/lscli.py",
+        "program": "${workspaceFolder}/cli/lambdastack.py",
         "cwd": "${workspaceFolder}",
         "pythonPath": "${config:python.pythonPath}",
         "env": { "PYTHONPATH": "${workspaceFolder}" },
@@ -137,7 +137,7 @@ You can copy this configuration and change values (like below) to create differe
     ...
   ```
 
-In the ```args``` field you can pass an array of the arguments that you want lscli to run with.
+In the ```args``` field you can pass an array of the arguments that you want lambdastack to run with.
 
 To run a configuration, select it and press the run button:
 
@@ -161,16 +161,16 @@ You can also run the Python unit tests from a launch configuration called ```uni
 
 We maintain a set of serverspec tests that can be run to verify if a cluster is functioning properly. While it might not cover all cases at this point it is a good place to start.
 
-The serverspec tests are integrated in LScli. To run them you can extend the launch configuration ```lscli``` with the following arguments:
+The serverspec tests are integrated in LambdaStack. To run them you can extend the launch configuration ```lambdastack``` with the following arguments:
 
   ```json
     ...
 
     {
-        "name": "lscli",
+        "name": "lambdastack",
         "type": "python",
         "request": "launch",
-        "program": "${workspaceFolder}/cli/lscli.py",
+        "program": "${workspaceFolder}/cli/lambdastack.py",
         "cwd": "${workspaceFolder}",
         "pythonPath": "${config:python.pythonPath}",
         "env": { "PYTHONPATH": "${workspaceFolder}" },
@@ -183,6 +183,6 @@ The serverspec tests are integrated in LScli. To run them you can extend the lau
 
 Where the ```-b``` argument points to the build folder of a cluster. The ```-g``` argument can be used to execute a subset of tests and is optional. Omitting ```-g``` will execute all tests.
 
-## LScli Python dependencies
+## LambdaStack Python dependencies
 
-Information about how to manage the LScli Python dependencies can be found [here.](../../.devcontainer/requirements.md#python-requirement-management)
+Information about how to manage the LambdaStack Python dependencies can be found [here.](../../.devcontainer/requirements.md#python-requirement-management)

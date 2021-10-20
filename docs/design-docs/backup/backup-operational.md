@@ -12,7 +12,7 @@ Document does not include Kubernetes and Kafka stack
 ### Epibackup application
  Example use:
 ```bash
-lscli backup -b build_dir -t target_path
+lambdastack backup -b build_dir -t target_path
 ```
 
 Where `-b` is path to build folder that contains Ansible inventory and `-t` contains target path to store backup.

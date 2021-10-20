@@ -17,7 +17,7 @@ class SpecCommand:
         required_gems = ['serverspec', 'rake', 'rspec_junit_formatter']
 
         error_str = f'''Missing Ruby or one of the following Ruby gems: {', '.join(required_gems)}
-These need to be installed to run the cluster spec tests from lscli'''
+These need to be installed to run the cluster spec tests from lambdastack'''
 
         if  shutil.which('ruby') is None or shutil.which('gem') is None:
             raise Exception(error_str)

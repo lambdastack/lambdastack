@@ -175,7 +175,7 @@ To import existing dashboard:
 
 ### Importing dashboards via configuration manifest
 
-In order to pull a dashboard from official Grafana website during lscli execution, you have to provide dashboard_id, revision_id and datasource in your configuration manifest.
+In order to pull a dashboard from official Grafana website during lambdastack execution, you have to provide dashboard_id, revision_id and datasource in your configuration manifest.
 
 Example:
 

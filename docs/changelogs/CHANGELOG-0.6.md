@@ -14,7 +14,7 @@
 
 #### General
 
-- [#986](https://github.com/lambdastack/lambdastack/issues/986) - Add vim to LScli container and devcontainer
+- [#986](https://github.com/lambdastack/lambdastack/issues/986) - Add vim to LambdaStack container and devcontainer
 - [#987](https://github.com/lambdastack/lambdastack/issues/987) - Add verbosity levels for Terraform and Ansible
 - [#656](https://github.com/lambdastack/lambdastack/issues/656) - Add logrotation to kafka by size
 - [#1016](https://github.com/lambdastack/lambdastack/issues/1016) - Disable verify, backup and recovery as they are not fully implemented
@@ -24,11 +24,11 @@
 #### Kubernetes HA
 
 - [#934](https://github.com/lambdastack/lambdastack/issues/934) - Kubernetes HA - Test automation
-- [#933](https://github.com/lambdastack/lambdastack/issues/933) - Integrate K8s HA to lscli
+- [#933](https://github.com/lambdastack/lambdastack/issues/933) - Integrate K8s HA to lambdastack
 - [#932](https://github.com/lambdastack/lambdastack/issues/932) - Create/update role to install K8s HA - Dashboard
 - [#931](https://github.com/lambdastack/lambdastack/issues/931) - Create/update role to install K8s HA - Node Role
 - [#930](https://github.com/lambdastack/lambdastack/issues/930) - Create/update role to install K8s HA - Master Role
-- [#929](https://github.com/lambdastack/lambdastack/issues/929) - Single Machine installation - update lscli
+- [#929](https://github.com/lambdastack/lambdastack/issues/929) - Single Machine installation - update lambdastack
 - [#928](https://github.com/lambdastack/lambdastack/issues/928) - Single Machine installation - update tests
 - [#927](https://github.com/lambdastack/lambdastack/issues/927) - Single Machine installation - lightweight installation
 
@@ -61,11 +61,11 @@
 
 ### Fixed
 
-- [#624](https://github.com/lambdastack/lambdastack/issues/624) - Don't run lscli as root in container
+- [#624](https://github.com/lambdastack/lambdastack/issues/624) - Don't run lambdastack as root in container
 - [#966](https://github.com/lambdastack/lambdastack/issues/966) - Ubuntu builds get stuck on 'Create lsrepo repository' task waiting for user input in offline mode
 - [#1043](https://github.com/lambdastack/lambdastack/issues/1043) - For vm template on Azure disk_size_gb is missing in storage_os_disk
 - [#1049](https://github.com/lambdastack/lambdastack/issues/1049) - Azure/RedHat specified disk size 30 GB is smaller than the size of the disk in the VM image
-- [#1054](https://github.com/lambdastack/lambdastack/issues/1054) - Application configurations are not included with lscli init -full
+- [#1054](https://github.com/lambdastack/lambdastack/issues/1054) - Application configurations are not included with lambdastack init -full
 - [#1063](https://github.com/lambdastack/lambdastack/issues/1063) - Issues with single_machine install
 - [#1108](https://github.com/lambdastack/lambdastack/issues/1108) - [Azure RedHat] Create lsrepo: package httpd-2.4.6-93 requires httpd-tools = 2.4.6-93 but latest available is 2.4.6-90
 - [#1110](https://github.com/lambdastack/lambdastack/issues/1110) - Install fixed version of httpd when latest fails (RHEL)

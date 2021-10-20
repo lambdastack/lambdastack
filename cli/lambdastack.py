@@ -33,7 +33,7 @@ def main():
     config = Config()
     parser = argparse.ArgumentParser(
         description=__doc__,
-        usage='''lscli <command> [<args>]''',
+        usage='''lambdastack <command> [<args>]''',
         formatter_class=argparse.RawTextHelpFormatter)
 
     # setup some root arguments
@@ -60,7 +60,7 @@ Currently supported formats are plain text or JSON''')
 which might have issues behind proxies (https://github.com/ansible/ansible/issues/32750).
 Should NOT be used in production for security reasons.''')
     parser.add_argument('--auto-approve', dest='auto_approve', action="store_true",
-                        help='Auto approve any user input queries asked by LScli')
+                        help='Auto approve any user input queries asked by LambdaStack')
 
     # set debug verbosity level.
     def debug_level(x):
@@ -129,7 +129,7 @@ Terraform : 1..4 map to the following Terraform verbosity levels:
     try:
         return args.func(args)
     except Exception as e:
-        logger = Log('lscli')
+        logger = Log('lambdastack')
         logger.error(e, exc_info=(config.debug > 0))
         dump_debug_info()
         return 1
@@ -454,14 +454,14 @@ def dump_debug_info():
         config = Config()
 
         timestr = time.strftime("%Y%m%d-%H%M%S")
-        dump_path = os.getcwd() + f'/lscli_error_{timestr}.dump'
+        dump_path = os.getcwd() + f'/lambdastack_error_{timestr}.dump'
         dump_file = open(dump_path, 'w')
 
         dump_file.write('*****LSCLI VERSION******\n')
         dump_file.write(f'{VERSION}')
 
         dump_file.write('\n\n*****LSCLI ARGS******\n')
-        dump_file.write(' '.join([*['lscli'], *sys.argv[1:]]))
+        dump_file.write(' '.join([*['lambdastack'], *sys.argv[1:]]))
 
         dump_file.write('\n\n*****LSCLI CONFIG******\n')
         for attr in config.__dict__:

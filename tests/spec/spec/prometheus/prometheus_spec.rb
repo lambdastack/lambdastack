@@ -29,7 +29,7 @@ describe 'Check Prometheus directories and files' do
   describe file('/etc/prometheus') do
     it { should exist }
     it { should be_a_directory }
-    # Tests should pass also when run after 'lscli upgrade'. In v0.10.0 the owner has been changed from 'root' to 'prometheus'
+    # Tests should pass also when run after 'lambdastack upgrade'. In v0.10.0 the owner has been changed from 'root' to 'prometheus'
     # thus we accept both owners here as workaround but this should be unified (after adding upgrade for Prometheus).
     it { should be_owned_by('prometheus').or be_owned_by('root') }
     it { should be_grouped_into 'prometheus' }

@@ -10,7 +10,7 @@ ARG ISTIOCTL_VERSION=1.8.1
 
 ENV LSCLI_DOCKER_SHARED_DIR=/shared
 
-COPY . /lscli
+COPY . /lambdastack
 
 RUN : INSTALL APT REQUIREMENTS \
     && apt-get update \
@@ -39,13 +39,13 @@ RUN : INSTALL APT REQUIREMENTS \
 \
     && : INSTALL PIP REQUIREMENTS \
     && pip install --disable-pip-version-check --no-cache-dir --default-timeout=100 \
-        --requirement /lscli/.devcontainer/requirements.txt \
+        --requirement /lambdastack/.devcontainer/requirements.txt \
 \
     && : INSTALLATION CLEANUP \
     && apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/* \
-    && rm -rf /lscli/.devcontainer/ \
+    && rm -rf /lambdastack/.devcontainer/ \
 \
     && : SETUP USER AND OTHERS \
     && groupadd --gid $USER_GID $USERNAME \
@@ -60,8 +60,8 @@ RUN : INSTALL APT REQUIREMENTS \
     && chmod g+w $LSCLI_DOCKER_SHARED_DIR \
 \
     && : SETUP LSCLI COMMAND \
-    && mv /lscli/cli/lscli /bin/lscli \
-    && chmod +x /bin/lscli
+    && mv /lambdastack/cli/lambdastack /bin/lambdastack \
+    && chmod +x /bin/lambdastack
 
 WORKDIR $LSCLI_DOCKER_SHARED_DIR
 

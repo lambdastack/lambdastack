@@ -44,7 +44,7 @@ Note that versions are default versions and can be changed in certain cases thro
 | Hashicorp Vault Helm Chart | 0.11.0   | https://github.com/hashicorp/vault-helm               | [Mozilla Public License 2.0](https://github.com/hashicorp/vault-helm/blob/master/LICENSE.md) |
 | Istio                      | 1.8.1    | https://github.com/istio/istio                        | [Apache License 2.0](https://github.com/istio/istio/blob/master/LICENSE) |
 
-## LScli binary dependencies
+## LambdaStack binary dependencies
 
 | Component                 | Version | Repo/Website                                          | License                                                           |
 | ------------------------- | ------- | ----------------------------------------------------- | ----------------------------------------------------------------- |
@@ -53,7 +53,7 @@ Note that versions are default versions and can be changed in certain cases thro
 | Terraform AWS provider    | 2.26    | https://github.com/terraform-providers/terraform-provider-aws | [Mozilla Public License 2.0](https://github.com/terraform-providers/terraform-provider-aws/blob/master/LICENSE) |
 | Crane                     | 0.4.1  | https://github.com/google/go-containerregistry/tree/main/cmd/crane     | [Apache License 2.0](https://github.com/google/go-containerregistry/blob/main/LICENSE) |
 
-## LScli Python dependencies
+## LambdaStack Python dependencies
 
 | Component | Version | Repo/Website | License |
 | --------- | ------- | ------------ | ------- |

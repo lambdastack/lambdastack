@@ -17,12 +17,12 @@
 ### Fixed
 
 - [#1424](https://github.com/lambdastack/lambdastack/issues/1424) - Terraform returning an error during deployments on Azure ("A retryable error occurred.")
-- [#1399](https://github.com/lambdastack/lambdastack/issues/1399) - LScli upgrade: Kubernetes upgrade may hang
+- [#1399](https://github.com/lambdastack/lambdastack/issues/1399) - LambdaStack upgrade: Kubernetes upgrade may hang
 - [#1398](https://github.com/lambdastack/lambdastack/issues/1398) - Vault installation fails when using canal/calico network plugin
 - [#1412](https://github.com/lambdastack/lambdastack/issues/1412) - Certificate in Vault is also generated or copied even if flag in configuration tls_disable is set to true
-- [#1408](https://github.com/lambdastack/lambdastack/issues/1408) - LScli upgrade: LambdaStack does not support upgrades for Kubernetes in HA mode
-- [#1482](https://github.com/lambdastack/lambdastack/issues/1482) - LScli upgrade: flannel CNI plugin is not upgraded to v0.12.0
-- [#1462](https://github.com/lambdastack/lambdastack/issues/1461) - LScli upgrade: [AWS/RHEL/calico] Upgrading cluster from 0.6 to 0.7 fails
+- [#1408](https://github.com/lambdastack/lambdastack/issues/1408) - LambdaStack upgrade: LambdaStack does not support upgrades for Kubernetes in HA mode
+- [#1482](https://github.com/lambdastack/lambdastack/issues/1482) - LambdaStack upgrade: flannel CNI plugin is not upgraded to v0.12.0
+- [#1462](https://github.com/lambdastack/lambdastack/issues/1461) - LambdaStack upgrade: [AWS/RHEL/calico] Upgrading cluster from 0.6 to 0.7 fails
 - [#1072](https://github.com/lambdastack/lambdastack/issues/1072) - [AWS/RHEL] Cluster networking issues/lags when using flannel/canal plugin
 - [#802](https://github.com/lambdastack/lambdastack/issues/802) - Docker version is hard-coded in installation tasks
 - [#1495](https://github.com/lambdastack/lambdastack/issues/1495) - Offline installation is broken for CentOS 7.8 environments
@@ -34,14 +34,14 @@
 
 ### Added
 
-- [#1185](https://github.com/lambdastack/lambdastack/issues/1185) - LScli backup implementation
+- [#1185](https://github.com/lambdastack/lambdastack/issues/1185) - LambdaStack backup implementation
 - [#1188](https://github.com/lambdastack/lambdastack/issues/1188) - Backup: HAProxy
 - [#885](https://github.com/lambdastack/lambdastack/issues/885)   - Backup: Prometheus
 - [#884](https://github.com/lambdastack/lambdastack/issues/884)   - Backup: Elasticsearch and Kibana
 - [#883](https://github.com/lambdastack/lambdastack/issues/883)   - Backup: PostgreSQL
 - [#1187](https://github.com/lambdastack/lambdastack/issues/1187) - Backup: RabbitMQ Configuration
 
-- [#1199](https://github.com/lambdastack/lambdastack/issues/1199) - LScli restore implementation
+- [#1199](https://github.com/lambdastack/lambdastack/issues/1199) - LambdaStack restore implementation
 - [#1200](https://github.com/lambdastack/lambdastack/issues/1200) - Restore: HAProxy
 - [#1198](https://github.com/lambdastack/lambdastack/issues/1198) - Restore: Prometheus
 - [#1197](https://github.com/lambdastack/lambdastack/issues/1197) - Restore: Elasticsearch and Kibana
@@ -76,7 +76,7 @@
 - [#1209](https://github.com/lambdastack/lambdastack/issues/1209) - Can not apply cluster, "sudo: a password is required"
 - [#1183](https://github.com/lambdastack/lambdastack/issues/1183) - Task 'Check if /etc/kubernetes/admin.conf file exists' fails when kubernetes\_master.count = 0
 - [#1350](https://github.com/lambdastack/lambdastack/issues/1350) - Cannot deploy a non-k8s cluster with load\_balancer vm
-- [#1372](https://github.com/lambdastack/lambdastack/issues/1372) - [BUG] LScli does not create Postgresql SET\_BY\_AUTOMATION values correctly
+- [#1372](https://github.com/lambdastack/lambdastack/issues/1372) - [BUG] LambdaStack does not create Postgresql SET\_BY\_AUTOMATION values correctly
 - [#1373](https://github.com/lambdastack/lambdastack/issues/1373) - [BUG] permission denied for shared directory in the container when no volume was mounted
 - [#1385](https://github.com/lambdastack/lambdastack/issues/1385) - [BUG] Regression issue with disabling etcd encryption
 

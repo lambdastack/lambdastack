@@ -18,4 +18,4 @@ opendistro_for_elasticsearch:
     dual_root_ca:
       filename: demo2lambdastack-certs-migration-root-CAs.pem
 
-  upgrade_state_file_path: /etc/elasticsearch/lscli-upgrade-started.state
+  upgrade_state_file_path: /etc/elasticsearch/lambdastack-upgrade-started.state

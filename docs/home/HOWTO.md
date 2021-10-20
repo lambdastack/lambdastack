@@ -1,8 +1,8 @@
 # How-To Guides
 
 - [Prerequisites for LambdaStack](./howto/PREREQUISITES.md)
-  - [Run LScli from Docker image](./howto/PREREQUISITES.md#run-lscli-from-docker-image)
-  - [LScli development](./howto/PREREQUISITES.md#lscli-development)
+  - [Run LambdaStack from Docker image](./howto/PREREQUISITES.md#run-lambdastack-from-docker-image)
+  - [LambdaStack development](./howto/PREREQUISITES.md#lambdastack-development)
   - [Important notes](./howto/PREREQUISITES.md#important-notes)
     - [Note for Windows users](./howto/PREREQUISITES.md#note-for-windows-users)
     - [Note about proxies](./howto/PREREQUISITES.md#note-about-proxies)
@@ -81,7 +81,7 @@
   - [How to enable AWS disk encryption](./howto/SECURITY.md#how-to-enable-AWS-disk-encryption)
   - [How to use Kubernetes Secrets](./howto/SECURITY.md#how-to-use-kubernetes-secrets)
   - [How to authenticate to Azure AD app](./howto/SECURITY.md#how-to-authenticate-to-azure-ad-app)
-  - [How to run lscli with password](./howto/SECURITY.md#how-to-run-lscli-with-password)
+  - [How to run lambdastack with password](./howto/SECURITY.md#how-to-run-lambdastack-with-password)
   - [How to make kubectl work for non-root user on master node](./howto/SECURITY.md#how-to-make-kubectl-work-for-non-root-user-on-master-node)
   - [How to turn on Hashicorp Vault functionality](./howto/SECURITY.md#how-to-turn-on-hashicorp-vault-functionality)
   - [How to turn on Hashicorp Vault integration with k8s](./howto/SECURITY.md#how-to-turn-on-hashicorp-vault-integration-with-k8s)

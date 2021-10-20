@@ -1,17 +1,17 @@
-# LScli modular design document
+# LambdaStack modular design document
 
 Affected version: 0.4.x
 
 ## Goals
 
-Make lscli easier to work on with multiple teams and make it easier to maintain/extend by:
+Make lambdastack easier to work on with multiple teams and make it easier to maintain/extend by:
 
-1. Splitting up the monotithic LScli into seperate modules which can run as standalone CLI tools or be linked together through LScli.
+1. Splitting up the monotithic LambdaStack into seperate modules which can run as standalone CLI tools or be linked together through LambdaStack.
 2. Create an extendable plug and play system for roles which can be assigned to components based on certain tasks: apply, upgrade, backup, restore, test etc
 
 ## Architectural design
 
-The current monolithic lscli will be split up into the following modules.
+The current monolithic lambdastack will be split up into the following modules.
 
 ![Module cli design proposal](modular-cli.png)
 
@@ -34,7 +34,7 @@ Functionality (rough outline and subjected to change):
 
 1. template:
     ```
-    "lscli infra template -f outfile.yaml -p awz/azure/google/any (--all)"
+    "lambdastack infra template -f outfile.yaml -p awz/azure/google/any (--all)"
     "infra template -f outfile.yaml -p awz/azure/google/any (--all)"?
     "Infrastructure.template(...)"
     Task: Generate a template yaml with LambdaStack-cluster definition + possible infra docs when --all is defined
@@ -43,7 +43,7 @@ Functionality (rough outline and subjected to change):
     ```
 2. apply:
     ```
-    "lscli infra apply -f data.yaml"
+    "lambdastack infra apply -f data.yaml"
     "infra apply -f data.yaml"?
     "Infrastructure.apply(...)"
     Task: Create/Update infrastucture on AWS/Azure/Google...
@@ -52,7 +52,7 @@ Functionality (rough outline and subjected to change):
     ```
 3. analyse:
     ```
-    "lscli infra analyse -f data.yaml"
+    "lambdastack infra analyse -f data.yaml"
     "infra analyse -f data.yaml"?
     "Infrastructure.analyse(...)"
     Task: Analysing existing infrastructure
@@ -61,7 +61,7 @@ Functionality (rough outline and subjected to change):
     ```
 4. destroy:
     ```
-    "lscli infra destroy -b /buildfolder/"
+    "lambdastack infra destroy -b /buildfolder/"
     "infra destroy -b /buildfolder/"?
     "Infrastructure.destroy(...)"
     Task:  Destroy all infrastucture on AWS/Azure/Google?
@@ -77,7 +77,7 @@ Functionality (rough outline and subjected to change):
 
 1. template:
     ```
-    "lscli repo template -f outfile.yaml  (--all)"
+    "lambdastack repo template -f outfile.yaml  (--all)"
     "repo template -f outfile.yaml (--all)"?
     "Repository.template(...)"
     Task: Generate a template yaml for a repository
@@ -86,7 +86,7 @@ Functionality (rough outline and subjected to change):
     ```
 2. prepare:
     ```
-    "lscli repo prepare -os (ubuntu-1904/redhat-7/centos-7)"
+    "lambdastack repo prepare -os (ubuntu-1904/redhat-7/centos-7)"
     "repo prepare -o /outputdirectory/"?
     "Repo.prepare(...)"
     Task: Create the scripts for downloading requirements for a repo for offline installation for a certain OS.
@@ -95,7 +95,7 @@ Functionality (rough outline and subjected to change):
     ```
 3. create:
     ```
-    "lscli repo create -b /buildfolder/ (--offline /foldertodownloadedrequirements)"
+    "lambdastack repo create -b /buildfolder/ (--offline /foldertodownloadedrequirements)"
     "repo create -b /buildfolder/"?
     "Repo.create(...)"
     Task: Create the repository on a machine (either by running requirement script or copying already prepared ) and sets up the other VMs/machines to point to said repo machine. (Offline and offline depending on --offline flag)
@@ -104,7 +104,7 @@ Functionality (rough outline and subjected to change):
     ```
 4. teardown:
     ```
-    "lscli repo teardown -b /buildfolder/"
+    "lambdastack repo teardown -b /buildfolder/"
     "repo teardown -b /buildfolder/"?
     "Repo.teardown(...)"
     Task: Disable the repository and resets the other VMs/machines to their previous state.
@@ -151,7 +151,7 @@ Based on the Ansible inventory and the command we can easily select which roles 
 
 Finally we want to add support for an external plugin directory where teams can specify there own role plguins which are not (yet) available inside LambdaStack itself. A feature that can also be used by other teams to more easily start contributing developing new components.
 
-### LScli
+### LambdaStack
 
 Bundles all executable modules (Infrastructure, Repository, Component) and adds functions to chain them together:
 
@@ -159,16 +159,16 @@ Functionality (rough outline and subjected to change):
 
 1. template:
     ```
-    "lscli template -f outfile.yaml -p awz/azure/google/any (--all)"
-    "LScli.template(...)"
+    "lambdastack template -f outfile.yaml -p awz/azure/google/any (--all)"
+    "LambdaStack.template(...)"
     Task: Generate a template yaml with LambdaStack-cluster definition + possible infrastrucure, repo and component configurations
     Input:  File to output data, provider and possible all flag
     Output: outfile.yaml with templates
     ```
 2. apply:
     ```
-    "lscli apply -f input.yaml"
-    "LScli.template(...)"
+    "lambdastack apply -f input.yaml"
+    "LambdaStack.template(...)"
     Task: Sets up a cluster from start to finish
     Input:  File to output data, provider and possible all flag
     Output: Build folder with manifest, ansible inventory, terrafrom files, component setup.

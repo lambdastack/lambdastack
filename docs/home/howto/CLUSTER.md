@@ -124,7 +124,7 @@ Disable:
 
 *Please read first prerequisites related to [hostname requirements](./PREREQUISITES.md#hostname-requirements).*
 
-LScli has the ability to set up a cluster on infrastructure provided by you. These can be either bare metal machines or VMs and should meet the following requirements:
+LambdaStack has the ability to set up a cluster on infrastructure provided by you. These can be either bare metal machines or VMs and should meet the following requirements:
 
 *Note. Hardware requirements are not listed since this depends on use-case, component configuration etc.*
 
@@ -140,18 +140,18 @@ If there is no Internet access, you can use [air gap feature (offline mode)](#ho
 5. A provisioning machine that:
     - Has access to the SSH keys
     - Is on the same network as your cluster machines
-    - Has LScli running.
-      *Note. To run LScli check the [Prerequisites](./PREREQUISITES.md)*
+    - Has LambdaStack running.
+      *Note. To run LambdaStack check the [Prerequisites](./PREREQUISITES.md)*
 
 To set up the cluster do the following steps from the provisioning machine:
 
 1. First generate a minimal data yaml file:
 
     ```shell
-    lscli init -p any -n newcluster
+    lambdastack init -p any -n newcluster
     ```
 
-    The `any` provider will tell LScli to create a minimal data config which does not contain any cloud provider related information. If you want full control you can add the `--full` flag which will give you a configuration with all parts of a cluster that can be configured.
+    The `any` provider will tell LambdaStack to create a minimal data config which does not contain any cloud provider related information. If you want full control you can add the `--full` flag which will give you a configuration with all parts of a cluster that can be configured.
 
 2. Open the configuration file and set up the  `admin_user` data:
 
@@ -192,16 +192,16 @@ To set up the cluster do the following steps from the provisioning machine:
 4. Finally, start the deployment with:
 
     ```shell
-    lscli apply -f newcluster.yml --no-infra
+    lambdastack apply -f newcluster.yml --no-infra
     ```
 
-    This will create the inventory for Ansible based on the component/machine definitions made inside the `newcluster.yml` and let Ansible deploy it. Note that the `--no-infra` is important since it tells LScli to skip the Terraform part.
+    This will create the inventory for Ansible based on the component/machine definitions made inside the `newcluster.yml` and let Ansible deploy it. Note that the `--no-infra` is important since it tells LambdaStack to skip the Terraform part.
 
 ## How to create an LambdaStack cluster on existing air-gapped infrastructure
 
 *Please read first prerequisites related to [hostname requirements](./PREREQUISITES.md#hostname-requirements).*
 
-LScli has the ability to set up a cluster on air-gapped infrastructure provided by you. These can be either bare metal machines
+LambdaStack has the ability to set up a cluster on air-gapped infrastructure provided by you. These can be either bare metal machines
 or VMs and should meet the following requirements:
 
 *Note. Hardware requirements are not listed since this depends on use-case, component configuration etc.*
@@ -220,15 +220,15 @@ or VMs and should meet the following requirements:
 6. A provisioning machine that:
     - Has access to the SSH keys
     - Is on the same network as your cluster machines
-    - Has LScli running.
-      *Note. To run LScli check the [Prerequisites](./PREREQUISITES.md)*
+    - Has LambdaStack running.
+      *Note. To run LambdaStack check the [Prerequisites](./PREREQUISITES.md)*
 
 To set up the cluster do the following steps:
 
 1. First we need to get the tooling to prepare the requirements. On the provisioning machine run:
 
     ```shell
-    lscli prepare --os OS
+    lambdastack prepare --os OS
     ```
 
     Where OS should be `centos-7`, `redhat-7`, `ubuntu-18.04`. This will create a directory called `prepare_scripts` with the needed files inside.
@@ -244,10 +244,10 @@ To set up the cluster do the following steps:
 3. Then generate a minimal data yaml file on the provisioning machine:
 
     ```shell
-    lscli init -p any -n newcluster
+    lambdastack init -p any -n newcluster
     ```
 
-    The `any` provider will tell LScli to create a minimal data config which does not contain any cloud provider related information. If you want full control you can add the `--full` flag which will give you a configuration with all parts of a cluster that can be configured.
+    The `any` provider will tell LambdaStack to create a minimal data config which does not contain any cloud provider related information. If you want full control you can add the `--full` flag which will give you a configuration with all parts of a cluster that can be configured.
 
 4. Open the configuration file and set up the  `admin_user` data:
 
@@ -288,14 +288,14 @@ To set up the cluster do the following steps:
 6. Finally, start the deployment with:
 
     ```shell
-    lscli apply -f newcluster.yml --no-infra --offline-requirements /requirementsoutput/
+    lambdastack apply -f newcluster.yml --no-infra --offline-requirements /requirementsoutput/
     ```
 
-    This will create the inventory for Ansible based on the component/machine definitions made inside the `newcluster.yml` and let Ansible deploy it. Note that the `--no-infra` is important since it tells LScli to skip the Terraform part. The `--offline-requirements` tells LScli it is an air-gapped installation and to use the  `/requirementsoutput/` requirements folder prepared in steps 1 and 2 as source for all requirements.
+    This will create the inventory for Ansible based on the component/machine definitions made inside the `newcluster.yml` and let Ansible deploy it. Note that the `--no-infra` is important since it tells LambdaStack to skip the Terraform part. The `--offline-requirements` tells LambdaStack it is an air-gapped installation and to use the  `/requirementsoutput/` requirements folder prepared in steps 1 and 2 as source for all requirements.
 
 ## How to create an LambdaStack cluster using custom system repository and Docker image registry
 
-LambdaStack has the ability to use external repository and image registry during `lscli apply` execution.
+LambdaStack has the ability to use external repository and image registry during `lambdastack apply` execution.
 
 Custom urls need to be specified inside the `configuration/shared-config` document, for example:
 
@@ -389,7 +389,7 @@ specification:
 
 *Please read first prerequisites related to [hostname requirements](./PREREQUISITES.md#hostname-requirements).*
 
-LScli has the ability to set up a cluster on one of the following cloud providers:
+LambdaStack has the ability to set up a cluster on one of the following cloud providers:
 
 - Azure
 - AWS
@@ -403,18 +403,18 @@ You need the following prerequisites:
 3. A set of SSH keys you provide.
 4. A provisioning machine that:
     - Has access to the SSH keys
-    - Has LScli running.
-      *Note. To run LScli check the [Prerequisites](./PREREQUISITES.md)*
+    - Has LambdaStack running.
+      *Note. To run LambdaStack check the [Prerequisites](./PREREQUISITES.md)*
 
 To set up the cluster do the following steps from the provisioning machine:
 
 1. First generate a minimal data yaml file:
 
     ```shell
-    lscli init -p aws/azure -n newcluster
+    lambdastack init -p aws/azure -n newcluster
     ```
 
-    The `provider` flag should be either `aws` or `azure` and will tell LScli to create a data config which contains the specifics for that cloud provider. If you want full control you can add the `--full` flag which will give you a config with all parts of a cluster that can be configured.
+    The `provider` flag should be either `aws` or `azure` and will tell LambdaStack to create a data config which contains the specifics for that cloud provider. If you want full control you can add the `--full` flag which will give you a config with all parts of a cluster that can be configured.
 
 2. Open the configuration file and set up the `admin_user` data:
 
@@ -466,7 +466,7 @@ To set up the cluster do the following steps from the provisioning machine:
 
     Terraform will ask you to sign in to your Microsoft Azure subscription when it prepares to build/modify/destroy the infrastructure on `azure`. In case you need to share cluster management with other people you can set the `use_service_principal` tag to true. This will create a service principle and uses it to manage the resources.
 
-    If you already have a service principle and don't want to create a new one you can do the following. Make sure the `use_service_principal` tag is set to true. Then before you run `lscli apply -f yourcluster.yml` create the following folder structure from the path you are running LScli:
+    If you already have a service principle and don't want to create a new one you can do the following. Make sure the `use_service_principal` tag is set to true. Then before you run `lambdastack apply -f yourcluster.yml` create the following folder structure from the path you are running LambdaStack:
 
     ```shell
     /build/clustername/terraform
@@ -483,7 +483,7 @@ To set up the cluster do the following steps from the provisioning machine:
     subscriptionId: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxx"
     ```
 
-    LScli will read this file and automatically use it for authentication for resource creation and management.
+    LambdaStack will read this file and automatically use it for authentication for resource creation and management.
 
     For both `aws`and `azure` the following cloud attributes overlap:
     - `use_public_ips`: When `true`, the VMs will also have a direct interface to the internet. While this is easy for setting up a cluster for testing, it should not be used in production. A VPN setup should be used which we will document in a different section (TODO).
@@ -507,7 +507,7 @@ To set up the cluster do the following steps from the provisioning machine:
 
     The `count` specifies how much VM's you want to provision with this component. If you don't want to use a component you can set the `count` to 0.
 
-    Note that for each cloud provider LScli already has a default VM configuration for each component. If you need more control over the VM's, generate a config with the `--full` flag. Then each component will have an additional machine tag:
+    Note that for each cloud provider LambdaStack already has a default VM configuration for each component. If you need more control over the VM's, generate a config with the `--full` flag. Then each component will have an additional machine tag:
 
     ```yaml
     kubernetes_master:
@@ -521,7 +521,7 @@ To set up the cluster do the following steps from the provisioning machine:
 5. Finally, start the deployment with:
 
     ```shell
-    lscli apply -f newcluster.yml
+    lambdastack apply -f newcluster.yml
     ```
 
 ### Note for RHEL Azure images
@@ -580,10 +580,10 @@ specification:
 
 ## How to delete an LambdaStack cluster on a cloud provider
 
-LScli has a delete command to remove a cluster from a cloud provider (AWS, Azure). With LScli run the following:
+LambdaStack has a delete command to remove a cluster from a cloud provider (AWS, Azure). With LambdaStack run the following:
 
   ```shell
-  lscli delete -b /path/to/cluster/build/folder
+  lambdastack delete -b /path/to/cluster/build/folder
   ```
 
 From the defined cluster build folder it will take the information needed to remove the resources from the cloud provider.
@@ -736,7 +736,7 @@ specification:
 
 LambdaStack gives you the ability to define custom components. This allows you to define a custom set of roles for a component you want to use in your cluster. It can be useful when you for example want to maximize usage of the available machines you have at your disposal.
 
-The first thing you will need to do is define it in the `configuration/feature-mapping` configuration. To get this configuration you can run `lscli init ... --full` command. In the `available_roles` roles section you can see all the available roles that LambdaStack provides. The `roles_mapping` is where all the LambdaStack components are defined and were you need to add your custom components.
+The first thing you will need to do is define it in the `configuration/feature-mapping` configuration. To get this configuration you can run `lambdastack init ... --full` command. In the `available_roles` roles section you can see all the available roles that LambdaStack provides. The `roles_mapping` is where all the LambdaStack components are defined and were you need to add your custom components.
 
 Below are parts of an example `configuration/feature-mapping` were we define a new `single_machine_new` component. We want to use Kafka instead of RabbitMQ and don`t need applications and postgres since we don't want a Keycloak deployment:
 
@@ -807,7 +807,7 @@ LambdaStack has the ability to automatically scale and cluster certain component
       ...
   ```
 
-Then when applying the changed configuration using LScli, additional VM's will be spawned and configured or removed. The following table shows what kind of operation component supports:
+Then when applying the changed configuration using LambdaStack, additional VM's will be spawned and configured or removed. The following table shows what kind of operation component supports:
 
 Component | Scale up | Scale down | HA | Clustered |Known issues
 --- | --- | --- | --- | --- | ---
@@ -897,7 +897,7 @@ LambdaStack can deploy [HA Kubernetes clusters](../../design-docs/kubernetes-ha/
     promote_to_ha: false
   ```
 
-- the regular lscli apply cycle must be executed
+- the regular lambdastack apply cycle must be executed
 
 LambdaStack can promote / convert older single-master clusters to HA mode (since v0.6). To achieve that, it is required that:
 
@@ -915,7 +915,7 @@ LambdaStack can promote / convert older single-master clusters to HA mode (since
     promote_to_ha: true
   ```
 
-- the regular lscli apply cycle must be executed
+- the regular lambdastack apply cycle must be executed
 
 - since it is one-time operation, after successful promotion, the HA promotion must be disabled in the config:
 
@@ -950,7 +950,7 @@ LambdaStack can scale-up existing HA clusters (including ones that were promoted
     promote_to_ha: false
   ```
 
-- the regular lscli apply cycle must be executed
+- the regular lambdastack apply cycle must be executed
 
 *Note: It is not supported yet to scale-down clusters (master count cannot be decreased).*
 

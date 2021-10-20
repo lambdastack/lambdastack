@@ -11,8 +11,8 @@
 
 - [#1754](https://github.com/lambdastack/lambdastack/issues/1754) - Fix Vault installation for setup without K8s
 - [#1640](https://github.com/lambdastack/lambdastack/issues/1640) - Default disk size for repository machine increased to 64 GB (AWS and Azure)
-- [#1774](https://github.com/lambdastack/lambdastack/issues/1774) - [lscli upgrade] Filebeat stops working when legacy Elasticsearch (v6) is used for storing logs
-- [#1775](https://github.com/lambdastack/lambdastack/issues/1775) - [lscli upgrade] Cannot upgrade LambdaStack cluster in version 0.6.x when using "--wait-for-pods" flag.
+- [#1774](https://github.com/lambdastack/lambdastack/issues/1774) - [lambdastack upgrade] Filebeat stops working when legacy Elasticsearch (v6) is used for storing logs
+- [#1775](https://github.com/lambdastack/lambdastack/issues/1775) - [lambdastack upgrade] Cannot upgrade LambdaStack cluster in version 0.6.x when using "--wait-for-pods" flag.
 
 ### Updated
 
@@ -27,9 +27,9 @@
 - [#1324](https://github.com/lambdastack/lambdastack/issues/1324) - Added Logstash to export data from Elasticsearch to csv format
 - [#1300](https://github.com/lambdastack/lambdastack/issues/1300) - Configure OpenSSH according to Mozilla Infosec guidance
 - [#1543](https://github.com/lambdastack/lambdastack/issues/1543) - Add support for Azure availability sets
-- [#1609](https://github.com/lambdastack/lambdastack/issues/1609) - Build lscli image using Dockerfile only (without shell script)
+- [#1609](https://github.com/lambdastack/lambdastack/issues/1609) - Build lambdastack image using Dockerfile only (without shell script)
 - [#765](https://github.com/lambdastack/lambdastack/issues/765) - Added multiline support for logs statements in Filebeat
-- [#1618](https://github.com/lambdastack/lambdastack/issues/1618) - Add kubectl and Helm to lscli and devcontainer images
+- [#1618](https://github.com/lambdastack/lambdastack/issues/1618) - Add kubectl and Helm to lambdastack and devcontainer images
 - [#1225](https://github.com/lambdastack/lambdastack/issues/1225) - Add OS_PATCHING.md with information about patching RHEL OS
 - [#1656](https://github.com/lambdastack/lambdastack/issues/1656) - Run Helm tasks from LambdaStack container
 - [#1640](https://github.com/lambdastack/lambdastack/issues/1640) - Added separate machine for repository and changed helm to use localhost address
@@ -49,21 +49,21 @@
 
 ### Fixed
 
-- Fix for changing Terraform templates between LScli apply runs on Azure.
+- Fix for changing Terraform templates between LambdaStack apply runs on Azure.
 - [#1520](https://github.com/lambdastack/lambdastack/issues/1520) - Added additional SANs to k8s-apiserver certificates to run kubectl outside the cluster
 - [#1491](https://github.com/lambdastack/lambdastack/issues/1491) - Error running upgrade on a 0.3 cluster: missing shared-config
-- [#1659](https://github.com/lambdastack/lambdastack/issues/1659) - lscli upgrade fails on Ubuntu on downgrading kubernetes-cni package
+- [#1659](https://github.com/lambdastack/lambdastack/issues/1659) - lambdastack upgrade fails on Ubuntu on downgrading kubernetes-cni package
 - [#1681](https://github.com/lambdastack/lambdastack/issues/1681) - Node exporter does not work after the upgrade
-- [#1705](https://github.com/lambdastack/lambdastack/issues/1705) - [RHEL/CentOS] lscli fails on downloading requirements - Docker CE repo not available
-- [#922](https://github.com/lambdastack/lambdastack/issues/922) - [RHEL/CentOS] Elasticsearch v6 stops working after lscli upgrade
-- [#1741](https://github.com/lambdastack/lambdastack/issues/1741) - Upgrade doesn't work with ERROR lscli - No such attribute: cloud
+- [#1705](https://github.com/lambdastack/lambdastack/issues/1705) - [RHEL/CentOS] lambdastack fails on downloading requirements - Docker CE repo not available
+- [#922](https://github.com/lambdastack/lambdastack/issues/922) - [RHEL/CentOS] Elasticsearch v6 stops working after lambdastack upgrade
+- [#1741](https://github.com/lambdastack/lambdastack/issues/1741) - Upgrade doesn't work with ERROR lambdastack - No such attribute: cloud
 
 ### Breaking changes
 
 - Repository machine was introduced (ref #1640)
-- Change cluster configuration manifest in order to be compatible with changes in #1640 [example] (https://github.com/lambdastack/lambdastack/blob/master/core/src/lscli/data/common/defaults/LambdaStack-cluster.yml)
+- Change cluster configuration manifest in order to be compatible with changes in #1640 [example] (https://github.com/lambdastack/lambdastack/blob/master/core/src/lambdastack/data/common/defaults/LambdaStack-cluster.yml)
 - Filebeat renamed fields in 7.0, see [here](https://www.elastic.co/guide/en/beats/libbeat/current/breaking-changes-7.0.html#_field_name_changes). The `source` field was removed and replaced with `log.file.path`.
 
 ### Known issues
 
-- [1647](https://github.com/lambdastack/lambdastack/issues/1647) - `lscli upgrade` fails on `[opendistro_for_elasticsearch : Provide jvm configuration file]` task
+- [1647](https://github.com/lambdastack/lambdastack/issues/1647) - `lambdastack upgrade` fails on `[opendistro_for_elasticsearch : Provide jvm configuration file]` task

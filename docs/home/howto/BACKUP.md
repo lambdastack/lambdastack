@@ -46,10 +46,10 @@ specification:
       enabled: false
 ```
 
-Run ``lscli backup`` command:
+Run ``lambdastack backup`` command:
 
 ```
-lscli backup -f backup.yml -b build_folder
+lambdastack backup -f backup.yml -b build_folder
 ```
 
 If backup config is attached to cluster-config.yml, use this file instead of ``backup.yml``.
@@ -108,9 +108,9 @@ specification:
       snapshot_name: latest
 ```
 
-Run ``lscli recovery`` command:
+Run ``lambdastack recovery`` command:
 
-``lscli recovery -f recovery.yml -b build_folder``
+``lambdastack recovery -f recovery.yml -b build_folder``
 
 If recovery config is attached to cluster-config.yml, use this file instead of ``recovery.yml``.
 
@@ -155,8 +155,8 @@ Postgresql backup includes:
 
 When multiple node configuration is used, and failover action has changed database cluster status (one node down,
 switchover) it's still possible to create backup. But before database restore, cluster needs to be recovered by
-running ``lscli apply`` and next ``lscli recovery`` to restore database data. By default, we don't support recovery
-database configuration from backup since this needs to be done using ``lscli apply`` or manually by copying backed up
+running ``lambdastack apply`` and next ``lambdastack recovery`` to restore database data. By default, we don't support recovery
+database configuration from backup since this needs to be done using ``lambdastack apply`` or manually by copying backed up
 files accordingly to cluster state. The reason of this is that is very risky to restore configuration files among
 different database cluster configurations.
 

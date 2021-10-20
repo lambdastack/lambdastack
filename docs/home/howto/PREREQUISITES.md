@@ -8,36 +8,36 @@ There are 2 ways to get the image, build it locally yourself or pull it from the
 
     - Docker
 
-2. Open a terminal in the root directory of the LambdaStack source code and run:
+2. Open a terminal in the root directory of the LambdaStack source code and run (it should contain the /cli subdirectory. This also where the Dockerfile is located):
 
 ```bash
-TAG=$(cat core/src/lambdastack/cli/version.txt.py)
+TAG=$(cat cli/version.txt.py)
 docker build --file Dockerfile --tag lambdastack:${TAG} .
 ```
 
 ### Pull LambdaStack image from the registry
 
 ```bash
-docker pull lambdastackplatform/lambdastack:TAG
+docker pull lambdastack/lambdastack:TAG
 ```
 
 Where `TAG` should be replaced with an existing tag.
 
-*Check [here](https://cloud.docker.com/u/lambdastackplatform/repository/docker/lambdastackplatform/lambdastack) for the available tags.*
+*Check [here](https://cloud.docker.com/u/lambdastack/repository/docker/lambdastack/lambdastack) for the available tags.*
 
 ### Running the LambdaStack image
 
 To run the image:
 
 ```bash
-docker run -it -v LOCAL_DIR:/shared --rm lambdastackplatform/lambdastack:TAG
+docker run -it -v LOCAL_DIR:/shared --rm lambdastack/lambdastack:TAG
 ```
 
 Where:
 - `LOCAL_DIR` should be replaced with the local path to the directory for LambdaStack input (SSH keys, data yaml files) and output (logs, build states),
 - `TAG` should be replaced with an existing tag.
 
-*Check [here](https://cloud.docker.com/u/lambdastackplatform/repository/docker/lambdastackplatform/lambdastack) for the available tags.*
+*Check [here](https://cloud.docker.com/u/lambdastack/repository/docker/lambdastack/lambdastack) for the available tags.*
 
 ## LambdaStack development
 

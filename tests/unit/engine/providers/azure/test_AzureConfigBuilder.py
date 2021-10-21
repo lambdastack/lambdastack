@@ -9,7 +9,7 @@ def test_get_resource_group_should_set_proper_values_to_model():
     actual = builder.get_resource_group()
 
     assert actual.specification.name == 'prefix-testcluster-rg'
-    assert actual.specification.region == 'West Europe'
+    assert actual.specification.region == 'East US'
 
 
 def test_get_virtual_network_should_set_proper_values_to_model():
@@ -35,7 +35,7 @@ def test_get_subnet_should_set_proper_values_to_model():
     cluster_model = get_cluster_model(cluster_name='TestCluster')
     subnet_definition = dict_to_objdict({
         'address_pool': '10.20.0.0/24',
-        'availability_zone': 'eu-west-2a'
+        'availability_zone': 'us-east-1a'
     })
     builder = InfrastructureBuilder([cluster_model])
     actual = builder.get_subnet(subnet_definition, 'component', 1)
@@ -140,7 +140,7 @@ def get_cluster_model(address_pool='10.22.0.0/22', cluster_name='LambdaStackTest
             'name': cluster_name,
             'prefix': 'prefix',
             'cloud': {
-                'region': 'West Europe',
+                'region': 'East US',
                 'vnet_address_pool': address_pool,
                 'use_public_ips': True,
                 'default_os_image': 'default',

@@ -7,7 +7,7 @@ NON_EXISTING_CLUSTER = 'test-aaaa'
 TEST_DOCS = [
     {
         'kind': 'lambdastack-cluster',
-        'title': 'LambdaStack cluster Config',
+        'title': 'LambdaStack Cluster Config',
         'provider': 'any',
         'name': 'default',
         'specification':
@@ -28,12 +28,12 @@ TEST_DOCS = [
 ]
 TEST_JSON = {
     'kind': 'lambdastack-cluster',
-    'title': 'LambdaStack cluster Config'
+    'title': 'LambdaStack Cluster Config'
 }
 TEST_JSON_NAME = "test.json"
 TEST_CLUSTER_MODEL = {
     'kind': 'lambdastack-cluster',
-    'title': 'LambdaStack cluster Config',
+    'title': 'LambdaStack Cluster Config',
     'provider': 'azure',
     'name': CLUSTER_NAME_SAVE,
     'specification':
@@ -51,7 +51,7 @@ TEST_CLUSTER_MODEL = {
             'vnet_address_pool': '10.1.0.0/20',
             'use_public_ips': False,
             'use_service_principal': False,
-            'region': 'West Europe',
+            'region': 'East US',
             'credentials': {
                 'key': '1111-1111-1111',
                 'secret': 'XXXXXXXXXXXXXXX'

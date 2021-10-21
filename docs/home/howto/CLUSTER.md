@@ -323,7 +323,7 @@ The following config snippet can illustrate how to mitigate this problem:
 
 ```yaml
 kind: lambdastack-cluster
-title: LambdaStack cluster Config
+title: LambdaStack Cluster Config
 provider: <provider>
 name: default
 specification:
@@ -612,7 +612,7 @@ To get started with a single machine cluster you can use the following template 
 
 ```yaml
 kind: lambdastack-cluster
-title: LambdaStack cluster Config
+title: LambdaStack Cluster Config
 name: default
 specification:
   prefix: dev
@@ -660,7 +660,7 @@ To create a single machine cluster using the "any" provider (with extra load\_ba
 
 ```yaml
 kind: lambdastack-cluster
-title: "LambdaStack cluster Config"
+title: "LambdaStack Cluster Config"
 provider: any
 name: single
 specification:
@@ -776,7 +776,7 @@ Once defined the new `single_machine_new` can be used inside the `lambdastack-cl
 
 ```yaml
 kind: lambdastack-cluster
-title: LambdaStack cluster Config
+title: LambdaStack Cluster Config
 name: default
 specification:
   prefix: new
@@ -1056,7 +1056,7 @@ specification:
       count: 2
     rabbitmq:
       count: 0
-title: LambdaStack cluster Config
+title: LambdaStack Cluster Config
 ---
 kind: infrastructure/availability-set
 name: kube-node  # Short and simple name is preferred

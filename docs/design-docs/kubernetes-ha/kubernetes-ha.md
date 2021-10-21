@@ -82,7 +82,7 @@ The LambdaStack delivers highly-available Kubernetes clusters deploying them acr
 
 ```yaml
 kind: lambdastack-cluster
-title: "LambdaStack cluster Config"
+title: "LambdaStack Cluster Config"
 provider: any
 name: "k8s1"
 specification:

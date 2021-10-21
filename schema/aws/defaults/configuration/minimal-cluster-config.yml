@@ -1,5 +1,5 @@
 kind: lambdastack-cluster
-title: "LambdaStack cluster Config"
+title: "LambdaStack Cluster Config"
 provider: aws
 name: "default"
 specification:

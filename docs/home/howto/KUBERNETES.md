@@ -231,7 +231,7 @@ Prerequisites: LambdaStack cluster on Azure with at least a single VM with `elas
 
 ``` yaml
 kind: lambdastack-cluster
-title: LambdaStack cluster Config
+title: LambdaStack Cluster Config
 provider: azure
 name: default
 specification:

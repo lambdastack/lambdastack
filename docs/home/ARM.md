@@ -63,7 +63,7 @@ Besides making sure that the selected providers, operating systems, components a
 kind: lambdastack-cluster
 name: default
 provider: any
-title: LambdaStack cluster Config
+title: LambdaStack Cluster Config
 specification:
   prefix: arm
   name: centos
@@ -299,7 +299,7 @@ specification:
 kind: lambdastack-cluster
 name: default
 provider: aws
-title: LambdaStack cluster Config
+title: LambdaStack Cluster Config
 specification:
   prefix: arm
   name: centos

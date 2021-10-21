@@ -74,7 +74,7 @@ AWS:
 
   ```yaml
   kind: lambdastack-cluster
-  title: LambdaStack cluster Config
+  title: LambdaStack Cluster Config
   name: your-cluster-name # <----- make unified with other places and build directory name
   provider: any # <----- use "any" provider
   specification:

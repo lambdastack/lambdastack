@@ -192,7 +192,7 @@ specification:
       count: 0
   name: clustername
   prefix: 'prefix'
-title: LambdaStack cluster Config
+title: LambdaStack Cluster Config
 ---
 kind: configuration/feature-mapping
 title: Feature mapping to roles

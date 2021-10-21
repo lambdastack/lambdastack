@@ -60,7 +60,7 @@ To deploy previously mentioned rule, we need to setup a complete YAML configurai
 kind: lambdastack-cluster
 name: default
 provider: azure
-title: LambdaStack cluster Config
+title: LambdaStack Cluster Config
 specification:
   name: azure
   prefix: azure
@@ -68,7 +68,7 @@ specification:
     name: operations
     key_path:  /workspaces/lambdastack/clusters/keys/abb_rsa
   cloud:
-    region: West Europe
+    region: East US
     subscription_name: PUT_SUBSCRIPTION_NAME_HERE
     use_public_ips: true
     use_service_principal: true
@@ -293,7 +293,7 @@ specification:
       count: 0
   name: testing
   prefix: 'aws-machine'
-title: LambdaStack cluster Config
+title: LambdaStack Cluster Config
 ---
 kind: infrastructure/virtual-machine
 title: "Virtual Machine Infra"

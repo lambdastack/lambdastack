@@ -108,7 +108,7 @@ def test_get_subnet_config_should_set_proper_values_to_model():
     cluster_model = get_cluster_model(cluster_name='TestCluster')
     component_value = dict_to_objdict({
         'address_pool': '10.20.0.0/24',
-        'availability_zone': 'eu-west-2a'
+        'availability_zone': 'us-east-1a'
     })
     builder = InfrastructureBuilder([cluster_model])
 
@@ -117,7 +117,7 @@ def test_get_subnet_config_should_set_proper_values_to_model():
     assert actual.specification.name == 'prefix-testcluster-component-subnet-1'
     assert actual.specification.vpc_name == 'my-test-vpc'
     assert actual.specification.cidr_block == '10.20.0.0/24'
-    assert actual.specification.availability_zone == 'eu-west-2a'
+    assert actual.specification.availability_zone == 'us-east-1a'
 
 
 def test_get_security_group_should_set_proper_values_to_model():

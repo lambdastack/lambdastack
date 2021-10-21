@@ -12,7 +12,7 @@ from tests.unit.helpers.constants import CLUSTER_NAME_LOAD, NON_EXISTING_CLUSTER
 
 TEST_MINIMAL_CLUSTER_CONFIG = {
     'kind': 'lambdastack-cluster',
-    'title': 'LambdaStack cluster Config',
+    'title': 'LambdaStack Cluster Config',
     'provider': 'aws',
     'name': 'default',
     'specification':

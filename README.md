@@ -34,7 +34,13 @@ We currently use Terraform and Ansible for our automation orchestration. All aut
 
 ### LambdaStack
 
-Use the following command to see a full run-down of all commands and flags:
+Use the following command to see a full run-down of all commands and flags: (need to launch the LambdaStack docker image - it will drop you into the 'shared' `$PWD` directory and you can then call `lambdastack` like below)
+
+```shell
+cd /<whatever directory you want the docker image to mount to>
+docker run -it -v $PWD:/shared --rm lambdastack/lambdastack:latest
+```
+>Note - `$PWD` means whatever directory you may be in. Once you're done simply type `exit` and it will exit the docker image. The data will be left in a `build` directory inside of the given `$PWD`.
 
 ```shell
 lambdastack --help

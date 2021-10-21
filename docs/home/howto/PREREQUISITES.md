@@ -64,9 +64,9 @@ Where:
 - `LOCAL_DIR` should be replaced with the local path to the directory for LambdaStack input (SSH keys, data yaml files) and output (logs, build states),
 - `TAG` should be replaced with an existing tag.
 
->Example: docker run -it -v ~/projects/lambdastack/clusters --rm lambdastack/lambdastack:latest
+>Example: docker run -it -v $PWD:/shared --rm lambdastack/lambdastack:latest
 
-The lambdastack docker image will mount to **~/projects/lambdastack/cluster/shared**. It will expect any customized configs, SSH keys or data yaml files to be in that directory. The example above is for Linux based systems (including macs). See Windows method below.
+The lambdastack docker image will mount to **<present working directory>/shared**. `$PWD` means present working directory so, change directory to where you want it to mount. It will expect any customized configs, SSH keys or data yaml files to be in that directory. The example above is for Linux based systems (including macs). See Windows method below.
 
 *Check [here](https://cloud.docker.com/u/lambdastack/repository/docker/lambdastack/lambdastack) for the available tags.*
 

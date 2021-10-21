@@ -26,5 +26,5 @@ specification:
       - kubernetes_node
       # servers: # Definition for server to that hosts the application.
       # - name: "node1"
-      #   address: "LambdaStack-vm1.domain.com"
+      #   address: "lambdastack-vm1.domain.com"
       port: 30104

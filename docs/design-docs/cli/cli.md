@@ -24,7 +24,7 @@ Provide a simple to use CLI program that will:
 Create empty cluster:
 
 ```bash
-> LambdaStack create cluster --name='LambdaStack-first-cluster'
+> LambdaStack create cluster --name='lambdastack-first-cluster'
 ```
 
 Add resources to cluster:
@@ -38,7 +38,7 @@ Add resources to cluster:
 Read information about cluster:
 
 ```bash
-> LambdaStack get cluster-info --name='LambdaStack-first-cluster'
+> LambdaStack get cluster-info --name='lambdastack-first-cluster'
 ```
 
 CLI arguments should override default values which will be provided almost for every aspect of the cluster.

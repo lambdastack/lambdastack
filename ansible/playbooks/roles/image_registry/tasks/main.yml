@@ -52,7 +52,7 @@
       become: true
       command: >-
         docker run -d -e REGISTRY_HTTP_ADDR=0.0.0.0:5000 -p 5000:5000 --restart=always
-        --name LambdaStack-registry {{ specification.registry_image.name }}
+        --name lambdastack-registry {{ specification.registry_image.name }}
       when: regitry_up_check.stdout | length == 0
 
     - name: Set images to load

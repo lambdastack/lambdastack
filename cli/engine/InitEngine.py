@@ -30,14 +30,14 @@ class InitEngine(Step):
 
         if self.is_full_config:
             config = self.get_config_docs(input)
-            config_only = select_all(config, lambda x: not(x.kind.startswith('LambdaStack-cluster')))
+            config_only = select_all(config, lambda x: not(x.kind.startswith('lambdastack-cluster')))
             if self.provider == 'any':
                 # for any provider we want to use the default config from minimal-cluster-config
-                cluster_model = select_single(input, lambda x: x.kind == 'LambdaStack-cluster')
+                cluster_model = select_single(input, lambda x: x.kind == 'lambdastack-cluster')
             else:
                 # for azure|aws provider we want to use the extended defaults cluster-config after dry run.
                 # TODO: We probably wants this comming from seperate documents since Azure and AWS overlap now...
-                cluster_model = select_single(config, lambda x: x.kind == 'LambdaStack-cluster')
+                cluster_model = select_single(config, lambda x: x.kind == 'lambdastack-cluster')
             infra  = self.get_infra_docs(input)
             docs = [cluster_model, *config_only, *infra]
         else:

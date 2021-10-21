@@ -6,7 +6,7 @@ CLUSTER_NAME_LOAD = 'test-load'
 NON_EXISTING_CLUSTER = 'test-aaaa'
 TEST_DOCS = [
     {
-        'kind': 'LambdaStack-cluster',
+        'kind': 'lambdastack-cluster',
         'title': 'LambdaStack cluster Config',
         'provider': 'any',
         'name': 'default',
@@ -27,12 +27,12 @@ TEST_DOCS = [
     }
 ]
 TEST_JSON = {
-    'kind': 'LambdaStack-cluster',
+    'kind': 'lambdastack-cluster',
     'title': 'LambdaStack cluster Config'
 }
 TEST_JSON_NAME = "test.json"
 TEST_CLUSTER_MODEL = {
-    'kind': 'LambdaStack-cluster',
+    'kind': 'lambdastack-cluster',
     'title': 'LambdaStack cluster Config',
     'provider': 'azure',
     'name': CLUSTER_NAME_SAVE,

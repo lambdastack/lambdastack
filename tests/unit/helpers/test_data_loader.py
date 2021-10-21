@@ -11,7 +11,7 @@ from tests.unit.helpers.constants import CLUSTER_NAME_LOAD, NON_EXISTING_CLUSTER
     TEST_JSON_NAME, TEST_CLUSTER_MODEL
 
 TEST_MINIMAL_CLUSTER_CONFIG = {
-    'kind': 'LambdaStack-cluster',
+    'kind': 'lambdastack-cluster',
     'title': 'LambdaStack cluster Config',
     'provider': 'aws',
     'name': 'default',
@@ -22,7 +22,7 @@ TEST_MINIMAL_CLUSTER_CONFIG = {
         'admin_user':
         {
             'name': 'ubuntu',
-            'key_path': '/user/.ssh/LambdaStack-operations/id_rsa'
+            'key_path': '/user/.ssh/lambdastack-operations/id_rsa'
         },
         'cloud':
         {

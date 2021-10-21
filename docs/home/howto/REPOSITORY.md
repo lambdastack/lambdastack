@@ -15,7 +15,7 @@ This document will provide information about the repository lifecyle and how to 
 
 Below the lifecycle of the LambdaStack repository:
 
-1. Download requirements (This can be automatic for [online cluster](./CLUSTER.md#how-to-create-an-LambdaStack-cluster-on-existing-infrastructure) or manual for an [airgapped cluster](./CLUSTER.md#how-to-create-an-LambdaStack-cluster-on-existing-air-gapped-infrastructure). )
+1. Download requirements (This can be automatic for [online cluster](./CLUSTER.md#how-to-create-an-lambdastack-cluster-on-existing-infrastructure) or manual for an [airgapped cluster](./CLUSTER.md#how-to-create-an-lambdastack-cluster-on-existing-air-gapped-infrastructure). )
 2. Set up LambdaStack repository (create `lsrepo` and start HTTP server)
 3. For all cluster machines:
    - Back up and disable system package repositories
@@ -30,7 +30,7 @@ Below the lifecycle of the LambdaStack repository:
 
 ### Downloading requirements progression and logging
 
-*Note: This will only cover [online clusters](./CLUSTER.md#how-to-create-an-LambdaStack-cluster-on-existing-infrastructure)*
+*Note: This will only cover [online clusters](./CLUSTER.md#how-to-create-an-lambdastack-cluster-on-existing-infrastructure)*
 
 Downloading requirements is one of the most sensitive steps in deploying a new cluster because lots of resources are being downloaded from various sources.
 

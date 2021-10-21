@@ -18,7 +18,7 @@ from cli.version import VERSION
 class InfrastructureBuilder(Step):
     def __init__(self, docs, manifest_docs=[]):
         super().__init__(__name__)
-        self.cluster_model = select_single(docs, lambda x: x.kind == 'LambdaStack-cluster')
+        self.cluster_model = select_single(docs, lambda x: x.kind == 'lambdastack-cluster')
         self.cluster_name = self.cluster_model.specification.name.lower()
         self.cluster_prefix = self.cluster_model.specification.prefix.lower()
         self.use_network_security_groups = self.cluster_model.specification.cloud.network.use_network_security_groups

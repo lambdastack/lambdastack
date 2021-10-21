@@ -57,7 +57,7 @@ The rule:
 
 To deploy previously mentioned rule, we need to setup a complete YAML configuraiton file. Bellow example shows how this file should looks like. In this configuration we set simple setup of LambdaStack with 2nodes and 1 master vm in Azure.
 ```yaml
-kind: LambdaStack-cluster
+kind: lambdastack-cluster
 name: default
 provider: azure
 title: LambdaStack cluster Config
@@ -234,7 +234,7 @@ The rule:
 Please check bellow example, how to setup basic LambdaStack cluster in AWS with 1 master, 2 nodes, mandatory repository machine, and open accesses to all hosts on port 5666 from monitoring network.
 
 ```yaml
-kind: LambdaStack-cluster
+kind: lambdastack-cluster
 name: default
 provider: aws
 specification:

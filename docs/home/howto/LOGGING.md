@@ -5,7 +5,7 @@ In order to enable centralized logging, be sure that `count` property for `loggi
 configuration manifest.
 
 ```yaml
-kind: LambdaStack-cluster
+kind: lambdastack-cluster
 ...
 specification:
   ...
@@ -297,7 +297,7 @@ the [official documentation](https://www.elastic.co/guide/en/beats/filebeat/curr
 There is a possibility to deploy Filebeat as daemonset in K8s. To do that, set `k8s_as_cloud_service` option to `true`:
 
 ```yaml
-kind: LambdaStack-cluster
+kind: lambdastack-cluster
 specification:
   cloud:
     k8s_as_cloud_service: true

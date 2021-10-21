@@ -45,7 +45,7 @@ name: default
 provider: azure
 specification:
   storage:
-    name: LambdaStack-cluster-volume
+    name: lambdastack-cluster-volume
     enable: true
     capacity: 50
 ```
@@ -101,7 +101,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: LambdaStack-cluster-volume
+  name: lambdastack-cluster-volume
 spec:
   storageClassName: azurefile
   capacity:
@@ -116,10 +116,10 @@ spec:
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-    name: LambdaStack-cluster-volume-claim
+    name: lambdastack-cluster-volume-claim
 spec:
   storageClassName: azurefile
-  volumeName: LambdaStack-cluster-volume
+  volumeName: lambdastack-cluster-volume
   accessModes:
     - ReadWriteMany
   resources:
@@ -142,7 +142,7 @@ spec:
   volumes:
     - name: azure
       persistentVolumeClaim:
-        claimName: LambdaStack-cluster-volume-claim
+        claimName: lambdastack-cluster-volume-claim
 ```
 
 ### AWS
@@ -176,7 +176,7 @@ name: default
 provider: aws
 specification:
   storage:
-    name: LambdaStack-cluster-volume
+    name: lambdastack-cluster-volume
     path: /
     enable: true
     capacity: 50
@@ -197,7 +197,7 @@ is not supported by LambdaStack's AWS provider.
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: LambdaStack-cluster-volume
+  name: lambdastack-cluster-volume
 spec:
   accessModes:
     - ReadWriteMany

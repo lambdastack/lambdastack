@@ -24,7 +24,7 @@ class SchemaValidator(Step):
         del self.base_schema_no_provider.properties['provider']
 
     def get_base_schema(self, kind):
-        if 'infrastructure' in kind or kind == 'LambdaStack-cluster':
+        if 'infrastructure' in kind or kind == 'lambdastack-cluster':
             schema = self.base_schema
         else:
             schema = self.base_schema_no_provider

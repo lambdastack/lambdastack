@@ -1,4 +1,4 @@
-kind: LambdaStack-cluster
+kind: lambdastack-cluster
 title: "LambdaStack cluster Config"
 provider: any
 name: "default"
@@ -6,7 +6,7 @@ specification:
   name: name
   admin_user:
     name: operations # YOUR-ADMIN-USERNAME
-    key_path: /user/.ssh/LambdaStack-operations/id_rsa # YOUR-SSH-KEY-PATH
+    key_path: /user/.ssh/lambdastack-operations/id_rsa # YOUR-SSH-KEY-PATH
   components:
     repository:
       count: 1

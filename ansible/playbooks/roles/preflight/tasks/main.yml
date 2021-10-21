@@ -44,17 +44,17 @@
     name: preflight_facts
     tasks_from: assert
 
-- name: Wait for LambdaStack-lvm-merge.service to finish  # to avoid 'Read-only file system' error
+- name: Wait for lambdastack-lvm-merge.service to finish  # to avoid 'Read-only file system' error
   when: ansible_os_family == "RedHat"
   block:
-    - name: Check if LambdaStack-lvm-merge.service exists  # exists only on Azure
+    - name: Check if lambdastack-lvm-merge.service exists  # exists only on Azure
       service_facts: null
 
-    - name: Wait for LambdaStack-lvm-merge.service to finish
+    - name: Wait for lambdastack-lvm-merge.service to finish
       when:
-        - ansible_facts.services['LambdaStack-lvm-merge.service'] is defined
-        - ansible_facts.services['LambdaStack-lvm-merge.service'].status != "disabled"
+        - ansible_facts.services['lambdastack-lvm-merge.service'] is defined
+        - ansible_facts.services['lambdastack-lvm-merge.service'].status != "disabled"
       wait_for: # at the end service disables itself so symlink is removed
-        path: /etc/systemd/system/default.target.wants/LambdaStack-lvm-merge.service
+        path: /etc/systemd/system/default.target.wants/lambdastack-lvm-merge.service
         state: absent
         timeout: 300

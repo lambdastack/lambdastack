@@ -22,7 +22,7 @@ Where `-b` is path to build folder that contains Ansible inventory.
 
 MVP for upgrade function will contain Kubernetes upgrade procedure to the latest supported version of Kubernetes. Later it will be extended to all other LambdaStack components.
 
-![LambdaStack offline upgrade app](LambdaStack-offline-upgrade.png)
+![LambdaStack offline upgrade app](lambdastack-offline-upgrade.png)
 
 `lsupgrade` application or module takes build path location (directory path that contains Ansible inventory file).
 

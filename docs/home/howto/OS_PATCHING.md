@@ -77,7 +77,7 @@ For information how to check state of specific LambdaStack components, see [here
 
 ### Repositories
 
-LambdaStack uses the repository role to provide all required packages. The role disables all existing repositories and provides a new one. After successful LambdaStack deployment, official repositories should be re-enabled and LambdaStack-provided repository should be disabled.
+LambdaStack uses the repository role to provide all required packages. The role disables all existing repositories and provides a new one. After successful LambdaStack deployment, official repositories should be re-enabled and lambdastack-provided repository should be disabled.
 
 ### RHEL
 

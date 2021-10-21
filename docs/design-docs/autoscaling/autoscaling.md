@@ -19,11 +19,11 @@ We want to provide automatic scale up / down feature for cloud-based LambdaStack
 - This is crucial for autoscaling to work, as we need to properly drain and delete physically-destroyed nodes from Kuberentes.
 - Also this step needs to be performed before terraform code is executed (which requires a refactor of lambdastack code).
 
-### PHASE 2: Moving terraform's state and LambdaStack-cluster-config to a shared place in the cloud.
+### PHASE 2: Moving terraform's state and lambdastack-cluster-config to a shared place in the cloud.
 
 - Currently LambdaStack keeps state files and cluster configs in the `build/xxx/` directories, which causes them not to be shared easily.
 - To solve the issue, terraform beckends can be used: [for Azure](https://www.terraform.io/docs/backends/types/azurerm.html) and [for AWS](https://www.terraform.io/docs/backends/types/s3.html).
-- For simplicity the same "bucket" can be used to store and share LambdaStack-cluster-config.
+- For simplicity the same "bucket" can be used to store and share lambdastack-cluster-config.
 
 ### PHASE 3: Building packer images to quickly add new Kubernetes nodes.
 

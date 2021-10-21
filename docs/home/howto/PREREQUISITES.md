@@ -98,11 +98,11 @@ Use: [Checkout as-is, commit Unix-style](https://stackoverflow.com/questions/104
 
   - Powershell example:
   ```bash
-  docker run -it -v C:\Users\USERNAME\git\LambdaStack:/LambdaStack --rm LambdaStack-dev:
+  docker run -it -v C:\Users\USERNAME\git\LambdaStack:/LambdaStack --rm lambdastack-dev:
   ```
   - Git-Bash example:
   ```bash
-  winpty docker run -it -v C:\\Users\\USERNAME\\git\\LambdaStack:/LambdaStack --rm LambdaStack-dev
+  winpty docker run -it -v C:\\Users\\USERNAME\\git\\LambdaStack:/LambdaStack --rm lambdastack-dev
   ```
 
 - Mounting NTFS disk folders in a linux based image causes permission issues with SSH keys. When running either the development or deploy image:
@@ -110,13 +110,13 @@ Use: [Checkout as-is, commit Unix-style](https://stackoverflow.com/questions/104
 1. Copy the certs on the image:
 
     ```bash
-    mkdir -p ~/.ssh/LambdaStack-operations/
-    cp /lambdastack/core/ssh/id_rsa* ~/.ssh/LambdaStack-operations/
+    mkdir -p ~/.ssh/lambdastack-operations/
+    cp /lambdastack/core/ssh/id_rsa* ~/.ssh/lambdastack-operations/
     ```
 2. Set the proper permission on the certs:
 
     ```bash
-    chmod 400 ~/.ssh/LambdaStack-operations/id_rsa*
+    chmod 400 ~/.ssh/lambdastack-operations/id_rsa*
     ```
 
 ### Note about proxies

@@ -72,10 +72,10 @@ class AnsibleInventoryUpgrade(Step):
 
         # load cluster model from manifest
         self.manifest_docs = load_manifest(self.backup_build_dir)
-        self.cluster_model = select_single(self.manifest_docs, lambda x: x.kind == 'LambdaStack-cluster')
+        self.cluster_model = select_single(self.manifest_docs, lambda x: x.kind == 'lambdastack-cluster')
 
         # Merge manifest cluster config with newer defaults
-        default_cluster_model = load_schema_obj(data_types.DEFAULT, self.cluster_model.provider, 'LambdaStack-cluster')
+        default_cluster_model = load_schema_obj(data_types.DEFAULT, self.cluster_model.provider, 'lambdastack-cluster')
         merge_objdict(default_cluster_model, self.cluster_model)
         self.cluster_model = default_cluster_model
 

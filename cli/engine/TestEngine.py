@@ -22,7 +22,7 @@ class TestEngine(Step):
     def test(self):
         # get manifest documents
         docs = load_manifest(self.build_directory)
-        cluster_model = select_single(docs, lambda x: x.kind == 'LambdaStack-cluster')
+        cluster_model = select_single(docs, lambda x: x.kind == 'lambdastack-cluster')
 
         # get inventory
         path_to_inventory = os.path.join(self.build_directory, ANSIBLE_INVENTORY_FILE)

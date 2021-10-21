@@ -35,6 +35,6 @@
 - name: Set common facts
   set_fact:
     firewall_state: "{{ firewall_state.stdout }}"
-    firewall_rule_added_flag_file: /var/tmp/LambdaStack-repo-http-firewall-rule-added.flag
-    modified_zone_name_file: /var/tmp/LambdaStack-repo-temporarily-modified-firewall-zone.save
+    firewall_rule_added_flag_file: /var/tmp/lambdastack-repo-http-firewall-rule-added.flag
+    modified_zone_name_file: /var/tmp/lambdastack-repo-temporarily-modified-firewall-zone.save
     zone_config_backup_dest_dir: /var/tmp/LambdaStack

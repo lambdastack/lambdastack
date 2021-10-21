@@ -66,7 +66,7 @@ Here we will get a simple app to run using Docker through Kubernetes. We assume 
 
 3. Make sure Docker for Windows is running (run as admin, might require a restart)
 
-4. Run `docker build -t sample-app:v1 .` in examples/dotnet/LambdaStack-web-app.
+4. Run `docker build -t sample-app:v1 .` in examples/dotnet/lambdastack-web-app.
 
 5. *For test purposes, run your image locally with `docker run -d -p 8080:80 --name myapp sample-app:v1` and head to `localhost:8080` to check if it's working.
 
@@ -230,7 +230,7 @@ Prerequisites: LambdaStack cluster on Azure with at least a single VM with `elas
 1. Enable Kubernetes master & node, repository and postgresql components in initial configuration manifest (yaml) by encreasing `count` value.
 
 ``` yaml
-kind: LambdaStack-cluster
+kind: lambdastack-cluster
 title: LambdaStack cluster Config
 provider: azure
 name: default

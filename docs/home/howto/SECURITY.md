@@ -18,12 +18,12 @@ ansible-playbook -i inventory --extra-vars "operation=enable name=your_service_u
 
 ## How to add/remove additional users to/from OS
 
-To add/remove users you need to provide additional section to `kind: LambdaStack-cluster` configuration.
+To add/remove users you need to provide additional section to `kind: lambdastack-cluster` configuration.
 
 You need to add `specification.users` in the format similar to example that you can find below:
 
 ```yaml
-kind: LambdaStack-cluster
+kind: lambdastack-cluster
 name: pg-aws-deb
 provider: aws
 specification:

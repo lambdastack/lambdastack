@@ -17,7 +17,7 @@ class TerraformTemplateGenerator(Step):
 
         templates = filter(lambda x: x.kind != 'infrastructure/cloud-init-custom-data', self.infrastructure)
         for idx, doc in enumerate(templates):
-            if doc.kind != 'LambdaStack-cluster':
+            if doc.kind != 'lambdastack-cluster':
                 terraform_file_name = '{:03d}'.format(idx) + '_' + doc.specification.name + ".tf"
             else:
                 terraform_file_name = '000_' + doc.specification.name + ".tf"

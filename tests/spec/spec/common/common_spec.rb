@@ -1,7 +1,7 @@
 require 'spec_helper'
 require_relative 'common_helpers'
 
-provider = readDataYaml("LambdaStack-cluster")["provider"]
+provider = readDataYaml("lambdastack-cluster")["provider"]
 
 #=== Test LVM merge (RHEL on Azure) ===
 
@@ -19,9 +19,9 @@ if provider == 'azure' and os[:family] == 'redhat' and lvm_installed?
   end
 
   # Temporary directory should be cleaned up
-  describe 'Check /root/LambdaStack-lvm-merge directory' do
+  describe 'Check /root/lambdastack-lvm-merge directory' do
     let(:disable_sudo) { false }
-    describe file('/root/LambdaStack-lvm-merge') do
+    describe file('/root/lambdastack-lvm-merge') do
       it { should_not exist }
     end
   end
@@ -42,8 +42,8 @@ if provider == 'azure' and os[:family] == 'redhat' and lvm_installed?
     end
   end
 
-  describe 'Check LambdaStack-lvm-merge service' do
-    describe service('LambdaStack-lvm-merge') do
+  describe 'Check lambdastack-lvm-merge service' do
+    describe service('lambdastack-lvm-merge') do
       it { should_not be_enabled }
     end
   end

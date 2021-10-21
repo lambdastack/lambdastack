@@ -7,7 +7,7 @@ specification:
   cluster_name: "kubernetes-LambdaStack"
   allow_pods_on_master: False
   storage:
-    name: LambdaStack-cluster-volume # name of the Kubernetes resource
+    name: lambdastack-cluster-volume # name of the Kubernetes resource
     path: / # directory path in mounted storage
     enable: True
     capacity: 50 # GB

@@ -1,4 +1,4 @@
-kind: LambdaStack-cluster
+kind: lambdastack-cluster
 title: "LambdaStack cluster Config"
 provider: azure
 name: "default"
@@ -7,14 +7,14 @@ specification:
   name: lambdastackcluster
   admin_user:
     name: operations # YOUR-ADMIN-USERNAME
-    key_path: /root/.ssh/LambdaStack-operations/id_rsa # YOUR-SSH-KEY-PATH
+    key_path: /root/.ssh/lambdastack-operations/id_rsa # YOUR-SSH-KEY-PATH
   cloud:
     k8s_as_cloud_service: False
     subscription_name: YOUR-SUB-NAME
     vnet_address_pool: 10.1.0.0/20
     use_public_ips: False # When not using public IPs you have to provide connectivity via private IPs (VPN)
     use_service_principal: False
-    region: West Europe
+    region: East US
     network:
       use_network_security_groups: True
     default_os_image: default

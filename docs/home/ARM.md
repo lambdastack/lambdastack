@@ -60,7 +60,7 @@ Besides making sure that the selected providers, operating systems, components a
 
 ```yaml
 ---
-kind: LambdaStack-cluster
+kind: lambdastack-cluster
 name: default
 provider: any
 title: LambdaStack cluster Config
@@ -296,7 +296,7 @@ specification:
 
 ```yaml
 ---
-kind: LambdaStack-cluster
+kind: lambdastack-cluster
 name: default
 provider: aws
 title: LambdaStack cluster Config

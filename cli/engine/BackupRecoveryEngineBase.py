@@ -43,7 +43,7 @@ class BackupRecoveryEngineBase(Step):
 
         # Get existing manifest config documents
         self.manifest_docs = load_manifest(self.build_directory)
-        self.cluster_model = select_single(self.manifest_docs, lambda x: x.kind == 'LambdaStack-cluster')
+        self.cluster_model = select_single(self.manifest_docs, lambda x: x.kind == 'lambdastack-cluster')
 
         # Load backup / recovery configuration documents
         self.input_docs = load_yamls_file(self.file)

@@ -73,7 +73,7 @@ AWS:
   Example:
 
   ```yaml
-  kind: LambdaStack-cluster
+  kind: lambdastack-cluster
   title: LambdaStack cluster Config
   name: your-cluster-name # <----- make unified with other places and build directory name
   provider: any # <----- use "any" provider
@@ -88,7 +88,7 @@ AWS:
       repository:
         count: 1
         machines:
-          - default-LambdaStack-modules-test-all-0 # <----- make sure that it is correct VM name
+          - default-lambdastack-modules-test-all-0 # <----- make sure that it is correct VM name
       kubernetes_master:
         count: 0
       kubernetes_node:
@@ -102,7 +102,7 @@ AWS:
       postgresql:
         count: 1
         machines:
-          - default-LambdaStack-modules-test-all-1 # <----- make sure that it is correct VM name
+          - default-lambdastack-modules-test-all-1 # <----- make sure that it is correct VM name
       load_balancer:
         count: 0
       rabbitmq:
@@ -123,17 +123,17 @@ AWS:
         - applications
   ---
   kind: infrastructure/machine
-  name: default-LambdaStack-modules-test-all-0
+  name: default-lambdastack-modules-test-all-0
   provider: any
   specification:
-    hostname: LambdaStack-modules-test-all-0
+    hostname: lambdastack-modules-test-all-0
     ip: 12.34.56.78 # <----- put here public IP attached to machine
   ---
   kind: infrastructure/machine
-  name: default-LambdaStack-modules-test-all-1
+  name: default-lambdastack-modules-test-all-1
   provider: any
   specification:
-    hostname: LambdaStack-modules-test-all-1
+    hostname: lambdastack-modules-test-all-1
     ip: 12.34.56.78 # <----- put here public IP attached to machine
   ---
   kind: configuration/repository

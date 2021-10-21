@@ -9,7 +9,7 @@
 # Log files:
 # /var/log/cloud-init-output.log
 # /var/log/cloud-init.log
-# journalctl -u LambdaStack-lvm-merge
+# journalctl -u lambdastack-lvm-merge
 
 # Merge LV homelv as early as possible (when a user logs in, /home is in use and cannot be unmounted).
 
@@ -28,7 +28,7 @@ bootcmd:  # frequency: always
       trap 'exit $?' ERR
 
       # shellcheck disable=SC1091
-      source /usr/local/sbin/LambdaStack-lvm-merge-core-functions.sh
+      source /usr/local/sbin/lambdastack-lvm-merge-core-functions.sh
 
       mask_service() {
         local service=${1}
@@ -54,7 +54,7 @@ bootcmd:  # frequency: always
 
       main() {
         # Do not use location under mount point to be merged (such as /var) since it is temporarily remounted as read-only.
-        local work_dir_path=/root/LambdaStack-lvm-merge
+        local work_dir_path=/root/lambdastack-lvm-merge
         local lock_file_name=merge-homelv.uncompleted.state
         local output
 
@@ -110,7 +110,7 @@ bootcmd:  # frequency: always
       main
 
 write_files:  # frequency: once-per-instance
-  - path: /etc/systemd/system/LambdaStack-lvm-merge.service
+  - path: /etc/systemd/system/lambdastack-lvm-merge.service
     content: |
       [Unit]
       Description=Merge Azure provided LVM logical volumes into rootlv
@@ -122,7 +122,7 @@ write_files:  # frequency: once-per-instance
       [Service]
       # Switch to 'Type=exec' with systemd >= v240
       Type=simple
-      ExecStart=/usr/local/sbin/LambdaStack-lvm-merge.sh
+      ExecStart=/usr/local/sbin/lambdastack-lvm-merge.sh
       StandardOutput=journal+console
       Restart=on-failure
       RestartSec=5
@@ -133,11 +133,11 @@ write_files:  # frequency: once-per-instance
       [Install]
       WantedBy=default.target
 
-  - path: /usr/local/sbin/LambdaStack-lvm-merge-helper-functions.sh
+  - path: /usr/local/sbin/lambdastack-lvm-merge-helper-functions.sh
     permissions: '0644'
     content: |
       #!/usr/bin/env bash
-      # Common functions (not related to processing logic) for LambdaStack-lvm-merge.sh (in alphabetical order)
+      # Common functions (not related to processing logic) for lambdastack-lvm-merge.sh (in alphabetical order)
 
       append_array_to_file() {
         local file_path=${1}
@@ -483,14 +483,14 @@ write_files:  # frequency: once-per-instance
         done
       }
 
-  - path: /usr/local/sbin/LambdaStack-lvm-merge-core-functions.sh
+  - path: /usr/local/sbin/lambdastack-lvm-merge-core-functions.sh
     permissions: '0644'
     content: |
       #!/usr/bin/env bash
-      # Functions for LambdaStack-lvm-merge.sh (in alphabetical order)
+      # Functions for lambdastack-lvm-merge.sh (in alphabetical order)
 
       # shellcheck disable=SC1091
-      source /usr/local/sbin/LambdaStack-lvm-merge-helper-functions.sh
+      source /usr/local/sbin/lambdastack-lvm-merge-helper-functions.sh
 
       extend_logical_volume_by_free_space() {
         local vg_name=${1}
@@ -557,7 +557,7 @@ write_files:  # frequency: once-per-instance
         fi
         if (( apply_exclusions )) && (( ${#services_to_stop[@]} > 0 )); then
           # it seems it's safer to wait for kdump to exit than stopping it
-          local -a excluded_services=(LambdaStack-lvm-merge kdump sshd)
+          local -a excluded_services=(lambdastack-lvm-merge kdump sshd)
           for service in "${excluded_services[@]}"; do
             service="${service}.service"
             if in_array "$service" "${services_to_stop[@]}"; then
@@ -704,7 +704,7 @@ write_files:  # frequency: once-per-instance
         fi
       }
 
-  - path: /usr/local/sbin/LambdaStack-lvm-merge.sh
+  - path: /usr/local/sbin/lambdastack-lvm-merge.sh
     permissions: '0755'
     content: |
       #!/usr/bin/env bash
@@ -717,11 +717,11 @@ write_files:  # frequency: once-per-instance
       echo "*** Starting script: $0 at $(date +"%T.%N")"
 
       # shellcheck disable=SC1091
-      source /usr/local/sbin/LambdaStack-lvm-merge-core-functions.sh
+      source /usr/local/sbin/lambdastack-lvm-merge-core-functions.sh
 
       main() {
         # do not use location under mount point to be merged (such as /tmp or /var) since it is temporarily remounted as read-only
-        local work_dir_path=/root/LambdaStack-lvm-merge
+        local work_dir_path=/root/lambdastack-lvm-merge
 
         local -A volumes_to_merge
         # homelv is already merged by bootcmd module
@@ -772,7 +772,7 @@ write_files:  # frequency: once-per-instance
 
         remove_empty_dirs "$work_dir_path/tmp" "$work_dir_path"
 
-        run_cmd systemctl disable LambdaStack-lvm-merge.service  # disable itself
+        run_cmd systemctl disable lambdastack-lvm-merge.service  # disable itself
 
         echo "*** Finished script: $0 at $(date +"%T.%N")"
         echo "*** Elapsed time: $(((SECONDS / 60) % 60))min $((SECONDS % 60))s"
@@ -781,5 +781,5 @@ write_files:  # frequency: once-per-instance
       main
 
 runcmd:  # frequency: once-per-instance
-  - systemctl enable LambdaStack-lvm-merge  # auto-start after unexpected reboot if uncompleted
-  - systemctl start --no-block LambdaStack-lvm-merge
+  - systemctl enable lambdastack-lvm-merge  # auto-start after unexpected reboot if uncompleted
+  - systemctl start --no-block lambdastack-lvm-merge

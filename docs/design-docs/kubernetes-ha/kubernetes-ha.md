@@ -81,7 +81,7 @@ The LambdaStack delivers highly-available Kubernetes clusters deploying them acr
 ## 5. Example use
 
 ```yaml
-kind: LambdaStack-cluster
+kind: lambdastack-cluster
 title: "LambdaStack cluster Config"
 provider: any
 name: "k8s1"

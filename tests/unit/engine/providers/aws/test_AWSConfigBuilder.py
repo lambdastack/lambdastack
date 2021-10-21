@@ -172,7 +172,7 @@ def test_get_routing_table_should_set_proper_values_to_model():
 
 def get_cluster_model(address_pool='10.22.0.0/22', cluster_name='LambdaStackTestCluster'):
     cluster_model = dict_to_objdict({
-        'kind': 'LambdaStack-cluster',
+        'kind': 'lambdastack-cluster',
         'provider': 'aws',
         'specification': {
             'name': cluster_name,

@@ -2,7 +2,7 @@
 
 <!-- TOC -->
 
-- [LambdaStack Governance Model](#LambdaStack-governance-model)
+- [LambdaStack Governance Model](#lambdastack-governance-model)
   - [Overview](#overview)
   - [Roles And Responsibilities](#roles-and-responsibilities)
   - [Committers](#committers)

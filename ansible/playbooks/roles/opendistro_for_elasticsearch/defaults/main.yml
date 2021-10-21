@@ -32,31 +32,31 @@ certificates:
         OU: R&D
     root_ca:
       cert:
-        filename: LambdaStack-root-ca.pem
+        filename: lambdastack-root-ca.pem
         selfsigned_not_after: 20311231235959Z  # relative time, such as '+3650d', is NOT idempotent
         subject:
           <<: *common-subject
           CN: LambdaStack Managed ODFE Root CA
       key:
-        filename: LambdaStack-root-ca-key.pem
+        filename: lambdastack-root-ca-key.pem
     admin:
       cert:
-        filename: LambdaStack-admin.pem
+        filename: lambdastack-admin.pem
         ownca_not_after: 20221231235959Z  # relative time, such as '+3650d', is NOT idempotent
         subject:
           <<: *common-subject
           CN: LambdaStack Admin
       key:
-        filename: LambdaStack-admin-key.pem
+        filename: lambdastack-admin-key.pem
     node:
       cert:
-        filename: LambdaStack-node-{{ ansible_nodename }}.pem
+        filename: lambdastack-node-{{ ansible_nodename }}.pem
         ownca_not_after: 20311231235959Z  # relative time, such as '+3650d', is NOT idempotent
         subject:
           <<: *common-subject
           CN: "{{ ansible_nodename }}"
       key:
-        filename: LambdaStack-node-{{ ansible_nodename }}-key.pem
+        filename: lambdastack-node-{{ ansible_nodename }}-key.pem
 ports:
   http:      9200  # defaults to range but we want static port
   transport: 9300  # defaults to range but we want static port

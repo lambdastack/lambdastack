@@ -7,11 +7,11 @@ from cli.helpers.doc_list_helpers import select_single
 
 
 class ConfigurationAppender(Step):
-    REQUIRED_DOCS = ['configuration/feature-mapping', 'configuration/shared-config', 'LambdaStack-cluster']
+    REQUIRED_DOCS = ['configuration/feature-mapping', 'configuration/shared-config', 'lambdastack-cluster']
 
     def __init__(self, input_docs):
         super().__init__(__name__)
-        self.cluster_model = select_single(input_docs, lambda x: x.kind == 'LambdaStack-cluster')
+        self.cluster_model = select_single(input_docs, lambda x: x.kind == 'lambdastack-cluster')
         self.input_docs = input_docs
 
     def run(self):

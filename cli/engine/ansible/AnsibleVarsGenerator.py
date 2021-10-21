@@ -113,7 +113,7 @@ class AnsibleVarsGenerator(Step):
 
     def write_role_manifest_vars(self, ansible_dir, role, kind):
         try:
-            cluster_model = select_single(self.manifest_docs, lambda x: x.kind == 'LambdaStack-cluster')
+            cluster_model = select_single(self.manifest_docs, lambda x: x.kind == 'lambdastack-cluster')
         except ExpectedSingleResultException:
             return  # skip
 
@@ -193,7 +193,7 @@ class AnsibleVarsGenerator(Step):
         # Reuse shared config from existing manifest
         # Shared config contains the use_ha_control_plane flag which is required during upgrades
 
-        cluster_model = select_single(self.manifest_docs, lambda x: x.kind == 'LambdaStack-cluster')
+        cluster_model = select_single(self.manifest_docs, lambda x: x.kind == 'lambdastack-cluster')
 
         try:
             shared_config_doc = select_single(self.manifest_docs, lambda x: x.kind == 'configuration/shared-config')

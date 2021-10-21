@@ -487,7 +487,7 @@ is [an Apache 2.0-licensed distribution of Elasticsearch enhanced with enterpris
 In order to start working with OpenDistro change machines count to value greater than 0 in your cluster configuration:
 
 ```yaml
-kind: LambdaStack-cluster
+kind: lambdastack-cluster
 ...
 specification:
   ...
@@ -538,7 +538,7 @@ Filebeat running on `opendistro_for_elasticsearch` hosts will always point to ce
 Apache Ignite can be installed in LambdaStack if `count` property for `ignite` feature is greater than 0. Example:
 
 ```yaml
-kind: LambdaStack-cluster
+kind: lambdastack-cluster
 specification:
   components:
     load_balancer:

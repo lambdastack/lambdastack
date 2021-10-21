@@ -56,7 +56,7 @@ class ApplyEngine(Step):
             self.input_docs = doc_merger.run()
 
         # Get the cluster model.
-        self.cluster_model = select_single(self.input_docs, lambda x: x.kind == 'LambdaStack-cluster')
+        self.cluster_model = select_single(self.input_docs, lambda x: x.kind == 'lambdastack-cluster')
         if self.cluster_model is None:
             raise Exception('No cluster model defined in input YAML file')
 

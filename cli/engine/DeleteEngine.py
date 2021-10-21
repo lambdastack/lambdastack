@@ -17,7 +17,7 @@ class DeleteEngine(Step):
 
     def delete(self):
         docs = load_manifest(self.build_directory)
-        cluster_model = select_single(docs, lambda x: x.kind == 'LambdaStack-cluster')
+        cluster_model = select_single(docs, lambda x: x.kind == 'lambdastack-cluster')
 
         if cluster_model.provider == 'any':
             raise Exception('Delete works only for cloud providers')

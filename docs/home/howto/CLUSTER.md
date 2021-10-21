@@ -130,7 +130,7 @@ LambdaStack has the ability to set up a cluster on infrastructure provided by yo
 
 1. The cluster machines/VMs are connected by a network (or virtual network of some sorts) and can communicate with each other.
 At least one of them (with `repository` role) has Internet access in order to download dependencies.
-If there is no Internet access, you can use [air gap feature (offline mode)](#how-to-create-an-LambdaStack-cluster-on-existing-air-gapped-infrastructure).
+If there is no Internet access, you can use [air gap feature (offline mode)](#how-to-create-an-lambdastack-cluster-on-existing-air-gapped-infrastructure).
 2. The cluster machines/VMs are running one of the following Linux distributions:
     - RedHat 7.6+ and < 8
     - CentOS 7.6+ and < 8
@@ -322,7 +322,7 @@ By default, LambdaStack creates "repository" virtual machine for cloud environme
 The following config snippet can illustrate how to mitigate this problem:
 
 ```yaml
-kind: LambdaStack-cluster
+kind: lambdastack-cluster
 title: LambdaStack cluster Config
 provider: <provider>
 name: default
@@ -441,7 +441,7 @@ To set up the cluster do the following steps from the provisioning machine:
 
     ```yaml
     cloud:
-      region: eu-west-2
+      region: us-east-1
       credentials:
         key: aws_key
         secret: aws_secret
@@ -455,14 +455,14 @@ To set up the cluster do the following steps from the provisioning machine:
 
     ```yaml
     cloud:
-      region: West Europe
+      region: East US
       subscription_name: Subscribtion_name
       use_service_principal: false
       use_public_ips: false
       default_os_image: default
     ```
 
-    The [region](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html) lets you chose the most optimal place to deploy your cluster. The `subscription_name` is the Azure subscription under which you want to deploy the cluster.
+    The [region](https://docs.microsoft.com/en-us/azure/availability-zones/az-overview) lets you chose the most optimal place to deploy your cluster. The `subscription_name` is the Azure subscription under which you want to deploy the cluster.
 
     Terraform will ask you to sign in to your Microsoft Azure subscription when it prepares to build/modify/destroy the infrastructure on `azure`. In case you need to share cluster management with other people you can set the `use_service_principal` tag to true. This will create a service principle and uses it to manage the resources.
 
@@ -611,7 +611,7 @@ Note that components like logging and monitoring are missing since they do not p
 To get started with a single machine cluster you can use the following template as a base. Note that some configurations are omitted:
 
 ```yaml
-kind: LambdaStack-cluster
+kind: lambdastack-cluster
 title: LambdaStack cluster Config
 name: default
 specification:
@@ -659,7 +659,7 @@ specification:
 To create a single machine cluster using the "any" provider (with extra load\_balancer config included) use the following template below:
 
 ```yaml
-kind: LambdaStack-cluster
+kind: lambdastack-cluster
 title: "LambdaStack cluster Config"
 provider: any
 name: single
@@ -721,7 +721,7 @@ specification:
       - kubernetes_node
       # servers: # Definition for server to that hosts the application.
       # - name: "node1"
-      #   address: "LambdaStack-vm1.domain.com"
+      #   address: "lambdastack-vm1.domain.com"
       port: 30104
 ---
 kind: infrastructure/machine
@@ -772,10 +772,10 @@ specification:
   ...
 ```
 
-Once defined the new `single_machine_new` can be used inside the `LambdaStack-cluster` configuration:
+Once defined the new `single_machine_new` can be used inside the `lambdastack-cluster` configuration:
 
 ```yaml
-kind: LambdaStack-cluster
+kind: lambdastack-cluster
 title: LambdaStack cluster Config
 name: default
 specification:
@@ -1002,7 +1002,7 @@ specification:
 provider: azure
 ```
 
-Then set it also in the corresponding `components` section of the `kind: LambdaStack-cluster` doc.
+Then set it also in the corresponding `components` section of the `kind: lambdastack-cluster` doc.
 
 ```yaml
   components:
@@ -1021,7 +1021,7 @@ The example below shows a complete configuration. Note that it's recommended to 
 ```yaml
 # Test availability set config
 ---
-kind: LambdaStack-cluster
+kind: lambdastack-cluster
 name: default
 provider: azure
 specification:
@@ -1083,7 +1083,7 @@ This paragraph describes how to use a Docker container to download the requireme
 
 A few points:
 
-- This only describes how to set up the Docker containers for downloading. The rest of the steps are similar as in the paragraph [here](./CLUSTER.md#how-to-create-an-LambdaStack-cluster-on-existing-air-gapped-infrastructure).
+- This only describes how to set up the Docker containers for downloading. The rest of the steps are similar as in the paragraph [here](./CLUSTER.md#how-to-create-an-lambdastack-cluster-on-existing-air-gapped-infrastructure).
 - Main reason why you might want to give this a try is to download ```arm64``` architecture requirements on a ```x86_64``` machine. More information on the current state of ```arm64``` support can be found [here](./../ARM.md#arm).
 
 ### Ubuntu 18.04

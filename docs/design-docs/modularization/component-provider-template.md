@@ -8,7 +8,7 @@ Idea is to have something running and working mimicking real world modules. I us
 
 # Dependencies problem
 
-First [list of modules](https://github.com/mkyc/LambdaStack-wrapper-poc-repo/blob/master/v1.yaml) is presented here: 
+First [list of modules](https://github.com/mkyc/lambdastack-wrapper-poc-repo/blob/master/v1.yaml) is presented here: 
 
 ```
 version: v1
@@ -309,7 +309,7 @@ Operations related to scale up and scale down module components.
 
 # Check required methods implementation
 
-All accessible methods would be listed in module metadata as proposed [here](https://github.com/mkyc/LambdaStack-wrapper-poc-repo/blob/master/v1.yaml). That means that it's possible to: 
+All accessible methods would be listed in module metadata as proposed [here](https://github.com/mkyc/lambdastack-wrapper-poc-repo/blob/master/v1.yaml). That means that it's possible to: 
  * validate if there are all required methods implemented, 
  * validate if required methods return in expected way, 
  * check if state file is updated with values expected by other known modules.

@@ -37,7 +37,7 @@ Functionality (rough outline and subjected to change):
     "lambdastack infra template -f outfile.yaml -p awz/azure/google/any (--all)"
     "infra template -f outfile.yaml -p awz/azure/google/any (--all)"?
     "Infrastructure.template(...)"
-    Task: Generate a template yaml with LambdaStack-cluster definition + possible infra docs when --all is defined
+    Task: Generate a template yaml with lambdastack-cluster definition + possible infra docs when --all is defined
     Input:  File to output data, provider and possible all flag
     Output: outfile.yaml template
     ```
@@ -47,7 +47,7 @@ Functionality (rough outline and subjected to change):
     "infra apply -f data.yaml"?
     "Infrastructure.apply(...)"
     Task: Create/Update infrastucture on AWS/Azure/Google...
-    Input:  Yaml with at least LambdaStack-cluster + possible infra docs
+    Input:  Yaml with at least lambdastack-cluster + possible infra docs
     Output: manifest, ansible inventory and terrafrom files
     ```
 3. analyse:
@@ -56,7 +56,7 @@ Functionality (rough outline and subjected to change):
     "infra analyse -f data.yaml"?
     "Infrastructure.analyse(...)"
     Task: Analysing existing infrastructure
-    Input:  Yaml with at least LambdaStack-cluster + possible infra docs
+    Input:  Yaml with at least lambdastack-cluster + possible infra docs
     Output: manifest, ansible inventory
     ```
 4. destroy:
@@ -161,7 +161,7 @@ Functionality (rough outline and subjected to change):
     ```
     "lambdastack template -f outfile.yaml -p awz/azure/google/any (--all)"
     "LambdaStack.template(...)"
-    Task: Generate a template yaml with LambdaStack-cluster definition + possible infrastrucure, repo and component configurations
+    Task: Generate a template yaml with lambdastack-cluster definition + possible infrastrucure, repo and component configurations
     Input:  File to output data, provider and possible all flag
     Output: outfile.yaml with templates
     ```

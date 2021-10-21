@@ -160,7 +160,7 @@ to version 0.8 or newer you need also add additional feature mapping for reposit
 
 ```yaml
 ---
-kind: LambdaStack-cluster
+kind: lambdastack-cluster
 name: clustername
 provider: azure
 specification:
@@ -235,7 +235,7 @@ The above link points to develop branch. Please choose the right branch that sui
 ### Kafka upgrade
 
 Kafka will be automatically updated to the latest version supported by LambdaStack. You can check the latest supported
-version [here](../COMPONENTS.md#LambdaStack-cluster-components). Kafka brokers are updated one by one - but the update
+version [here](../COMPONENTS.md#lambdastack-cluster-components). Kafka brokers are updated one by one - but the update
 procedure does not guarantee "zero downtime" because it depends on the number of available brokers, topic, and
 partitioning configuration.
 
@@ -364,7 +364,7 @@ Before upgrade procedure, make sure you have a data backup.
 ### Versions
 
 LambdaStack upgrades PostgreSQL 10 to 13 with the following extensions
-(for versions, see [COMPONENTS.md](../COMPONENTS.md#LambdaStack-cluster-components)):
+(for versions, see [COMPONENTS.md](../COMPONENTS.md#lambdastack-cluster-components)):
 
 - PgAudit
 - PgBouncer

@@ -6,6 +6,7 @@ Major release - 0.x.x
 Minor release - 0.2.x  
 Patch release - 0.2.1  
 Pre-release - 0.3.0rc1
+Dev-release - 0.3.0dev
 
 Currently, we supporting quarterly minor releases. These minor releases also include patch releases.
 

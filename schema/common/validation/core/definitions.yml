@@ -20,12 +20,14 @@ provider:
   - aws
   - azure
   - any
+  - gcp
   pattern: ^(aws|azure|any)$
 version:
   type: string
   title: The Version Schema
-  default: '0.4.2'
+  default: '0.4.3'
   examples:
+  - 0.4.3
   - 0.4.2
   - 0.8.0rc1
   - 1.2.0dev

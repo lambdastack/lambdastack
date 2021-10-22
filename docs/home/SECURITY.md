@@ -1,18 +1,18 @@
 # Security related information
 
-You are strongly advised use encrypted over unencrypted communication between LambdaStack components where possible. Please consider
-this during planning your LambdaStack deployment and configuration.
+You are strongly advised use encrypted over unencrypted communication between LambdaStack components where possible. Please consider this during planning your LambdaStack deployment and configuration.
 
 We strongly advise to change default passwords wherever LambdaStack configuration let you do so.
 
-We strongly advise to use antivirus/antimalware software wherever possible to prevent security risks. Please consider this during planning
-your LambdaStack deployment and test if LambdaStack components are installing correctly with necessary changes made in settings of your
-antivirus/antimalware solution.
+We strongly advise to use antivirus/antimalware software wherever possible to prevent security risks. Please consider this during planning your LambdaStack deployment and test if LambdaStack components are installing correctly with necessary changes made in settings of your antivirus/antimalware solution.
 
 ## Contents
 
-- [Users and roles created by LambdaStack](#users-and-roles-created-by-LambdaStack)
-- [Ports used by components in LambdaStack](#ports-used-by-components-in-LambdaStack)
+- [Security related information](#security-related-information)
+  - [Contents](#contents)
+    - [Users and roles created by LambdaStack](#users-and-roles-created-by-lambdastack)
+    - [Ports used by components in LambdaStack](#ports-used-by-components-in-lambdastack)
+      - [Notes](#notes)
 
 ### Users and roles created by LambdaStack
 
@@ -34,8 +34,7 @@ Other accounts created by each component you can find in these components docume
 
 ### Ports used by components in LambdaStack
 
-Below you can find list of ports used by default in LambdaStack on per component basis. Some of them can be changed to different values.
-The list does not include ports that are bound to the loopback interface (localhost).
+Below you can find list of ports used by default in LambdaStack on per component basis. Some of them can be changed to different values. The list does not include ports that are bound to the loopback interface (localhost).
 
 1. OS services:
 

@@ -19,10 +19,9 @@ filesystem. See [How to store backup](#2-how-to-store-backup) chapter.
 
 #### Backup configuration
 
-Copy default configuration for backup from ``defaults/configuration/backup.yml`` into newly created backup.yml config
-file, and enable backup for chosen components by setting up ``enabled`` parameter to ``true``.
+Copy default configuration for backup from ``defaults/configuration/backup.yml`` into newly created backup.yml config file, and enable backup for chosen components by setting up ``enabled`` parameter to ``true``.
 
-This config may also be attached to cluster-config.yml
+This config may also be attached to cluster-config.yml or whatever you named your cluster yaml file.
 
 ```
 kind: configuration/backup
@@ -48,7 +47,7 @@ specification:
 
 Run ``lambdastack backup`` command:
 
-```
+```shell
 lambdastack backup -f backup.yml -b build_folder
 ```
 
@@ -62,6 +61,7 @@ point and mount storage you want to use. This might be:
 
 - Azure Blob Storage
 - Amazon S3
+- GCP Blob Storage
 - NAS
 - Any other attached storage
 
@@ -79,9 +79,7 @@ machine. This is not recommended.
 
 ### Recovery configuration
 
-Copy existing default configuration from ``defaults/configuration/recovery.yml`` into newly created recovery.yml config
-file, and set ``enabled`` parameter for component to recovery. It's possible to choose snapshot name by passing date and
-time part of snapshot name. If snapshot name is not provided, the latest one will be restored.
+Copy existing default configuration from ``defaults/configuration/recovery.yml`` into newly created recovery.yml config file, and set ``enabled`` parameter for component to recovery. It's possible to choose snapshot name by passing date and time part of snapshot name. If snapshot name is not provided, the latest one will be restored.
 
 This config may also be attached to cluster-config.yml
 

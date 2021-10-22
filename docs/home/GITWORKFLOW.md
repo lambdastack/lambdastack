@@ -2,13 +2,13 @@
 
 LambdaStack uses the Fork-and-Branch Git Workflow. The basics steps are:
 
-- Fork a the LambdaStack GitHub repository.
+- Fork the LambdaStack GitHub [repository](https://github.com/lambdastack/lambdastack).
 - Clone the forked repository to your local system.
 - Add the Git remote for the original LambdaStack repository.
 - Create a feature branch in which to place your changes.
 - Make your changes to the new branch.
 - Commit the changes to the branch.
-- Push the branch to GitHub.
+- Push the branch to your forked repo on GitHub.
 - Open a pull request from the new branch to the original LambdaStack repo.
 - Clean up after your pull request is merged.
 

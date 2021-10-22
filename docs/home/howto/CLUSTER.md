@@ -157,7 +157,7 @@ To set up the cluster do the following steps from the provisioning machine:
 
     ```yaml
     admin_user:
-      key_path: /path/to/your/ssh/keys
+      key_path: /keys/ssh/lambdastack/id_rsa
       name: user_name
     ```
 
@@ -199,12 +199,12 @@ To set up the cluster do the following steps from the provisioning machine:
 
 ## How to create an LambdaStack cluster on existing air-gapped infrastructure
 
-*Please read first prerequisites related to [hostname requirements](./PREREQUISITES.md#hostname-requirements).*
+>*Please read first prerequisites related to [hostname requirements](./PREREQUISITES.md#hostname-requirements).*
 
 LambdaStack has the ability to set up a cluster on air-gapped infrastructure provided by you. These can be either bare metal machines
 or VMs and should meet the following requirements:
 
-*Note. Hardware requirements are not listed since this depends on use-case, component configuration etc.*
+>*Note. Hardware requirements are not listed since this depends on use-case, component configuration etc.*
 
 1. The air-gapped cluster machines/VMs are connected by a network or virtual network of some sorts and can communicate with each other.
 2. The air-gapped cluster machines/VMs are running one of the following Linux distributions:
@@ -253,7 +253,7 @@ To set up the cluster do the following steps:
 
     ```yaml
     admin_user:
-      key_path: /path/to/your/ssh/keys
+      key_path: /keys/ssh/lambdastack/id_rsa
       name: user_name
     ```
 
@@ -314,9 +314,9 @@ The repository and image registry implementation must be compatible with already
 - the repository data (including apt or yum repository) is served from HTTP server and structured exactly as in the offline package
 - the image registry data is loaded into and served from standard Docker registry implementation
 
-*Note. If both custom repository/registry and offline installation are configured then the custom repository/registry is preferred.*
+>*Note. If both custom repository/registry and offline installation are configured then the custom repository/registry is preferred.*
 
-*Note. You can switch between custom repository/registry and offline/online installation methods. Keep in mind this will cause "imageRegistry" change in Kubernetes which in turn may cause short downtime.*
+>*Note. You can switch between custom repository/registry and offline/online installation methods. Keep in mind this will cause "imageRegistry" change in Kubernetes which in turn may cause short downtime.*
 
 By default, LambdaStack creates "repository" virtual machine for cloud environments. When custom repository and registry are used there is no need for additional empty VM.
 The following config snippet can illustrate how to mitigate this problem:
@@ -387,24 +387,25 @@ specification:
 
 ## How to create an LambdaStack cluster on a cloud provider
 
-*Please read first prerequisites related to [hostname requirements](./PREREQUISITES.md#hostname-requirements).*
+>*Please read first prerequisites related to [hostname requirements](./PREREQUISITES.md#hostname-requirements).*
 
 LambdaStack has the ability to set up a cluster on one of the following cloud providers:
 
-- Azure
 - AWS
+- Azure
+- GCP - WIP
 
 Under the hood it uses [Terraform](https://www.terraform.io/) to create the virtual infrastructure before it applies our [Ansible](https://www.ansible.com/) playbooks to provision the VMs.
 
 You need the following prerequisites:
 
-1. Access to one of the supported cloud providers, `aws` or `azure`.
+1. Access to one of the supported cloud providers, `aws`, `azure` or `gcp`.
 2. Adequate resources to deploy a cluster on the cloud provider.
 3. A set of SSH keys you provide.
 4. A provisioning machine that:
     - Has access to the SSH keys
     - Has LambdaStack running.
-      *Note. To run LambdaStack check the [Prerequisites](./PREREQUISITES.md)*
+      >*Note. To run LambdaStack check the [Prerequisites](./PREREQUISITES.md)*
 
 To set up the cluster do the following steps from the provisioning machine:
 
@@ -420,18 +421,20 @@ To set up the cluster do the following steps from the provisioning machine:
 
     ```yaml
     admin_user:
-      key_path: /path/to/your/ssh/keys
+      key_path: /keys/ssh/lambdastack/id_rsa
       name: user_name
     ```
 
     Here you should specify the path to the SSH keys and the admin user name which will be used by Ansible to provision the cluster machines.
 
-    On `Azure` the name you specify will be configured as the admin name on the VM's.
-
     For `AWS` the admin name is already specified and is dependent on the Linux distro image you are using for the VM's:
 
     - Username for Ubuntu Server: `ubuntu`
     - Username for Redhat: `ec2-user`
+
+    On `Azure` the name you specify will be configured as the admin name on the VM's.
+
+    On `GCP-WIP` the name you specify will be configured as the admin name on the VM's.
 
 3. Set up the cloud specific data:
 
@@ -485,7 +488,24 @@ To set up the cluster do the following steps from the provisioning machine:
 
     LambdaStack will read this file and automatically use it for authentication for resource creation and management.
 
-    For both `aws`and `azure` the following cloud attributes overlap:
+    GCP-WIP:
+
+    >NOTE: GCP-WIP values may or may not be correct until official GCP release
+
+    ```yaml
+    cloud:
+      region: us-east-1
+      credentials:
+        key: gcp_key
+        secret: gcp_secret
+      use_public_ips: false
+      default_os_image: default
+    ```
+
+    The [region](https://cloud.google.com/compute/docs/regions-zones) lets you chose the most optimal place to deploy your cluster. The `key` and `secret` are needed by Terraform and can be generated in the GCP console. 
+
+
+    For both `aws`, `azure`, and `gcp` the following cloud attributes overlap:
     - `use_public_ips`: When `true`, the VMs will also have a direct interface to the internet. While this is easy for setting up a cluster for testing, it should not be used in production. A VPN setup should be used which we will document in a different section (TODO).
     - `default_os_image`: Lets you more easily select LambdaStack team validated and tested OS images. When one is selected, it will be applied to **every** `infrastructure/virtual-machine` document in the cluster regardless of user defined ones.
                   The following values are accepted:
@@ -590,12 +610,12 @@ From the defined cluster build folder it will take the information needed to rem
 
 ## Single machine cluster
 
-*Please read first prerequisites related to [hostname requirements](./PREREQUISITES.md#hostname-requirements).*
+>*Please read first prerequisites related to [hostname requirements](./PREREQUISITES.md#hostname-requirements).*
 
 ---
 **NOTE**
 
-Single machine cannot be scaled up or deployed alongside other types of cluster.
+>Single machine cannot be scaled up or deployed alongside other types of cluster.
 
 ---
 
@@ -619,7 +639,7 @@ specification:
   name: single
   admin_user:
     name: operations
-    key_path: /user/.ssh/id_rsa
+    key_path: /keys/ssh/lambdastack/id_rsa
   cloud:
     ... # add other cloud configuration as needed
   components:
@@ -667,7 +687,7 @@ specification:
   name: single
   admin_user:
     name: ubuntu
-    key_path: /shared/id_rsa
+    key_path: /keys/ssh/lambdastack/id_rsa
   components:
     kubernetes_master:
       count: 0
@@ -783,7 +803,7 @@ specification:
   name: single
   admin_user:
     name: operations
-    key_path: /user/.ssh/id_rsa
+    key_path: /keys/ssh/lambdastack/id_rsa
   cloud:
     ... # add other cloud configuration as needed
   components:
@@ -792,7 +812,7 @@ specification:
       count: x
 ```
 
-*Note: After defining a new component you might also need to define additional configurations for virtual machines and security rules depending on what you are trying to achieve.*
+>*Note: After defining a new component you might also need to define additional configurations for virtual machines and security rules depending on what you are trying to achieve.*
 
 ## How to scale or cluster components
 
@@ -981,6 +1001,8 @@ When planning Kafka installation you have to think about number of partitions an
 
 You can read more [here](https://www.confluent.io/blog/how-choose-number-topics-partitions-kafka-cluster) about planning number of partitions.
 
+>NOTE: LambdaStack does not use Confluent. The above reference is simply for documentation.
+
 ## RabbitMQ installation and setting
 
 To install RabbitMQ in single mode just add rabbitmq role to your data.yaml for your server and in general roles section. All configuration on RabbitMQ, e.g., user other than guest creation should be performed manually.
@@ -1028,7 +1050,7 @@ specification:
   name: test-cluster
   prefix: test
   admin_user:
-    key_path: /path/to/ssk/key
+    key_path: /keys/ssh/lambdastack/id_rsa
     name: di-dev
   cloud:
     region: Australia East

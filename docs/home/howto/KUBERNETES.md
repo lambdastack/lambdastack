@@ -1,5 +1,34 @@
 # Kubernetes
 
+## Supported CNI plugins
+
+Epiphany supports following CNI plugins:
+
+- [Flannel](https://github.com/flannel-io/flannel/blob/master/README.md)
+- [Calico](https://docs.projectcalico.org/about/about-calico)
+- [Canal](https://docs.projectcalico.org/getting-started/kubernetes/flannel/flannel)
+
+Flannel is a default setting in Epiphany configuration.
+
+---
+**NOTE**
+
+Calico is [not supported](https://docs.projectcalico.org/reference/public-cloud/azure) on Azure. To have an ability to
+use network policies, choose Canal.
+
+---
+
+Use the following configuration to set up an appropriate CNI plugin:
+
+   ```yaml
+    kind: configuration/kubernetes-master
+    name: default
+    specification:
+      advanced:
+        networking:
+          plugin: flannel
+   ```
+
 ## Kubernetes applications - overview
 
 Currently, LambdaStack provides the following predefined applications which may be deployed with lambdastack:
@@ -10,13 +39,17 @@ Currently, LambdaStack provides the following predefined applications which may 
 - pgpool
 - pgbouncer
 - istio
+  
+All of them have
+[default configuration](https://github.com/lambdastack-platform/lambdastack/blob/develop/schema/common/defaults/configuration/applications.yml).
+The common parameters are: name, enabled, namespace, image_path and use_local_image_registry.
+If you set `use_local_image_registry` to `false` in configuration manifest, you have to provide a valid docker image
+path in `image_path`. Kubernetes will try to pull image from `image_path` value externally.  
+To see what version of the application image is in local image registry please refer
+to [components list](../COMPONENTS.md).
 
-All of them have [default configuration](https://github.com/lambdastack/lambdastack/blob/master/data/common/defaults/configuration/applications.yml). The common parameters are: name, enabled, namespace, image_path and use_local_image_registry.  
-If you set `use_local_image_registry` to `false` in configuration manifest, you have to provide a valid docker image path in `image_path`. Kubernetes will try to pull image from `image_path` value externally.  
-To see what version of the application image is in local image registry please refer to [components list](../COMPONENTS.md).
-
-*Note: The above link points to develop branch. Please choose the right branch that suits to LambdaStack version you are using.*
-
+*Note: The above link points to develop branch. Please choose the right branch that suits to LambdaStackphany version you are
+using.*
 ## How to expose service through HA Proxy load balancer
 
 1. Create `NodePort` service type for your application in Kubernetes.
@@ -55,7 +88,10 @@ To know more about RBAC in Kubernetes use this [link](https://kubernetes.io/docs
 
 ## How to run an example app
 
-Here we will get a simple app to run using Docker through Kubernetes. We assume you are using Windows 10, have an LambdaStack cluster on Azure ready and have an Azure Container Registry ready (might not be created in early version LambdaStack clusters - if you don't have one you can skip to point no 11 and test the cluster using some public app from the original Docker Registry). Steps with asterisk can be skipped.
+Here we will get a simple app to run using Docker through Kubernetes. We assume you are using Windows 10, have an
+LambdaStack cluster on Azure ready and have an Azure Container Registry ready (might not be created in early version
+LambdaStack clusters. If you don't have one you can skip to point no 11 and test the cluster using some public app from the
+original Docker Registry). Steps with asterisk can be skipped.
 
 1. Install [Chocolatey](https://chocolatey.org/install)
 
@@ -139,7 +175,9 @@ For more information, see the links below:
 
 ## How to run CronJobs
 
-1. Follow the previous point using examples/dotnet/Epiaphany.SampleApps/LambdaStack.SampleApps.CronApp
+>NOTE: Examples have been moved to their own repo but they are not visible at the moment.
+
+1. Follow the previous point using examples/dotnet/LambdaStack.SampleApps/LambdaStack.SampleApps.CronApp
 
 2. Create `cronjob.yaml` file with contents:
 

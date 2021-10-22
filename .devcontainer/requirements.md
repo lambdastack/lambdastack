@@ -4,7 +4,7 @@
 
 For package version and requirment management we currently use 2 different tools:
 
-1. [Pipenv](https://github.com/pypa/pipenv) is used to version/manage/lockdown the direct dependencies for Epicli and to generate a `requirements.txt` used by [PIP](https://pypi.org/project/pip/).
+1. [Pipenv](https://github.com/pypa/pipenv) is used to version/manage/lockdown the direct dependencies for lscli and to generate a `requirements.txt` used by [PIP](https://pypi.org/project/pip/).
 2. [PIP](https://pypi.org/project/pip/) and the `requirements.txt` is used to provision the devcontainer and build release wheels.
 
 The main reasons for this 2-way approach:

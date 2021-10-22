@@ -158,7 +158,7 @@ class ApplyEngine(Step):
         }
 
         if len(os_indicators) > 1:
-            raise Exception("Detected mixed Linux distros in config, Epirepo will not work properly. Please inspect your config manifest. Forgot to define repository VM document?")
+            raise Exception("Detected mixed Linux distros in config, lsrepo will not work properly. Please inspect your config manifest. Forgot to define repository VM document?")
 
     def apply(self):
         self.process_input_docs()

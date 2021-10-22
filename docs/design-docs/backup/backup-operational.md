@@ -9,7 +9,7 @@ Document does not include Kubernetes and Kafka stack
 
 ## Components
 
-### Epibackup application
+### lsbackup application
  Example use:
 ```bash
 lambdastack backup -b build_dir -t target_path

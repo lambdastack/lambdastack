@@ -1,3 +1,12 @@
+---
+**NOTE**
+
+This tool is deprecated and needs to be adjusted according
+to [deprecation](https://github.com/kubernetes/kubernetes/pull/90513) of `--cgroup-driver` flag in `kubeadm-flags.env`
+since 1.19 version. Epicli ensures that cgroup driver is set to `systemd` during apply and upgrade.
+
+---
+
 [K8s documentation](https://kubernetes.io/docs/setup/production-environment/container-runtimes/#cgroup-drivers) states:
 
 > A single cgroup manager simplifies the view of what resources are being allocated and will by default have a more consistent view of the available and in-use resources.

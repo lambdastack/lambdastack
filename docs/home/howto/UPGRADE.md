@@ -2,18 +2,17 @@
 
 ## Introduction
 
-From LambdaStack 0.4.2 and up the CLI has the ability to perform upgrades on certain components on a cluster. The components
+From lscli 0.4.2 and up the CLI has the ability to perform upgrades on certain components on a cluster. The components
 it currently can upgrade and will add are:
 
 ---
 **NOTE**
 
-Starting from v0.7.1 to the latest, LambdaStack provides an ability to install K8s v1.18.6 only. There is an assertion to
-check whether K8s version is supported before running upgrade.
+There is an assertion to check whether K8s version is supported before running upgrade.
 
 ---
 
-- Kubernetes (master and nodes). At the moment only v1.18.6 is supported
+- Kubernetes (master and nodes). Supported versions: v1.18.6 (LambdaStack 0.7.1+), v1.19.15 (LambdaStack 1.3.0+)
 - common: Upgrades all common configurations to match them to current LambdaStack version
 - repository: Adds the repository role needed for component installation in current LambdaStack version
 - image_registry: Adds the image_registry role needed for offline installation in current LambdaStack version

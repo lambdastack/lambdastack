@@ -120,7 +120,7 @@ If we were to consider only cloud provided resources TP is the fastest way. Sinc
 
 ## Risks
 
-DCM has significant risk of “custom development”. KO has risks related to requirement to use operator-framework and its concept, since very beginning of Epic work. TP has huge risks related to on-prem operational overhead. 
+DCM has significant risk of “custom development”. KO has risks related to requirement to use operator-framework and its concept, since very beginning of lsc work. TP has huge risks related to on-prem operational overhead. 
 
 # Final thoughts
 

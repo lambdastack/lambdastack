@@ -199,7 +199,7 @@ if replicated
   if os[:family] == 'ubuntu'
     describe 'Check if repmgr service uses correct config file' do
       describe command('systemctl status repmgrd') do
-        regexp = %r{ /etc/postgresql/13/main/repmgr\.conf }
+        regexp = %r{ /etc/repmgr\.conf }
         it "is expected to match #{regexp.inspect}" do
           # force_encoding used to work around https://github.com/sj26/rspec_junit_formatter/issues/67
           expect(subject.stdout.force_encoding('UTF-8')).to match regexp
@@ -227,7 +227,7 @@ if os[:family] == 'redhat'
       it { should be_a_file }
       it { should be_readable }
     end
-    describe file("/var/lib/pgsql/13/data/postgresql-LambdaStack.conf") do
+    describe file("/var/lib/pgsql/13/data/postgresql-lambdastack.conf") do
       it { should exist }
       it { should be_a_file }
       it { should be_readable }
@@ -250,7 +250,7 @@ elsif os[:family] == 'ubuntu'
       it { should be_a_file }
       it { should be_readable }
     end
-    describe file("/etc/postgresql/13/main/postgresql-LambdaStack.conf") do
+    describe file("/etc/postgresql/13/main/postgresql-lambdastack.conf") do
       it { should exist }
       it { should be_a_file }
       it { should be_readable }
@@ -316,15 +316,15 @@ if replicated
     end
   end
 
-  describe 'Check hot_standby setting in postgresql-LambdaStack.conf file' do
+  describe 'Check hot_standby setting in postgresql-lambdastack.conf file' do
     let(:disable_sudo) { false }
     if os[:family] == 'redhat'
-      describe command("grep -Eio '^hot_standby\s*=[^#]*' /var/lib/pgsql/13/data/postgresql-LambdaStack.conf") do
+      describe command("grep -Eio '^hot_standby\s*=[^#]*' /var/lib/pgsql/13/data/postgresql-lambdastack.conf") do
         its(:exit_status) { should eq 0 }
         its(:stdout) { should match /^hot_standby\s*=\s*#{pg_config_file_booleans[:true]}/i }
       end
     elsif os[:family] == 'ubuntu'
-      describe command("grep -Eio '^hot_standby\s*=[^#]*' /etc/postgresql/13/main/postgresql-LambdaStack.conf") do
+      describe command("grep -Eio '^hot_standby\s*=[^#]*' /etc/postgresql/13/main/postgresql-lambdastack.conf") do
         its(:exit_status) { should eq 0 }
         its(:stdout) { should match /^hot_standby\s*=\s*#{pg_config_file_booleans[:true]}/i }
       end
@@ -335,15 +335,15 @@ if replicated
     if os[:family] == 'redhat'
       describe 'Check PostgreSQL config files for master node' do
         let(:disable_sudo) { false }
-        describe command("cat /var/lib/pgsql/13/data/postgresql-LambdaStack.conf | grep wal_level") do
+        describe command("cat /var/lib/pgsql/13/data/postgresql-lambdastack.conf | grep wal_level") do
           its(:stdout) { should match /^wal_level = replica/ }
           its(:exit_status) { should eq 0 }
         end
-        describe command("cat /var/lib/pgsql/13/data/postgresql-LambdaStack.conf | grep max_wal_senders") do
+        describe command("cat /var/lib/pgsql/13/data/postgresql-lambdastack.conf | grep max_wal_senders") do
           its(:stdout) { should match /^max_wal_senders = #{max_wal_senders}/ }
           its(:exit_status) { should eq 0 }
         end
-        describe command("cat /var/lib/pgsql/13/data/postgresql-LambdaStack.conf | grep wal_keep_size") do
+        describe command("cat /var/lib/pgsql/13/data/postgresql-lambdastack.conf | grep wal_keep_size") do
           its(:stdout) { should match /^wal_keep_size = #{wal_keep_size}/ }
           its(:exit_status) { should eq 0 }
         end
@@ -361,15 +361,15 @@ if replicated
     elsif os[:family] == 'ubuntu'
       describe 'Check PostgreSQL config files for master node' do
         let(:disable_sudo) { false }
-        describe command("cat /etc/postgresql/13/main/postgresql-LambdaStack.conf | grep wal_level") do
+        describe command("cat /etc/postgresql/13/main/postgresql-lambdastack.conf | grep wal_level") do
           its(:stdout) { should match /^wal_level = replica/ }
           its(:exit_status) { should eq 0 }
         end
-        describe command("cat /etc/postgresql/13/main/postgresql-LambdaStack.conf | grep max_wal_senders") do
+        describe command("cat /etc/postgresql/13/main/postgresql-lambdastack.conf | grep max_wal_senders") do
           its(:stdout) { should match /^max_wal_senders = #{max_wal_senders}/ }
           its(:exit_status) { should eq 0 }
         end
-        describe command("cat /etc/postgresql/13/main/postgresql-LambdaStack.conf | grep wal_keep_size") do
+        describe command("cat /etc/postgresql/13/main/postgresql-lambdastack.conf | grep wal_keep_size") do
           its(:stdout) { should match /^wal_keep_size = #{wal_keep_size}/ }
           its(:exit_status) { should eq 0 }
         end

@@ -58,5 +58,5 @@ RUN : SETUP USER AND OTHERS \
  && chmod ug=r,o= /etc/sudoers.d/$USERNAME \
  && setcap 'cap_net_bind_service=+ep' /usr/bin/ssh
 
-RUN : SETUP EPICLI ALIAS \
+RUN : SETUP LSCLI ALIAS \
  && echo alias lambdastack='"export PYTHONPATH=/workspaces/lambdastack && python3 -m cli.lambdastack"' >> /etc/bash.bashrc

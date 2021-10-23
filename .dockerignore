@@ -11,4 +11,4 @@
 !ansible/
 !terraform/
 !tests/spec/
-
+!version

@@ -1,0 +1,20 @@
+#!/bin/bash
+# This will launch the default lambdastack automation using defaults
+
+docker pull lambdastack/lambdastack:latest
+
+mkdir clusters
+
+echo
+echo
+echo "Launching LambdaStack... [type 'exit' to end/exit]"
+echo
+echo
+
+docker run -it -v $PWD/clusters:/shared --rm lambdastack/lambdastack:latest
+
+echo
+echo
+echo "Exiting LambdaStack..."
+echo
+echo

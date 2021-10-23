@@ -10,7 +10,13 @@ ARG ISTIOCTL_VERSION=1.8.1
 
 ENV LSCLI_DOCKER_SHARED_DIR=/shared
 
+LABEL maintainer="LambdaStack, LLC. - https://lambdastack.io"
+# maybe pass in dynamic label for version
+LABEL version="1.3.1dev"
+LABEL kubernetes=KUBECTL_VERSION
+
 COPY . /lambdastack
+COPY version /lambdastack
 
 RUN : INSTALL APT REQUIREMENTS \
     && apt-get update \
@@ -59,8 +65,8 @@ RUN : INSTALL APT REQUIREMENTS \
     && chown $USERNAME $LSCLI_DOCKER_SHARED_DIR \
     && chmod g+w $LSCLI_DOCKER_SHARED_DIR \
 \
-    && : SETUP LSCLI COMMAND \
-    && mv /lambdastack/cli/lambdastack /bin/lambdastack \
+    && : SETUP LAMBDASTACKCLI COMMAND \
+    && cp /lambdastack/cli/lambdastack /bin/lambdastack \
     && chmod +x /bin/lambdastack
 
 WORKDIR $LSCLI_DOCKER_SHARED_DIR

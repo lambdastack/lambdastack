@@ -13,15 +13,15 @@ There are 2 ways to get the image, build it locally yourself or pull it from the
 2. Open a terminal in the root directory of the LambdaStack source code and run (it should contain the /cli subdirectory. This also where the Dockerfile is located). There are two options below, the first option builds and applies a specific tag/version to the image and the second option builds and applies a specific tag/version plus applies a 'latest' tag in the event the user only wanted the latest version:
 
 ```bash
-TAG=$(cat cli/version.txt.py)
+TAG=$(cat version)
 docker build --file Dockerfile --tag lambdastack/lambdastack:${TAG} .
 ```
 
 OR
 
 ```bash
-TAG=$(cat cli/version.txt.py)
-docker build --file Dockerfile --tag lambdastack/lambdastack:${TAG} --tag lambdastack/lambdastack:latest.
+TAG=$(cat version)
+docker build --file Dockerfile --tag lambdastack/lambdastack:${TAG} --tag lambdastack/lambdastack:latest .
 ```
 
 3. To push the image(s) to the default Docker Hub:
@@ -29,7 +29,7 @@ docker build --file Dockerfile --tag lambdastack/lambdastack:${TAG} --tag lambda
    2. Push the image(s) to Docker Hub as follows: (Note - 'latest' tag is optional and Docker will see it's the same and simply create latest reference link)
 
 ```bash
-TAG=$(cat cli/version.txt.py)
+TAG=$(cat version)
 docker push lambdastack/lambdastack:${TAG}
 docker push lambdastack/lambdastack:latest
 ```

@@ -5,5 +5,5 @@ cd ..
 TAG=$(cat version)
 docker build --file Dockerfile --tag lambdastack/lambdastack:${TAG} --tag lambdastack/lambdastack:latest .
 
-#docker push lambdastack/lambdastack:${TAG}
-#docker push lambdastack/lambdastack:latest
+docker push lambdastack/lambdastack:${TAG}
+docker push lambdastack/lambdastack:latest

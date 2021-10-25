@@ -164,7 +164,7 @@ name: clustername
 provider: azure
 specification:
   admin_user:
-    key_path: /path/to/id_rsa
+    key_path: id_rsa
     name: operations
   components:
     repository:

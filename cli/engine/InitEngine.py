@@ -31,7 +31,8 @@ class InitEngine(Step):
         if self.is_full_config:
             config = self.get_config_docs(input)
             config_only = select_all(config, lambda x: not(x.kind.startswith('lambdastack-cluster')))
-            if self.provider == 'any':
+            # gcp - wip
+            if self.provider == 'any' or self.provider == 'gcp':
                 # for any provider we want to use the default config from minimal-cluster-config
                 cluster_model = select_single(input, lambda x: x.kind == 'lambdastack-cluster')
             else:

@@ -89,7 +89,7 @@ specification:
   name: k8s1
   admin_user:
     name: ubuntu
-    key_path: /workspaces/lambdastack/clusters/id_ed25519
+    key_path: id_ed25519
   components:
     kubernetes_master:
       count: 3

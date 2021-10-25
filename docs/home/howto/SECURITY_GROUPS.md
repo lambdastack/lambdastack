@@ -66,7 +66,7 @@ specification:
   prefix: azure
   admin_user:
     name: operations
-    key_path:  /workspaces/lambdastack/clusters/keys/abb_rsa
+    key_path:  id_rsa
   cloud:
     region: East US
     subscription_name: PUT_SUBSCRIPTION_NAME_HERE
@@ -240,7 +240,7 @@ provider: aws
 specification:
   admin_user:
     name: ubuntu
-    key_path: /path/to/your/ssh_key
+    key_path: id_rsa
   cloud:
     region: eu-central-1
     credentials:

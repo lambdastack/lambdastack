@@ -68,7 +68,7 @@ specification:
   prefix: arm
   name: centos
   admin_user:
-    key_path: /shared/ssh/id_rsa
+    key_path: id_rsa
     name: admin
   components:
     kafka:
@@ -304,7 +304,7 @@ specification:
   prefix: arm
   name: centos
   admin_user:
-    key_path: /shared/ssh/testenvs/id_rsa
+    key_path: id_rsa
     name: centos
   cloud:
     credentials:

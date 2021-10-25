@@ -7,7 +7,7 @@ specification:
   name: lambdastackcluster
   admin_user:
     name: operations # YOUR-ADMIN-USERNAME
-    key_path: /keys/ssh/lambdastack/id_rsa # YOUR-SSH-KEY-PATH that is created in the /shared directory
+    key_path: id_rsa # YOUR-SSH-KEY-PATH that is created in the /shared directory
   components:
     kubernetes_master:
       count: 1

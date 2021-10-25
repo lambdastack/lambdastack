@@ -30,6 +30,7 @@ class TestEngine(Step):
             raise Exception(f'No "{ANSIBLE_INVENTORY_FILE}" inside the build directory: "{self.build_directory}"')
 
         # get admin user
+        # TODO: key_path needs to be looked at again!
         admin_user = cluster_model.specification.admin_user
         if not os.path.isfile(admin_user.key_path):
             raise Exception(f'No SSH key file in directory: "{admin_user.key_path}"')

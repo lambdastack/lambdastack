@@ -157,7 +157,7 @@ To set up the cluster do the following steps from the provisioning machine:
 
     ```yaml
     admin_user:
-      key_path: /keys/ssh/lambdastack/id_rsa
+      key_path: id_rsa
       name: user_name
     ```
 
@@ -253,7 +253,7 @@ To set up the cluster do the following steps:
 
     ```yaml
     admin_user:
-      key_path: /keys/ssh/lambdastack/id_rsa
+      key_path: id_rsa
       name: user_name
     ```
 
@@ -421,7 +421,7 @@ To set up the cluster do the following steps from the provisioning machine:
 
     ```yaml
     admin_user:
-      key_path: /keys/ssh/lambdastack/id_rsa
+      key_path: id_rsa
       name: user_name
     ```
 
@@ -639,7 +639,7 @@ specification:
   name: single
   admin_user:
     name: operations
-    key_path: /keys/ssh/lambdastack/id_rsa
+    key_path: id_rsa
   cloud:
     ... # add other cloud configuration as needed
   components:
@@ -687,7 +687,7 @@ specification:
   name: single
   admin_user:
     name: ubuntu
-    key_path: /keys/ssh/lambdastack/id_rsa
+    key_path: id_rsa
   components:
     kubernetes_master:
       count: 0
@@ -803,7 +803,7 @@ specification:
   name: single
   admin_user:
     name: operations
-    key_path: /keys/ssh/lambdastack/id_rsa
+    key_path: id_rsa
   cloud:
     ... # add other cloud configuration as needed
   components:
@@ -1050,7 +1050,7 @@ specification:
   name: test-cluster
   prefix: test
   admin_user:
-    key_path: /keys/ssh/lambdastack/id_rsa
+    key_path: id_rsa
     name: di-dev
   cloud:
     region: Australia East

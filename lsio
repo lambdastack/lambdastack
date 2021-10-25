@@ -16,9 +16,9 @@ if [[ ! $LOCAL ]]; then
     docker pull lambdastack/lambdastack:$(cat version)
 fi
 
-if [[ ! -d $SHARED ]]; then
+if [[ ! -d "$SHARED" ]]; then
     # Create the shared directory if it does not exist
-    mkdir $SHARED
+    mkdir -p $SHARED
 fi
 
 echo

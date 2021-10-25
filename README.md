@@ -36,11 +36,19 @@ We currently use Terraform and Ansible for our automation orchestration. All aut
 
 Use the following command to see a full run-down of all commands and flags: (need to launch the LambdaStack docker image - it will drop you into the 'shared' `$PWD` directory and you can then call `lambdastack` like below)
 
+>Make sure you have docker installed and running first!
+>Create and change to any directory you want to put your yaml configs and keys (this is the data that will be used to create your clusters on a given cloud). Then pull the image from the hub.docker.com public registry. Once downloaded to your local docker registry then run it with `docker run...` below.
+
 ```shell
-cd /<whatever directory you want the docker image to mount to>
+mkdir <create whatever directory you want>
+cd /<to the directory you just created>
+docker pull lambdastack/lambdastack:latest
+```
+
+```shell
 docker run -it -v $PWD:/shared --rm lambdastack/lambdastack:latest
 ```
->Note - `$PWD` means whatever directory you may be in. Once you're done simply type `exit` and it will exit the docker image. The data will be left in a `build` directory inside of the given `$PWD`.
+>Note - `$PWD` means whatever directory you may be in. Once you're done simply type `exit` and it will exit the docker image. The data will be left in a `build` directory inside of the directory you created and used. Now, you're ready to launch `lambdastack` since you are now at the LambdaStack container command prompt.
 
 ```shell
 lambdastack --help
@@ -58,20 +66,38 @@ This minimum file definition is fine to start with, if you need more control ove
 lambdastack init -p aws -n demo --full
 ```
 
-You will need to modify a few values (like your AWS secrets, directory path for SSH keys). Once you are done with `demo.yml` you can start cluster deployment by executing:
+You will need to modify a few values (like your AWS secrets, SSH keys) in the `demo.yml` file that was created with the `init` command. The default path for the data is based on the `-n` parameter. In this example it is `demo` which means the data to create the cluster would be found:
+
+>When you add the `--full` option LambdaStack will prepend 'full' to the name you pass (e.g., `fulldemo`)
+
+```shell
+<whatever base directory you created above>/build/demo/demo.yml
+<whatever base directory you created above>/build/demo/keys/ssh/<whatever `key_path` (private ssh key name) value in the `admin_user` section>
+
+#OR when you use --full option
+
+<whatever base directory you created above>/build/fulldemo/fulldemo.yml
+<whatever base directory you created above>/build/fulldemo/keys/ssh/<whatever `key_path` (private ssh key name) value in the `admin_user` section>
+```
+
+Once you are done with `demo.yml` you can start the cluster deployment by executing:
 
 ```shell
 lambdastack apply -f demo.yml
 ```
+
 You will be asked for a password that will be used for encryption of some of build artifacts. More information [here](docs/home/howto/SECURITY.md#how-to-run-lambdastack-with-password)
 
-Since version 0.7 lambdastack has an option to backup/recovery some of its components. More information [here](https://github.com/lambdastack/lambdastack/blob/master/docs/home/howto/BACKUP.md)
+The build process can take awhile (up to an hour+ depending on options and cloud provider). Let it run and complete. Once complete you will now have a full environment ready to test out. Before moving to a production system, make sure to follow the security guidelines in the docs.
+
+Since version 0.7, lambdastack has an option to backup/recovery some of its components. More information [here](https://github.com/lambdastack/lambdastack/blob/master/docs/home/howto/BACKUP.md). This is an `option` for testing but you will want to do this for any staging or production like environments.
+
 ```shell
 lambdastack backup -f <file.yml> -b <build_folder>
 lambdastack recovery -f <file.yml> -b <build_folder>
 ```
 
-To delete all deployed components following command should be used
+To delete all deployed components, the following command should be used
 
 ```shell
 lambdastack delete -b <build_folder>

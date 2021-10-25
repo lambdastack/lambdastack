@@ -141,9 +141,9 @@ def init_parser(subparsers):
     required = sub_parser.add_argument_group('required arguments')
 
     #required
-    required.add_argument('-p', '--provider', dest='provider', choices=['aws', 'azure', 'any'], default='any',
+    required.add_argument('-p', '--provider', dest='provider', choices=['aws', 'azure', 'gcp', 'any'], default='any',
                             type=str,
-                            required=True, help='One of the supported providers: azure|aws|any')
+                            required=True, help='One of the supported providers: azure|aws|gcp|any')
     required.add_argument('-n', '--name', dest='name', type=str, required=True,
                             help='Name of the cluster.')
 

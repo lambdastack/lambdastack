@@ -9,6 +9,7 @@ from cli.helpers.data_loader import load_schema_obj, types
 from cli.helpers.config_merger import merge_with_defaults
 from cli.helpers.objdict_helpers import dict_to_objdict
 from cli.helpers.os_images import get_os_distro_normalized
+from cli.helpers.build_io import get_build_sshkey_path
 from cli.version import VERSION
 
 class InfrastructureBuilder(Step):
@@ -206,7 +207,7 @@ class InfrastructureBuilder(Step):
         vm.specification.tags.append({component_key: ''})
         if vm_config.specification.os_type == 'windows':
             raise NotImplementedError('Windows VMs not supported jet.')
-        pub_key_path = self.cluster_model.specification.admin_user.key_path + '.pub'
+        pub_key_path = os.path.join(get_build_sshkey_path(self.cluster_name),self.cluster_model.specification.admin_user.key_path + '.pub')
         if os.path.isfile(pub_key_path):
             vm.specification.public_key = pub_key_path
         else:

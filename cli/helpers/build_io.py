@@ -75,12 +75,20 @@ def get_output_path():
         os.makedirs(Config().output_dir)
     return Config().output_dir
 
-
+# Creates the key/ssh path as well
 def get_build_path(cluster_name):
     build_dir = os.path.join(get_output_path(), cluster_name)
     if not os.path.exists(build_dir):
-        os.makedirs(build_dir)
+        get_build_sshkey_path(cluster_name)
     return build_dir
+
+# Returns/creates the ssh key path. These keys are used by Ansible for the admin_user
+def get_build_sshkey_path(cluster_name):
+    build_dir = os.path.join(get_output_path(), cluster_name)
+    key_path = os.path.join(build_dir, "keys/ssh")
+    if not os.path.exists(key_path):
+        os.makedirs(key_path)
+    return key_path
 
 
 def get_inventory_path(cluster_name):

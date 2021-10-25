@@ -1,0 +1,7 @@
+if [ $(id -u) -eq 0 ]; then
+  PS1='\[\e[1;31m\][\u@\h \W]#\[\e[0m\] '
+else
+  PS1='\[\e[1;31m\][\u@\h \W]$\[\e[0m\] '
+fi
+
+alias ls="ls -CF --color=auto"

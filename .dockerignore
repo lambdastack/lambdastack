@@ -12,3 +12,4 @@
 !terraform/
 !tests/spec/
 !version
+!.docker_prompt

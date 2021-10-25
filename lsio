@@ -1,20 +1,36 @@
 #!/bin/bash
 # This will launch the default lambdastack automation using defaults
 
-docker pull lambdastack/lambdastack:latest
+set -e
 
-mkdir clusters
+# Colors
+GREEN="\033[1;32m"
+NOCOLOR="\033[0m"
+
+# Default values
+SHARED="clusters"
+LOCAL=false
+
+if [[ ! $LOCAL ]]; then
+    # If the LOCAL var is not true then pull from the registry
+    docker pull lambdastack/lambdastack:$(cat version)
+fi
+
+if [[ ! -d $SHARED ]]; then
+    # Create the shared directory if it does not exist
+    mkdir $SHARED
+fi
 
 echo
 echo
-echo "Launching LambdaStack... [type 'exit' to end/exit]"
+echo -e "${GREEN} >>>> Launching LambdaStack... [type 'exit' to end/exit] <<<< ${NOCOLOR}"
 echo
 echo
+# Optional params for passing to create color. Default is to add it in Dockerfile -- -e "TERM=xterm-256color"
+docker run -it -v $PWD/clusters:/shared --rm lambdastack/lambdastack:$(cat version)
 
-docker run -it -v $PWD/clusters:/shared --rm lambdastack/lambdastack:latest
-
 echo
 echo
-echo "Exiting LambdaStack..."
+echo -e "${GREEN} >>>> Exiting LambdaStack... <<<< ${NOCOLOR}"
 echo
 echo

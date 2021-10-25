@@ -9,14 +9,15 @@ ARG KUBECTL_VERSION=1.19.15
 ARG ISTIOCTL_VERSION=1.8.1
 
 ENV LSCLI_DOCKER_SHARED_DIR=/shared
+ENV TERM xterm-256color
 
 LABEL maintainer="LambdaStack, LLC. - https://lambdastack.io"
-# maybe pass in dynamic label for version
-LABEL version="1.3.1dev"
-LABEL kubernetes=KUBECTL_VERSION
+LABEL image="lambdastack"
+LABEL kubernetes=$KUBECTL_VERSION
 
 COPY . /lambdastack
 COPY version /lambdastack
+COPY .docker_prompt /lambdastack
 
 RUN : INSTALL APT REQUIREMENTS \
     && apt-get update \
@@ -67,7 +68,7 @@ RUN : INSTALL APT REQUIREMENTS \
 \
     && : SETUP LAMBDASTACKCLI COMMAND \
     && cp /lambdastack/cli/lambdastack /bin/lambdastack \
-    && chmod +x /bin/lambdastack
+    && chmod +x /bin/lambdastack 
 
 WORKDIR $LSCLI_DOCKER_SHARED_DIR
 

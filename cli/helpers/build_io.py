@@ -18,6 +18,7 @@ ANSIBLE_CFG_FILE = 'ansible.cfg'
 ANSIBLE_OUTPUT_DIR = 'ansible/'
 ANSIBLE_VAULT_OUTPUT_DIR = 'vault/'
 SPEC_OUTPUT_DIR = 'spec_tests/'
+KEY_PATH = 'keys/ssh'
 
 
 def save_manifest(docs, cluster_name, manifest_name=MANIFEST_FILE_NAME):
@@ -85,7 +86,7 @@ def get_build_path(cluster_name):
 # Returns/creates the ssh key path. These keys are used by Ansible for the admin_user
 def get_build_sshkey_path(cluster_name):
     build_dir = os.path.join(get_output_path(), cluster_name)
-    key_path = os.path.join(build_dir, "keys/ssh")
+    key_path = os.path.join(build_dir, KEY_PATH)
     if not os.path.exists(key_path):
         os.makedirs(key_path)
     return key_path

@@ -162,10 +162,12 @@ to version 0.8 or newer you need also add additional feature mapping for reposit
 kind: lambdastack-cluster
 name: clustername
 provider: azure
+build_path: # Dynamically built
 specification:
   admin_user:
     key_path: id_rsa
     name: operations
+    path: # Dynamically built
   components:
     repository:
       count: 0  # Set repository to 0 since it's introduced in v0.8

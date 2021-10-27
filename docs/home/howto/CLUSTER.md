@@ -159,6 +159,7 @@ To set up the cluster do the following steps from the provisioning machine:
     admin_user:
       key_path: id_rsa
       name: user_name
+      path: # Dynamically built
     ```
 
     Here you should specify the path to the SSH keys and the admin user name which will be used by Ansible to provision the cluster machines.
@@ -255,6 +256,7 @@ To set up the cluster do the following steps:
     admin_user:
       key_path: id_rsa
       name: user_name
+      path: # Dynamically built
     ```
 
     Here you should specify the path to the SSH keys and the admin user name which will be used by Ansible to provision the cluster machines.
@@ -423,6 +425,7 @@ To set up the cluster do the following steps from the provisioning machine:
     admin_user:
       key_path: id_rsa
       name: user_name
+      path: # Dynamically built
     ```
 
     Here you should specify the path to the SSH keys and the admin user name which will be used by Ansible to provision the cluster machines.
@@ -634,12 +637,14 @@ To get started with a single machine cluster you can use the following template 
 kind: lambdastack-cluster
 title: LambdaStack Cluster Config
 name: default
+built_path: # Dynamically built
 specification:
   prefix: dev
   name: single
   admin_user:
     name: operations
     key_path: id_rsa
+    path: # Dynamically built
   cloud:
     ... # add other cloud configuration as needed
   components:
@@ -683,11 +688,13 @@ kind: lambdastack-cluster
 title: "LambdaStack Cluster Config"
 provider: any
 name: single
+build_path: # Dynamically built
 specification:
   name: single
   admin_user:
     name: ubuntu
     key_path: id_rsa
+    path: # Dynamically built
   components:
     kubernetes_master:
       count: 0
@@ -798,12 +805,14 @@ Once defined the new `single_machine_new` can be used inside the `lambdastack-cl
 kind: lambdastack-cluster
 title: LambdaStack Cluster Config
 name: default
+build_path: # Dynamically built
 specification:
   prefix: new
   name: single
   admin_user:
     name: operations
     key_path: id_rsa
+    path: # Dynamically built
   cloud:
     ... # add other cloud configuration as needed
   components:
@@ -1046,12 +1055,14 @@ The example below shows a complete configuration. Note that it's recommended to 
 kind: lambdastack-cluster
 name: default
 provider: azure
+build_path: # Dynamically built
 specification:
   name: test-cluster
   prefix: test
   admin_user:
     key_path: id_rsa
     name: di-dev
+    path: # Dynamically built
   cloud:
     region: Australia East
     subscription_name: <your subscription name>

@@ -26,6 +26,7 @@ You need to add `specification.users` in the format similar to example that you 
 kind: lambdastack-cluster
 name: pg-aws-deb
 provider: aws
+build_path: '' # Dynamically built
 specification:
 
   ...
@@ -118,6 +119,7 @@ as `certificates`. Setting `authentication_method` as `sasl` is not described ri
 kind: configuration/kafka
 title: "Kafka"
 name: default
+build_path: '' # Dynamically built
 specification:
 
     ...
@@ -155,6 +157,7 @@ CA root certificate will be downloaded automatically by LambdaStack to location 
 kind: configuration/kafka
 title: "Kafka"
 name: default
+build_path: '' # Dynamically built
 specification:
 
     ...
@@ -220,6 +223,7 @@ Below you can find example of TLS/SSL configuration.
 kind: configuration/rabbitmq
 title: "RabbitMQ"
 name: default
+build_path: '' # Dynamically built
 specification:
 
   ...
@@ -293,6 +297,7 @@ kind: infrastructure/efs-storage
 title: "Elastic File System Config"
 provider: aws
 name: default
+build_path: '' # Dynamically built
 specification:
   encrypted: true
 ...
@@ -366,7 +371,7 @@ Provide password to encrypt vault:
 When running lambdastack from CI pipeline you can use new parameter for lambdastack:
 
 ```shell
-lambdastack apply -f demo.yaml --vault-password MYPWD
+lambdastack apply -f build/demo/demo.yaml --vault-password MYPWD
 ```
 
 ## How to make kubectl work for non-root user on master node

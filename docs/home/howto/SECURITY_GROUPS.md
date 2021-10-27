@@ -61,12 +61,14 @@ kind: lambdastack-cluster
 name: default
 provider: azure
 title: LambdaStack Cluster Config
+build_path: # Dynamically built
 specification:
   name: azure
   prefix: azure
   admin_user:
     name: operations
     key_path:  id_rsa
+    path: # Dynamically built
   cloud:
     region: East US
     subscription_name: PUT_SUBSCRIPTION_NAME_HERE
@@ -237,10 +239,12 @@ Please check bellow example, how to setup basic LambdaStack cluster in AWS with 
 kind: lambdastack-cluster
 name: default
 provider: aws
+build_path: # Dynamically built
 specification:
   admin_user:
     name: ubuntu
     key_path: id_rsa
+    path: # Dynamically built
   cloud:
     region: eu-central-1
     credentials:

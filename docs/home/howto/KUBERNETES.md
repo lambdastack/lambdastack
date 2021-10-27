@@ -272,6 +272,7 @@ kind: lambdastack-cluster
 title: LambdaStack Cluster Config
 provider: azure
 name: default
+build_path: '' # Dynamically built
 specification:
  components:
     repository:

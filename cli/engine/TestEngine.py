@@ -30,10 +30,9 @@ class TestEngine(Step):
             raise Exception(f'No "{ANSIBLE_INVENTORY_FILE}" inside the build directory: "{self.build_directory}"')
 
         # get admin user
-        # TODO: key_path needs to be looked at again!
         admin_user = cluster_model.specification.admin_user
-        if not os.path.isfile(admin_user.key_path):
-            raise Exception(f'No SSH key file in directory: "{admin_user.key_path}"')
+        if not os.path.isfile(admin_user.path):
+            raise Exception(f'No SSH key file in directory: "{admin_user.path}"')
 
         # get and create the spec output dir if it does not exist
         spec_output = os.path.join(self.build_directory, SPEC_OUTPUT_DIR)
@@ -42,6 +41,6 @@ class TestEngine(Step):
 
         # run the spec tests
         spec_command = SpecCommand()
-        spec_command.run(spec_output, path_to_inventory, admin_user.name, admin_user.key_path, self.group)
+        spec_command.run(spec_output, path_to_inventory, admin_user.name, admin_user.path, self.group)
 
         return 0

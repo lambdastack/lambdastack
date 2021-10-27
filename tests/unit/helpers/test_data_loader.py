@@ -15,6 +15,7 @@ TEST_MINIMAL_CLUSTER_CONFIG = {
     'title': 'LambdaStack Cluster Config',
     'provider': 'aws',
     'name': 'default',
+    'build_path': '',
     'specification':
     {
         'name': 'name',
@@ -22,7 +23,8 @@ TEST_MINIMAL_CLUSTER_CONFIG = {
         'admin_user':
         {
             'name': 'ubuntu',
-            'key_path': 'id_rsa'
+            'key_path': 'id_rsa',
+            'path': ''
         },
         'cloud':
         {

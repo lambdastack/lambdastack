@@ -10,11 +10,11 @@
       shell: >-
         autossh -M 0 -f
         {{ admin_user.name }}@{{ ssh_tunnel_ip }} -L {{ ssh_tunnel_port }}:localhost:{{ ssh_tunnel_port }}
-        -i $(realpath -s {{ admin_user.key_path }}) -4 -N -T
+        -i $(realpath -s {{ admin_user.path }}) -4 -N -T
         -o BatchMode=yes -o ControlMaster=no -o ExitOnForwardFailure=yes -o ServerAliveInterval=30 -o ServerAliveCountMax=5
         -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
       args:
-        chdir: "{{ lookup('env', 'PWD') }}" # chdir + realpath to support relative path in admin_user.key_path
+        chdir: "{{ lookup('env', 'PWD') }}" # chdir + realpath to support relative path in admin_user.path
       register: shell_autossh
       environment: "{{ autossh_env }}"
 

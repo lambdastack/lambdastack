@@ -64,12 +64,14 @@ kind: lambdastack-cluster
 name: default
 provider: any
 title: LambdaStack Cluster Config
+build_path: # Dynamically built
 specification:
   prefix: arm
   name: centos
   admin_user:
     key_path: id_rsa
     name: admin
+    path: # Dynamically built
   components:
     kafka:
       count: 2
@@ -300,12 +302,14 @@ kind: lambdastack-cluster
 name: default
 provider: aws
 title: LambdaStack Cluster Config
+build_path: # Dynamically built
 specification:
   prefix: arm
   name: centos
   admin_user:
     key_path: id_rsa
     name: centos
+    path: # Dynamically built
   cloud:
     credentials:
       key: xxxx

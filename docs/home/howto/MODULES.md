@@ -76,12 +76,14 @@ AWS:
   kind: lambdastack-cluster
   title: LambdaStack Cluster Config
   name: your-cluster-name # <----- make unified with other places and build directory name
+  build_path: # Dynamically built
   provider: any # <----- use "any" provider
   specification:
     name: your-cluster-name # <----- make unified with other places and build directory name
     admin_user:
       name: operations # <----- make sure os-user is correct
       key_path: /tmp/shared/vms_rsa # <----- use generated key file
+      path: # Dynamically built
     cloud:
       k8s_as_cloud_service: true # <----- make sure that flag is set, as it indicates usage of a managed Kubernetes service
     components:

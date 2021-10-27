@@ -10,13 +10,15 @@ TEST_DOCS = [
         'title': 'LambdaStack Cluster Config',
         'provider': 'any',
         'name': 'default',
+        'build_path': '',
         'specification':
         {
             'name': 'default',
             'admin_user':
             {
                 'name': 'operations',
-                'key_path': 'id_rsa'
+                'key_path': 'id_rsa',
+                'path': ''
             }
         }
     },
@@ -36,6 +38,7 @@ TEST_CLUSTER_MODEL = {
     'title': 'LambdaStack Cluster Config',
     'provider': 'azure',
     'name': CLUSTER_NAME_SAVE,
+    'build_path': '',
     'specification':
     {
         'prefix': 'test',
@@ -43,7 +46,8 @@ TEST_CLUSTER_MODEL = {
         'admin_user':
         {
             'name': 'operations',
-            'key_path': 'id_rsa'
+            'key_path': 'id_rsa',
+            'path': ''
         },
         'cloud':
         {

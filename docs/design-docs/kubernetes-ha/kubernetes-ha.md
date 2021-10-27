@@ -85,11 +85,13 @@ kind: lambdastack-cluster
 title: "LambdaStack Cluster Config"
 provider: any
 name: "k8s1"
+build_path: # Dynamically built
 specification:
   name: k8s1
   admin_user:
     name: ubuntu
     key_path: id_ed25519
+    path: # Dynamically built
   components:
     kubernetes_master:
       count: 3

@@ -70,7 +70,7 @@ Should NOT be used in production for security reasons.''')
         return x
 
     parser.add_argument('--debug', dest='debug', type=debug_level,
-                        help='''Set this flag (0..4) to enable debug output where 0 is no
+                        help='''MUST be first parameter! Set this flag (0..4) to enable debug output where 0 is no
 debug output and 1..4 is debug output with different verbosity levels:
 Python    : Anything heigher then 0 enables printing of Python stacktraces
 Ansible   : 1..4 map to following Ansible verbosity levels:

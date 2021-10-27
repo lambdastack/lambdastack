@@ -2,11 +2,13 @@ kind: lambdastack-cluster
 title: "LambdaStack Cluster Config"
 provider: any
 name: "default"
+build_path:   # This gets dynamically built
 specification:
   name: name
   admin_user:
     name: operations # YOUR-ADMIN-USERNAME
     key_path: id_rsa # YOUR-SSH-KEY-FILE-NAME
+    path: # Will get dynamically created
   components:
     repository:
       count: 1

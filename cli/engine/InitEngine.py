@@ -1,7 +1,7 @@
 import os
 
 from cli.helpers.Step import Step
-from cli.helpers.build_io import save_manifest, get_build_path
+from cli.helpers.build_io import get_build_sshkey_path, save_manifest, get_build_path
 from cli.helpers.data_loader import load_all_schema_objs, types
 from cli.engine.ApplyEngine import ApplyEngine
 from cli.helpers.objdict_helpers import remove_value
@@ -27,6 +27,8 @@ class InitEngine(Step):
     def init(self):
         input = load_all_schema_objs(types.DEFAULT, self.provider, 'configuration/minimal-cluster-config')
         input[0].specification.name = self.name
+        input[0].build_path = get_build_path(self.name)
+        input[0].specification.admin_user.path = get_build_sshkey_path(self.name)
 
         if self.is_full_config:
             config = self.get_config_docs(input)

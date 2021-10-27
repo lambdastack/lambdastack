@@ -2,12 +2,14 @@ kind: lambdastack-cluster
 title: "LambdaStack Cluster Config"
 provider: azure
 name: "default"
+build_path:   # This gets dynamically built
 specification:
   prefix: default
   name: lambdastackcluster
   admin_user:
     name: operations # YOUR-ADMIN-USERNAME
     key_path: id_rsa # YOUR-SSH-KEY-FILE-NAME
+    path: # Will get dynamically created
   cloud:
     k8s_as_cloud_service: False
     subscription_name: <YOUR-SUB-NAME>

@@ -5,7 +5,7 @@ from ansible.inventory.manager import InventoryManager
 
 from cli.helpers.Step import Step
 from cli.helpers.doc_list_helpers import select_single, select_all
-from cli.helpers.build_io import save_manifest, load_manifest, get_inventory_path, get_manifest_path, get_build_path
+from cli.helpers.build_io import get_build_sshkey_path, save_manifest, load_manifest, get_inventory_path, get_manifest_path, get_build_path
 from cli.helpers.yaml_helpers import safe_load_all
 from cli.helpers.Log import Log
 from cli.helpers.os_images import get_os_distro_normalized
@@ -161,6 +161,9 @@ class ApplyEngine(Step):
             raise Exception("Detected mixed Linux distros in config, lsrepo will not work properly. Please inspect your config manifest. Forgot to define repository VM document?")
 
     def apply(self):
+        self.cluster_model.build_path = get_build_path(self.cluster_model.name)
+        self.cluster_model.specification.admin_user.path = os.path.join(get_build_sshkey_path(self.cluster_model.name), self.cluster_model.specification.admin_user.key_path)
+
         self.process_input_docs()
 
         self.assert_no_master_downscale()

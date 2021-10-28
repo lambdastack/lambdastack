@@ -1,12 +1,12 @@
 {{- if .Values.ingress.enabled -}}
-{{- $fullName := include "epi-dummy.fullname" . -}}
+{{- $fullName := include "ls-dummy.fullname" . -}}
 {{- $svcPort := .Values.service.port -}}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ $fullName }}
   labels:
-    {{- include "epi-dummy.labels" . | nindent 4 }}
+    {{- include "ls-dummy.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}

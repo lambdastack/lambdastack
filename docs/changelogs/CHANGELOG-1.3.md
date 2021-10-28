@@ -5,7 +5,7 @@
 ### Added
 
 - [#1487](https://github.com//lambdastack-platform/lambdastack/issues/1487) - Add RabbitMQ monitoring
-- [#2600](https://github.com/lambdastack-platform/lambdastack/issues/2600) - Change epicli output structure
+- [#2600](https://github.com/lambdastack-platform/lambdastack/issues/2600) - Change lambdastack output structure
 - [#2655](https://github.com/lambdastack-platform/lambdastack/issues/2655) - Add 'repmgr node check' to upgrade preflight checks and auto-tests
 - [#2643](https://github.com/lambdastack-platform/lambdastack/issues/2643) - Restructure lscli project folder
 - [#2666](https://github.com/lambdastack-platform/lambdastack/issues/2666) - Project re-structure part 2
@@ -15,7 +15,7 @@
 
 ### Fixed
 
-- [#2497](https://github.com/lambdastack-platform/lambdastack/issues/2497) - Fix epicli apply --full region values
+- [#2497](https://github.com/lambdastack-platform/lambdastack/issues/2497) - Fix lambdastack apply --full region values
 - [#1743](https://github.com/lambdastack-platform/lambdastack/issues/1743) - Virtual machine "kind" mismatch
 - [#2656](https://github.com/lambdastack-platform/lambdastack/issues/2656) - WAL files are not removed from $PGDATA/pg_wal directory
 - [#1587](https://github.com/lambdastack-platform/lambdastack/issues/1587) - Duplicated SANs for K8s apiserver certificate

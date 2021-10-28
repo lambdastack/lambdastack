@@ -17,7 +17,7 @@
 ansible_user={{ cluster_model.specification.admin_user.name }}
 ansible_ssh_private_key_file={{ cluster_model.specification.admin_user.path }}
 # --- SSH options ---
-# todo: manage StrictHostKeyChecking from Epiphany configuration
+# todo: manage StrictHostKeyChecking from LambdaStack configuration
 # Always appended to the default command line for sftp, scp, and ssh
 ansible_ssh_common_args='-o StrictHostKeyChecking=no'
 # Always appended to the default ssh command line

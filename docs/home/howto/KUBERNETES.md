@@ -2,13 +2,13 @@
 
 ## Supported CNI plugins
 
-Epiphany supports following CNI plugins:
+LambdaStack supports following CNI plugins:
 
 - [Flannel](https://github.com/flannel-io/flannel/blob/master/README.md)
 - [Calico](https://docs.projectcalico.org/about/about-calico)
 - [Canal](https://docs.projectcalico.org/getting-started/kubernetes/flannel/flannel)
 
-Flannel is a default setting in Epiphany configuration.
+Flannel is a default setting in LambdaStack configuration.
 
 ---
 **NOTE**

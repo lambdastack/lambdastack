@@ -227,7 +227,7 @@ specification:
   applications:
   - name: auth-service # requires PostgreSQL to be installed in cluster
     enabled: yes
-    image_path:lambdastack/keycloak:9.0.0
+    image_path: lambdastack/keycloak:9.0.0
     use_local_image_registry: true
     #image_pull_secret_name: regcred
     service:
@@ -504,7 +504,7 @@ specification:
   applications:
   - name: auth-service # requires PostgreSQL to be installed in cluster
     enabled: yes
-    image_path:lambdastack/keycloak:9.0.0
+    image_path: lambdastack/keycloak:9.0.0
     use_local_image_registry: true
     #image_pull_secret_name: regcred
     service:

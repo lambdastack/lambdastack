@@ -161,8 +161,9 @@ class ApplyEngine(Step):
             raise Exception("Detected mixed Linux distros in config, lsrepo will not work properly. Please inspect your config manifest. Forgot to define repository VM document?")
 
     def apply(self):
-        self.cluster_model.build_path = get_build_path(self.cluster_model.name)
-        self.cluster_model.specification.admin_user.path = os.path.join(get_build_sshkey_path(self.cluster_model.name), self.cluster_model.specification.admin_user.key_path)
+        # Uncomment the below two lines if you want to always override those attribute values with the default.
+        # self.cluster_model.build_path = get_build_path(self.cluster_model.specification.name)
+        # self.cluster_model.specification.admin_user.path = os.path.join(get_build_sshkey_path(self.cluster_model.specification.name), self.cluster_model.specification.admin_user.key_path)
 
         self.process_input_docs()
 

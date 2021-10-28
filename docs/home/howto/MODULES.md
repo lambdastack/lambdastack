@@ -270,7 +270,7 @@ AWS:
     applications:
       - name: ignite-stateless
         enabled: false
-        image_path: "lambdastackplatform/ignite:2.9.1"
+        image_path: "lambdastack/ignite:2.9.1"
         use_local_image_registry: false
         namespace: ignite
         service:

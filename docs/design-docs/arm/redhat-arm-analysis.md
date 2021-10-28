@@ -152,7 +152,7 @@
 | registry:2 | + |  |  |
 | hashicorp/vault-k8s:0.7.0 | --- | https://hub.docker.com/r/moikot/vault-k8s / custom build | --- |
 | vault:1.7.0 | + |  | --- |
-| lambdastackplatform/keycloak:9.0.0 | + | custom build | + |
+|lambdastack/keycloak:9.0.0 | + | custom build | + |
 | bitnami/pgpool:4.1.1-debian-10-r29 | --- |  | --- |
 | brainsam/pgbouncer:1.12 | --- |  | --- |
 | istio/pilot:1.8.1 | --- | https://github.com/istio/istio/issues/21094 / custom build | --- |

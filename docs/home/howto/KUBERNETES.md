@@ -315,7 +315,7 @@ specification:
   - _merge: true
   - name: auth-service
     enabled: true
-    image_path: lambdastackplatform/keycloak:14.0.0
+    image_path:lambdastack/keycloak:14.0.0
     use_local_image_registry: true
     service:
       name: as-testauthdb

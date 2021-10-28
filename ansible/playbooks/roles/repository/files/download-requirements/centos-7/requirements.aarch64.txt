@@ -197,8 +197,8 @@ registry:2
 hashicorp/vault-k8s:0.10.0
 vault:1.7.0
 # applications
-lambdastackplatform/ignite:2.9.1
-lambdastackplatform/keycloak:14.0.0
+lambdastack/ignite:2.9.1
+lambdastack/keycloak:14.0.0
 rabbitmq:3.8.9
 # K8s
 ## v1.18.6

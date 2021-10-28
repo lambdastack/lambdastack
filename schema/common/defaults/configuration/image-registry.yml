@@ -9,11 +9,11 @@ specification:
   images_to_load:
     x86_64:
       generic:
-        - name: "lambdastackplatform/keycloak:14.0.0"
+        - name: "lambdastack/keycloak:14.0.0"
           file_name: keycloak-14.0.0.tar
         - name: "rabbitmq:3.8.9"
           file_name: rabbitmq-3.8.9.tar
-        - name: "lambdastackplatform/ignite:2.9.1"
+        - name: "lambdastack/ignite:2.9.1"
           file_name: ignite-2.9.1.tar
         - name: "kubernetesui/dashboard:v2.3.1"
           file_name: dashboard-v2.3.1.tar
@@ -97,11 +97,11 @@ specification:
           file_name: pod2daemon-flexvol-v3.15.0.tar
     aarch64:
       generic:
-        - name: "lambdastackplatform/keycloak:14.0.0"
+        - name: "lambdastack/keycloak:14.0.0"
           file_name: keycloak-14.0.0.tar
         - name: "rabbitmq:3.8.9"
           file_name: rabbitmq-3.8.9.tar
-        - name: "lambdastackplatform/ignite:2.9.1"
+        - name: "lambdastack/ignite:2.9.1"
           file_name: ignite-2.9.1.tar
         - name: "kubernetesui/dashboard:v2.0.3"
           file_name: dashboard-v2.0.3.tar

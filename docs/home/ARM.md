@@ -227,7 +227,7 @@ specification:
   applications:
   - name: auth-service # requires PostgreSQL to be installed in cluster
     enabled: yes
-    image_path: lambdastackplatform/keycloak:9.0.0
+    image_path:lambdastack/keycloak:9.0.0
     use_local_image_registry: true
     #image_pull_secret_name: regcred
     service:
@@ -271,7 +271,7 @@ specification:
         #cookie: "cookieSetFromDataYaml" #optional - default value will be random generated string
   - name: ignite-stateless
     enabled: yes
-    image_path: "lambdastackplatform/ignite:2.9.1" # it will be part of the image path: {{local_repository}}/{{image_path}}
+    image_path: "lambdastack/ignite:2.9.1" # it will be part of the image path: {{local_repository}}/{{image_path}}
     use_local_image_registry: true
     namespace: ignite
     service:
@@ -504,7 +504,7 @@ specification:
   applications:
   - name: auth-service # requires PostgreSQL to be installed in cluster
     enabled: yes
-    image_path: lambdastackplatform/keycloak:9.0.0
+    image_path:lambdastack/keycloak:9.0.0
     use_local_image_registry: true
     #image_pull_secret_name: regcred
     service:
@@ -548,7 +548,7 @@ specification:
         #cookie: "cookieSetFromDataYaml" #optional - default value will be random generated string
   - name: ignite-stateless
     enabled: yes
-    image_path: "lambdastackplatform/ignite:2.9.1" # it will be part of the image path: {{local_repository}}/{{image_path}}
+    image_path: "lambdastack/ignite:2.9.1" # it will be part of the image path: {{local_repository}}/{{image_path}}
     use_local_image_registry: true
     namespace: ignite
     service:

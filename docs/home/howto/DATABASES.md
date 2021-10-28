@@ -643,7 +643,7 @@ name: default
 specification:
   applications:
   - name: ignite-stateless
-    image_path: "lambdastackplatform/ignite:2.9.1" # it will be part of the image path: {{local_repository}}/{{image_path}}
+    image_path: "lambdastack/ignite:2.9.1" # it will be part of the image path: {{local_repository}}/{{image_path}}
     namespace: ignite
     service:
       rest_nodeport: 32300

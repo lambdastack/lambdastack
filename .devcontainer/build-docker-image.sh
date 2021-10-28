@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Build the Docker image of LambdaStack and publish to it's registry at hub.docker.io
+# Build the Docker image of LambdaStack. This will publish to the local registry only
 
 cd ..
 TAG=$(cat version)

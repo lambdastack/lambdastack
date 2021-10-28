@@ -212,7 +212,7 @@ class InfrastructureBuilder(Step):
         else:
             public_key_config.specification.key_name = self.cluster_model.specification.admin_user.name + '-' \
                                                        + str(uuid.uuid4())
-        pub_key_path = os.path.join(self.cluster_model.specification.admin_user.path, self.cluster_model.specification.admin_user.key_path + '.pub')
+        pub_key_path = os.path.join(self.cluster_model.specification.admin_user.path, self.cluster_model.specification.admin_user.path + '.pub')
         if os.path.isfile(pub_key_path):
             with open(pub_key_path, 'r') as stream:
                 public_key_config.specification.public_key = stream.read().rstrip()

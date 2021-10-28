@@ -207,7 +207,7 @@ class InfrastructureBuilder(Step):
         vm.specification.tags.append({component_key: ''})
         if vm_config.specification.os_type == 'windows':
             raise NotImplementedError('Windows VMs not supported jet.')
-        pub_key_path = os.path.join(self.cluster_model.specification.admin_user.path,self.cluster_model.specification.admin_user.key_path + '.pub')
+        pub_key_path = os.path.join(self.cluster_model.specification.admin_user.path,self.cluster_model.specification.admin_user.path + '.pub')
         if os.path.isfile(pub_key_path):
             vm.specification.public_key = pub_key_path
         else:

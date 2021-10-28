@@ -28,7 +28,7 @@ class InitEngine(Step):
         input = load_all_schema_objs(types.DEFAULT, self.provider, 'configuration/minimal-cluster-config')
         input[0].specification.name = self.name
         input[0].build_path = get_build_path(self.name)
-        input[0].specification.admin_user.path = get_build_sshkey_path(self.name)
+        input[0].specification.admin_user.path = os.path.join(get_build_sshkey_path(self.name), input[0].specification.admin_user.key_path)
 
         if self.is_full_config:
             config = self.get_config_docs(input)

@@ -147,8 +147,8 @@
 | Name        | ARM Supported           |  Info  | Required |
 | ------------- |:-------------:|:-----:|-----:|
 | haproxy:2.2.2-alpine | + | arm64v8/haproxy | + |
-| kubernetesui/dashboard:v2.0.3 | + |  | + |
-| kubernetesui/metrics-scraper:v1.0.4 | + |  | + |
+| kubernetesui/dashboard:v2.3.1 | + |  | + |
+| kubernetesui/metrics-scraper:v1.0.7 | + |  | + |
 | registry:2 | + |  |  |
 | hashicorp/vault-k8s:0.7.0 | --- | https://hub.docker.com/r/moikot/vault-k8s / custom build | --- |
 | vault:1.7.0 | + |  | --- |

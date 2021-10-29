@@ -101,8 +101,8 @@ That is why we should replace it with [Crane](https://github.com/google/go-conta
 1. This tool can do the same as Skopeo:
 
 ```bash
-./skopeo --insecure-policy copy docker://kubernetesui/dashboard:v2.0.3 docker-archive:skopeodashboard:v2.0.3
-./crane pull --insecure kubernetesui/dashboard:v2.0.3 dashboard.tar
+./skopeo --insecure-policy copy docker://kubernetesui/dashboard:v2.3.1 docker-archive:skopeodashboard:v2.3.1
+./crane pull --insecure kubernetesui/dashboard:v2.3.1 dashboard.tar
 ```
 
 The above will produce the same Docker image package.

@@ -104,7 +104,7 @@
         name: "{{ pg.instantiated_service_name[ansible_os_family] }}"
         state: started
 
-# Used in postgresql-LambdaStack.conf.j2
+# Used in postgresql-lambdastack.conf.j2
 - name: Set runtime_shared_preload_libraries fact
   block:
     - name: Get PostgreSQL settings

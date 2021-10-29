@@ -22,6 +22,7 @@
       set_fact:
         upgrade_k8s_dashboard: >-
           {{ (template_images | difference(object_images) | count > 0) | ternary(true, false) }}
+
 - name: Upgrade dashboard
   when: upgrade_k8s_dashboard
   block:
@@ -29,6 +30,7 @@
       # --ignore-not-found is used to be able re-run upgrade if it fails
       command: >-
         kubectl delete ns kubernetes-dashboard --ignore-not-found=true
+
     # Deploy new version of kubernetes-dashboard
     - name: k8s/master | Apply Kubernetes Dashboard
       include_role:

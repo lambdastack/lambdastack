@@ -71,3 +71,4 @@
 - name: Include upgrade tasks
   when: postgresql_upgrade_status != 'completed'
   include_tasks: upgrade/run-upgrade.yml
+  

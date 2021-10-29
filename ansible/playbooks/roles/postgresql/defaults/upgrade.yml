@@ -17,6 +17,10 @@ pg:
   instantiated_service_name:
     Debian: postgresql@10-main
     RedHat: null
+  upgrade:
+    custom_tablespaces_fallback_file_path: /var/lib/lambdastack/upgrade/state/custom-tablespaces.yml
+    postgresql_info_fallback_file_path: /var/lib/lambdastack/upgrade/state/postgresql-info.yml
+    state_file_path: /var/lib/lambdastack/upgrade/state/postgresql.uncompleted
   service_name:
     Debian: postgresql
     RedHat: postgresql-10

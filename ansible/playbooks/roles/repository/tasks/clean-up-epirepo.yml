@@ -53,7 +53,7 @@
     images_found: "{{ files_in_lsrepo.results[1].files | map(attribute='path') | map('basename') }}"
     images_to_load: "{{ image_registry_vars.specification.images_to_load[ansible_architecture] }}"
     images_to_preserve: "{{ images_to_load | json_query('*[].file_name') + [ image_registry_vars.specification.registry_image.file_name ] }}"
-    # images to remove since they may have the same filename but different content (e.g. jboss/keycloak vslambdastack/keycloak),
+    # images to remove since they may have the same filename but different content (e.g. jboss/keycloak vs lambdastack/keycloak),
     # to be optimized (checksums)
     replaced_images: "{{ images_to_load | json_query('*[]') | selectattr('name', 'match', 'lambdastack/')
                                                             | map(attribute='file_name') }}"

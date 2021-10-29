@@ -11,12 +11,12 @@ defaults
     timeout client 120s
     timeout server 120s
 
-frontend LambdaStack
+frontend lambdastack
     mode tcp
     bind 0.0.0.0:3446
-    default_backend LambdaStack
+    default_backend lambdastack
 
-backend LambdaStack
+backend lambdastack
     mode tcp
     balance roundrobin
     option tcp-check

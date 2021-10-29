@@ -1,5 +1,5 @@
 ---
-- name: Include installation tasks for Filebeat as OS service for "classic LambdaStack cluster"
+- name: Include installation tasks for Filebeat as OS service for "classic lambdastack cluster"
   include_tasks: install-filebeat-as-system-service.yml
 
 - name: Load variables from logging role  # needed to get passwords for both installation types

@@ -54,3 +54,4 @@
         {{ kubeadm_valid_token.stdout if kubeadm_valid_token.stdout else kubeadm_new_token.stdout_lines[-1] }}
       kubeadm_cert_hash: >-
         {{ kubeadm_cert_hash.stdout }}
+        

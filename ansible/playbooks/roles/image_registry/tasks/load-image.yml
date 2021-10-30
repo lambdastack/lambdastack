@@ -17,6 +17,8 @@
     - name: Load {{ docker_image.name }} image
       become: true
       command: docker load --input {{ download_directory }}/{{ docker_image.file_name }}
+      retries: 1
+      delay: 1
 
     - name: Remove downloaded image archive {{ docker_image.file_name }}
       file:

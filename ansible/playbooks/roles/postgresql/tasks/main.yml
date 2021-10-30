@@ -103,6 +103,8 @@
       systemd:
         name: "{{ pg.instantiated_service_name[ansible_os_family] }}"
         state: started
+  retries: 3
+  delay: 2
 
 # Used in postgresql-lambdastack.conf.j2
 - name: Set runtime_shared_preload_libraries fact
@@ -123,7 +125,7 @@
     _pg_data_dir: "{{ pg.data_dir[ansible_os_family] }}" # used in postgresql.conf
     _files:
       - pg_hba.conf
-      - postgresql-LambdaStack.conf
+      - postgresql-lambdastack.conf
       - postgresql.conf
   template:
     src: "{{ file_name }}.j2"
@@ -146,6 +148,8 @@
 
     - *ensure-debian-child-service-started
   when: (change_pg_config.results | map(attribute='changed') | list) is any
+  retries: 3
+  delay: 2
 
 - name: Configure PostgreSQL logrotate
   block:
@@ -186,17 +190,17 @@
                                                                  | map(attribute='pgpool')
                                                                  | list
                                                                  | first
-                                                                 | default({}) }}        
+                                                                 | default({}) }}
   block:
     - name: Extensions | Set up PgPool | Ascertain primary node
       become_user: postgres
       postgresql_info:
         filter: in_recovery
       register: in_recovery_state
-    
+
     - name: Extensions | Include PgPool setup tasks
       include_tasks: extensions/pgpool/extension.yml
-      when: 
+      when:
         - not in_recovery_state.in_recovery
   when:
     - pgpool.keys()|length > 0

@@ -9,3 +9,5 @@
 
     - name: Push {{ docker_image.name }} image to registry
       command: docker push {{ new_image_tag }}
+      retries: 3
+      delay: 2

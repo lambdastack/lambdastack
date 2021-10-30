@@ -88,7 +88,7 @@
     dest: /etc/motd
     content: ""
     force: true
-    
+
 # motd is not used as Ubuntu has its own update-motd framework for dynamic motd generation
 # while for RedHat there is only /etc/motd that doesn't support simple configuration for colored output
 - name: Configure login message

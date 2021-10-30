@@ -61,12 +61,16 @@
          or modify_filebeat_unit_dependencies.changed
          or enable_module.changed
          or install_filebeat_package.changed
+      retries: 2
+      delay: 1
 
     - name: Enable and start filebeat service
       systemd:
         name: filebeat
         state: started
         enabled: true
+      retries: 2
+      delay: 1
 
     - name: Wait for filebeat service to be running
       service_facts:
@@ -75,7 +79,7 @@
         - service_facts.ansible_facts.services['filebeat.service'].state is defined
         - service_facts.ansible_facts.services['filebeat.service'].state == "running"
       retries: 10
-      delay: 1
+      delay: 3
       no_log: true  # to reduce log output
 
 - name: Stop and disable filebeat service

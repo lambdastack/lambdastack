@@ -44,6 +44,8 @@
   when:
     - not custom_repository_url
     - inventory_hostname in target_repository_hostnames
+  retries: 3
+  delay: 3
 
 - name: Disable system repositories and set up lsrepo
   block:

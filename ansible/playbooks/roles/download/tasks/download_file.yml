@@ -7,6 +7,6 @@
     force: "{{ force | default(false) }}"
   register: get_url_result
   until: "'OK' in get_url_result.msg or 'file already exists' in get_url_result.msg"
-  retries: "{{ retries | default(3) }}"
-  delay: "{{ delay | default(2) }}"
+  retries: "{{ retries | default(5) }}"
+  delay: "{{ delay | default(3) }}"
   become: false

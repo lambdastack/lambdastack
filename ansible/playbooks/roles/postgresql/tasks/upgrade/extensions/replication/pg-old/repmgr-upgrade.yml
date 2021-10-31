@@ -169,7 +169,7 @@
   # 'installed_version' keeps only major version (e.g. '5.2')
   until: repmgr.version[ansible_os_family] is match(query_repmgr_version.query_result | json_query('[0].installed_version'))
   retries: 30  # up to 10s of replication lag was observed during dump import
-  delay: 1
+  delay: 2
   when: inventory_hostname != find_pg_primary_node.stdout
 
 # Step: Re-enable repmgr service

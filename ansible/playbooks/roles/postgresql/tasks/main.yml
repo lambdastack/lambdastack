@@ -96,6 +96,8 @@
         name: "{{ pg.service_name[ansible_os_family] }}"
         state: started
         enabled: true
+      retries 3:
+      delay: 2
 
     - &ensure-debian-child-service-started
       name: Debian | Ensure that instantiated service started
@@ -103,8 +105,8 @@
       systemd:
         name: "{{ pg.instantiated_service_name[ansible_os_family] }}"
         state: started
-  retries: 3
-  delay: 2
+      retries: 3
+      delay: 2
 
 # Used in postgresql-lambdastack.conf.j2
 - name: Set runtime_shared_preload_libraries fact
@@ -145,11 +147,11 @@
       systemd:
         name: "{{ pg.service_name[ansible_os_family] }}"
         state: restarted
+      retries: 3
+      delay: 2
 
     - *ensure-debian-child-service-started
   when: (change_pg_config.results | map(attribute='changed') | list) is any
-  retries: 3
-  delay: 2
 
 - name: Configure PostgreSQL logrotate
   block:

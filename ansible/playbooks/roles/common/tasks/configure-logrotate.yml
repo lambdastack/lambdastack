@@ -40,7 +40,5 @@
           Debian: cron
       when:
         - copy_logrotate_script.changed
-      retries: 3
-      delay: 2
   when:
     - cron_daily_logrotate_stat.stat.exists

@@ -69,8 +69,6 @@
         name: filebeat
         state: started
         enabled: true
-      retries: 2
-      delay: 1
 
     - name: Wait for filebeat service to be running
       service_facts:

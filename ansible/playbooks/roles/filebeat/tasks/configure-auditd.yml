@@ -28,8 +28,6 @@
         name: auditd
         state: started
         enabled: true
-      retries: 3
-      delay: 2
 
     - name: Wait for auditd service to be running
       service_facts:

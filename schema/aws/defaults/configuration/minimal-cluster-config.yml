@@ -4,15 +4,15 @@ provider: aws
 name: "default"
 build_path: "build/path"  # This gets dynamically built
 specification:
-  name: name
-  prefix: prefix
+  name: lambdastack
+  prefix: staging  # Can be anything you want that helps quickly identify the cluster
   admin_user:
     name: ubuntu # YOUR-ADMIN-USERNAME
     key_path: lambdastack-operations # YOUR-SSH-KEY-FILE-NAME
-    path: "key/path" # Will get dynamically created
+    path: "/shared/build/<name of cluster>/keys/ssh/lambdastack-operations" # Will get dynamically created
   cloud:
     k8s_as_cloud_service: False
-    use_public_ips: False # When not using public IPs you have to provide connectivity via private IPs (VPN)
+    use_public_ips: True # When not using public IPs you have to provide connectivity via private IPs (VPN)
     credentials:
       key: XXXX-XXXX-XXXX
       secret: XXXXXXXXXXXXXXXX

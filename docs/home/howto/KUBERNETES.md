@@ -1,5 +1,26 @@
 # Kubernetes
 
+## Issues
+
+See [Troubleshooting](../TROUBLESHOOTING.md)
+
+## Kubectl
+
+You can see from the Troubleshooting link above that the default secruity setup for `kubectl` is to have `sudo` rights to run and then to specify the `kubeconfig=/etc/kubernetes/admin.conf` as an additional parameter to `kubectl`. Also, by default, this only works on the Master nodes. To have it work on Worker nodes or any node in the cluster do the following. Make sure it complies with your Security strategy:
+
+```shell
+# Master node - Option 2 from link above...
+
+mkdir -p $HOME/.kube
+sudo cp /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+```
+
+Once `kubectl` is working as desired from a non-root user, you can simply:
+1. Copy the `./kube/config` file from the Master node
+2. Create the `./kube` directory in the non-root user's home directory and then paste the `config` file copied in #1
+3. Do this for any node you want to access `kubectl` on for a given cluster
+
 ## Supported CNI plugins
 
 LambdaStack supports following CNI plugins:

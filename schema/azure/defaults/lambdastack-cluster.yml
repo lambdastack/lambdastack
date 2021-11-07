@@ -4,17 +4,17 @@ provider: azure
 name: "default"
 build_path: "build/path"  # This gets dynamically built
 specification:
-  prefix: default
-  name: lambdastackcluster
+  prefix: staging  # Can be anything you want that helps quickly identify the cluster
+  name: lambdastack
   admin_user:
     name: operations # YOUR-ADMIN-USERNAME
     key_path: lambdastack-operations # YOUR-SSH-KEY-FILE-NAME
-    path: "key/path" # Will get dynamically created
+    path: "/shared/build/<name of cluster>/keys/ssh/lambdastack-operations" # Will get dynamically created
   cloud:
     k8s_as_cloud_service: False
     subscription_name: <YOUR-SUB-NAME>
     vnet_address_pool: 10.1.0.0/20
-    use_public_ips: False # When not using public IPs you have to provide connectivity via private IPs (VPN)
+    use_public_ips: True # When not using public IPs you have to provide connectivity via private IPs (VPN)
     use_service_principal: False
     region: East US
     network:

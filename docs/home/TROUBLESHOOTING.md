@@ -1,6 +1,73 @@
 # Troubleshooting
 
-## LambdaStack container connection issues after hibernation/sleep on Windows
+# Kubernetes
+
+>Keep in mind, this is not really an issue but a default security feature! However, it is listed here and in [Security](./howto/SECURITY.md) as well. If you want even more information then see `kubeconfig` files section in the [Kubernetes Documents](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/).
+
+After the initial install and setup of Kubernetes and you see something like the following when you run any `kubectl ...` command:
+
+```shell
+$ kubectl cluster-info   #Note: could be any command and not just cluster-info
+The connection to the server localhost:8080 was refused - did you specify the right host or port?
+```
+
+It most likely is related to `/etc/kubernetes/admin.conf` and `kubectl` can't locate it. There are multiple ways to resolve this:
+
+Option 1:
+
+If you are running as `root` or using `sudo` in front of your kubectl call the following will work fine.
+
+```shell
+export KUBECONFIG=/etc/kubernetes/admin.conf
+# Note: you can add this to your .bash_profile so that it is always exported
+```
+Option 2: 
+
+If you are running as any other user (e.g., ubuntu, operations, etc.) and you do not want to `sudo` then do something like the following:
+
+```shell
+mkdir -p $HOME/.kube
+sudo cp /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+```
+Now you can run `kubectl` without using `sudo`. You can automate this to your liking for the users you wish to allow access to `kubectl`.
+
+Option 3: (Don't want to `export KUBECONFIG=...`) - **Default for LambdaStack Security**
+
+Always use `kubeconfig=/etc/kubernetes/admin.conf` as a parameter on `kubectl` but this option will require `sudo` or `root`. If you do not want to `export KUBECONFIG=...` nor `sudo` and not `root` then you can do Option 2 above less the `export ...` command and instead add `kubeconfig=$HOME/.kubernetes/admin.conf` as a parameter to `kubectl`.
+
+You can see [Security](./howto/SECURITY.md) for more information.
+
+## Kubernetes Master
+
+## Unhealthy - connection refused
+
+If you see something like the following after checking the status of components:
+
+```shell
+scheduler            Unhealthy   Get "http://127.0.0.1:10251/healthz": dial tcp 127.0.0.1:10251: connect: connection refused
+controller-manager   Unhealthy   Get "http://127.0.0.1:10252/healthz": dial tcp 127.0.0.1:10252: connect: connection refused
+```
+
+Modify the following files on **all master nodes**:
+
+```shell
+$ sudo vim /etc/kubernetes/manifests/kube-scheduler.yaml
+Comment out or Clear the line (spec->containers->command) containing this phrase: - --port=0
+
+$ sudo vim /etc/kubernetes/manifests/kube-controller-manager.yaml
+Comment out or Clear the line (spec->containers->command) containing this phrase: - --port=0
+
+$ sudo systemctl restart kubelet.service
+```
+
+You should see `Healthy` STATUS for controller-manager and scheduler.
+
+## Another reason for this problem
+
+You may have used http_proxy in the docker setting. In this case, you must set address of the master nodes addresses in no_proxy.
+
+# LambdaStack container connection issues after hibernation/sleep on Windows
 
 When running the LambdaStack container on Windows you might get such errors when trying to run the apply command:
 
@@ -37,7 +104,7 @@ Otherwise such error occurs:
 ERROR lambdastack - 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
 ```
 
-## Kafka
+# Kafka
 
 When running the Ansible automation there is a verification script called `kafka_producer_consumer.py` which creates a topic, produces messages and consumes messages. If the script fails for whatever reason then Ansible verification will report it as an error. An example of an issue is as follows:
 

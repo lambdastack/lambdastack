@@ -376,7 +376,7 @@ lambdastack apply -f build/demo/demo.yaml --vault-password MYPWD
 
 ## How to make kubectl work for non-root user on master node
 
-For security reason, the access to the admin credentials is limited to the root user.
+For **security reasons**, the access to the admin credentials is limited to the root user.
 To make a non-root user the cluster administrator, run these commands (as the non-root user):
 
 ```shell
@@ -384,6 +384,9 @@ mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
+
+>See more options in [Troubleshooting](../TROUBLESHOOTING.md)
+
 
 ## How to turn on Hashicorp Vault functionality
 

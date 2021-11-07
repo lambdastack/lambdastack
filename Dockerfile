@@ -5,7 +5,7 @@ ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 
 ARG HELM_VERSION=3.3.1
-ARG KUBECTL_VERSION=1.19.15
+ARG KUBECTL_VERSION=1.20.12
 ARG ISTIOCTL_VERSION=1.8.1
 
 ENV LSCLI_DOCKER_SHARED_DIR=/shared
@@ -68,7 +68,7 @@ RUN : INSTALL APT REQUIREMENTS \
 \
     && : SETUP LAMBDASTACKCLI COMMAND \
     && cp /lambdastack/cli/lambdastack /bin/lambdastack \
-    && chmod +x /bin/lambdastack 
+    && chmod +x /bin/lambdastack
 
 WORKDIR $LSCLI_DOCKER_SHARED_DIR
 

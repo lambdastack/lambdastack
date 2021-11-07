@@ -2,6 +2,10 @@
 [![GitHub release](https://img.shields.io/github/v/release/lambdastack/LambdaStack.svg)](https://github.com/lambdastack/lambdastack/releases)
 [![Github license](https://img.shields.io/github/license/lambdastack/LambdaStack)](https://github.com/lambdastack/lambdastack/releases)
 
+## Note
+
+> Ubuntu has released an updated LTS version - 20.04.03. Testing is in place for this release and once certified, it will become the default standard. Upgrading to this release is documented by Ubuntu but we will have an upgrade option here as well.
+
 ## Overview
 
 IMPORTANT - The latest version of LambdaStack is based on Epiphany, which I created in 2018, and being used by high-profile industries that require cross platform scalability and resiliency. There are a few areas and diagrams using the text Epiphany instead of LambdaStack for backwards compatibility (note - any broken links or diagrams due to this fork will be corrected). Going forward, LambdaStack will be addressing many industries and not just industrial Energy. Actually, LFEnergy (Linux Foundation Energy) should look at [Epiphany](https://github.com/epiphany-platform/epiphany) as their standard going forward. The team I created at Hitachi Energy for Epiphany is very good.
@@ -115,6 +119,7 @@ Find more information using table of contents below - especially the [How-to gui
   - [Components](docs/home/COMPONENTS.md)
   - [Security](docs/home/SECURITY.md)
   - [Troubleshooting](docs/home/TROUBLESHOOTING.md)
+  - [Kubernetes](docs/home/howto/KUBERNETES.md)
   - [Changelog](CHANGELOG.md)
   - [Release policy and lifecycle](docs/home/LIFECYCLE.md)
 - Architecture
@@ -124,6 +129,6 @@ Find more information using table of contents below - especially the [How-to gui
 - Contributing
   - [Governance model](docs/home/GOVERNANCE.md)
   - [Development environment](docs/home/DEVELOPMENT.md)
-  - [GIT Workflow](docs/home/GITWORKFLOW.md)
+  - [Git Workflow](docs/home/GITWORKFLOW.md)
 
 <!-- TOC -->

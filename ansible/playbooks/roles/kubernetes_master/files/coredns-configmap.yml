@@ -1,4 +1,4 @@
-# Based on https://github.com/kubernetes/kubernetes/blob/v1.19.15/cluster/addons/dns/coredns/coredns.yaml.in
+# Based on https://github.com/kubernetes/kubernetes/blob/v1.20.12/cluster/addons/dns/coredns/coredns.yaml.in
 # Hosts plugin added
 
 # Note: /etc/hosts in pods is managed by kubelet thus we mount it under different path,

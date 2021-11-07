@@ -3,4 +3,29 @@
 YELLOW='\033[1;33m'
 NC='\033[0m'
 
-echo -e "${YELLOW}LambdaStack version is {{ version }}${NC}\n"
+clear
+echo
+echo
+
+echo "                       ______                   "
+echo "                    .-\"      \"-.        "
+echo "                   /            \        "
+echo "       _          |              |          _         "
+echo "      ( \         |,  .-.  .-.  ,|         / )        "
+echo "       > \"=._     | )(__/  \\__)( |     _.=\" <        "
+echo "      (_/\"=._\"=._ |/     /\\     \| _.=\"_.=\"\_)        "
+echo "             \"=._ (_     ^^     _)\"_.=\"        "
+echo "                 \"=\\__|IIIIII|__/=\"        "
+echo "                _.=\"| \\IIIIII/ |\"=._        "
+echo "      _     _.=\"_.=\"\\          /\"=._\"=._     _        "
+echo "     ( \\_.=\"_.=\"     \`--------\`    \"=._ \"=._/ )        "
+echo "      > _.=\"                            \"=._  <    "
+echo "     (_/                                    \\_)  "
+echo
+echo -e "${YELLOW}You are on a production system, be careful!${NC}\n"
+echo -e "${YELLOW}LambdaStack version {{ version }}${NC}\n"
+echo "Kernal: $(uname -a)"
+echo
+source /etc/os-release
+echo "Distro: ${PRETTY_NAME}"
+echo

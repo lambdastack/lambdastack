@@ -35,7 +35,7 @@
     get_mime: false
   register: stat_kubernetes_pki
 
-- name: Copy PKI from master node to Ephiphany's vault
+- name: Copy PKI from master node to LambaStack's vault
   when: not stat_kubernetes_pki.stat.exists
   block:
     - name: Slurp PKI files
@@ -45,7 +45,7 @@
       loop: >-
         {{ kubernetes_pki_file_map.values() | list }}
       register: slurp_kubernetes_pki_files
-      no_log: true
+      no_log: false # true
 
     - name: Copy PKI files
       delegate_to: localhost
@@ -72,7 +72,7 @@
             | zip(kubernetes_pki_files_slurped_content)
             | list }}
           register: kubernetes_pki_files_encrypted
-          no_log: true
+          no_log: false # true
 
         - name: Render kubernetes-pki.yml file inside LambdaStack's vault
           vars:
@@ -86,7 +86,7 @@
               {% for item in kubernetes_pki_files_encrypted_stdout %}
               {{ item }}
               {% endfor %}
-          no_log: true
+          no_log: false # true
 
 - name: Load PKI variables
   delegate_to: localhost
@@ -118,4 +118,4 @@
     mode: u=rw,g=r,o=
   with_dict: >-
     {{ kubernetes_pki_file_map }}
-  no_log: true
+  no_log: false # true

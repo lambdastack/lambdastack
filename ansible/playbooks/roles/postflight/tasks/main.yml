@@ -2,3 +2,14 @@
 - name: Handle cleanups after kubernetes_master role is done
   include_tasks:
     file: kubernetes_master.yml
+
+- hosts: kubernetes_master[0]
+  tasks:
+    - name: Ensure worker node roles are set
+      become: true
+      # node-role.kubernetes.io/worker=worker - just set the value to 'worker' instead of <none> in the event it may be needed
+      # If it fails that's ok. Also, you can use any key/value pair if you need it for something
+      command: "kubectl label node {{ item }} node-role.kubernetes.io/worker=worker --overwrite --kubeconfig=/etc/kubernetes/admin.conf"
+      ignore_errors: true
+      with_items:
+        - "{{ groups['kubernetes_node'] }}"

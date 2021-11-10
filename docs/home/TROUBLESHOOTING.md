@@ -42,6 +42,8 @@ You can see [Security](./howto/SECURITY.md) for more information.
 
 ## Unhealthy - connection refused
 
+>Deprecated in releases after 1.16.x. --port=0 should remain and `kubectl get cs` has been deprecated. You can use `kubectl get nodes -o wide` to get a status of all nodes including master/control-plane.
+
 If you see something like the following after checking the status of components:
 
 ```shell
@@ -62,6 +64,8 @@ $ sudo systemctl restart kubelet.service
 ```
 
 You should see `Healthy` STATUS for controller-manager and scheduler.
+
+>Note: The --port parameter is deprecated in the latest K8s release. See https://kubernetes.io/docs/reference/command-line-tools-reference/kube-scheduler/
 
 ## Another reason for this problem
 

@@ -1,5 +1,5 @@
 ---
-title: "Docsy Blog"
+title: "LambdaStack Blog"
 linkTitle: "Blog"
 menu:
   main:

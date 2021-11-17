@@ -1,21 +1,21 @@
 {
-  "name": "LambdaStack-Docs",
-  "version": "0.0.1",
-  "description": "Hugo theme for technical documentation.",
+  "name": "LambdaStack",
+  "version": "1.3.4",
+  "description": "Kubernetes Automation Platform",
   "main": "none.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/google/docsy-example.git"
+    "url": "git+https://github.com/lambdastack/lambdastack.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Hans Jones",
+  "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/google/docsy-example/issues"
+    "url": "https://github.com/lambdastack/lambdastack/issues"
   },
-  "homepage": "https://github.com/google/docsy-example#readme",
+  "homepage": "https://lambdastackio.com",
   "devDependencies": {
     "autoprefixer": "^9.8.6",
     "postcss": "^8.3.7",

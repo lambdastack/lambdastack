@@ -1,12 +1,12 @@
 ---
 title: "Production-Grade Kubernetes Automation for Hybrid and Multicloud"
 abstract: "Automated container deployment, scaling, and management"
-cid: home
 sitemap:
   priority: 1.0
 ---
 
 {{< blocks/section id="oceanNodes" >}}
+
 {{% blocks/feature image="flower" %}}
 [Kubernetes]({{< relref "/docs/concepts/overview/what-is-kubernetes" >}}), also known as K8s, is an open-source system for automating deployment, scaling, and management of containerized applications.
 
@@ -34,8 +34,6 @@ Kubernetes is open source giving you the freedom to take advantage of on-premise
 
 {{% /blocks/feature %}}
 
-{{< /blocks/section >}}
-
 {{< blocks/kubernetes-features >}}
 
-{{< blocks/case-studies >}}
+{{< /blocks/section >}}

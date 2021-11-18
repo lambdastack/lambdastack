@@ -3,36 +3,53 @@ title: "Overview"
 linkTitle: "Overview"
 weight: 1
 description: >
-  Here's where your user finds out if your project is for them.
+  Find out if LambdaStack is for you!
 ---
 
 {{% pageinfo %}}
-This is a placeholder page that shows you how to use this template site.
+LambdaStack is **NOT** a customized version of Kubernetes! LambdaStack **IS** a complete Kubernetes Automation Platform that also exercises best practices of setting up Kafka, Postgres, RabbitMQ, Elastic Search (Open Distro), HAProxy, Vault, KeyCloak, Apache Ignite, Storage, HA, DR, Multicloud and more.
 {{% /pageinfo %}}
 
+## Open Source License
 
-The Overview is where your users find out about your project. Depending on the size of your docset, you can have a separate overview page (like this one) or put your overview contents in the Documentation landing page (like in the Docsy User Guide). 
+LambdaStack is fully open sourced and uses the Apache-2.0 license so that you may use it as you see fit. By using the Apache-2.0 license, scans such as Blackduck show no issues for Enterprises.
 
-Try answering these questions for your user in this page:
+## Automation
 
-## What is it?
+LambdaStack uses Terraform, Ansible, Docker, and Python. It's also fully Data Driven. Meaning, all of the data is stored in `YAML` files. It's so dynamic that even some templates are auto-generated based on the `YAML` data files before passing through the automation engines thus allowing your to customize everything without modifying source code!
 
-Introduce your project, including what it does or lets you do, why you would use it, and its primary goal (and how it achieves it). This should be similar to your README description, though you can go into a little more detail here if you want.
+## How does it differ from others?
 
-## Why do I want it?
+Most, if not all, competitors only setup basic automation of Kubernetes. Meaning, they may use `YAML` data files but they:
+* Have a number of options that may be hard-coded
+* Only install Kubernetes
+* Do not install and setup default production like environments
+* Do not install and setup Kafka, HAProxy, Postgres, RabbitMQ, KeyCloak, Elastic Search, Apache Ignite, advanced logging, enhanced monitoring and alerting, persistent storage volumes and much more
+* Do not build their own repo environment for air-gapped systems (used in highly secured and mission critical areas)
+* Cannot run on a single node
+* Are not architected for hybrid and multicloud systems
+* May not be able to run the same on-premise as in the cloud
+* May not be able to build out IaaS and cloud vendor specific managed Kubernetes (e.g., EKS, AKS, GKE)
 
-Help your user know if your project will help them. Useful information can include: 
+## Why was LambdaStack created?
 
-* **What is it good for?**: What types of problems does your project solve? What are the benefits of using it?
+Enterprises and Industry are moving toward Digital Transformations but they journey is not simple or fast. There may be many product lines of legacy applications that need to be modernized and/or re-architected to take advantage of the benifits for true Microservices. Also, some industry domains are so specialized that the core group of software engineers are more domain specialist than generalist. 
 
-* **What is it not good for?**: For example, point out situations that might intuitively seem suited for your project, but aren't for some reason. Also mention known limitations, scaling issues, or anything else that might let your users know if the project is not for them.
+LambdaStack was architected to remove the burden of:
+* Learning how to setup and manage Kubernetes
+* Build true Microservices where needed
+* Understand high-performing event processing
+* Auto-scaling
+* Knowing how-to build hybrid clusters
+* Knowing how-to build true Multicloud systems
+* Knowing how-to build Kubernetes and all of the above in air-gapped environments
+* Knowing how-to build hardened secure systems
+* Knowing how-to operate the above in production like environments
+* A lot more...
 
-* **What is it *not yet* good for?**: Highlight any useful features that are coming soon.
+Basically, allow the development teams focus on adding business value and increasing time-to-market!
 
-## Where should I go next?
+## Next steps
 
-Give your users next steps from the Overview. For example:
-
-* [Getting Started](/docs/getting-started/): Get started with $project
-* [Examples](/docs/examples/): Check out some example code!
-
+* [Getting Started](/docs/getting-started/): Get started with LambdaStack
+* [Examples](/docs/examples/): Check out some examples of building clusters and building applications to be used on the clusters

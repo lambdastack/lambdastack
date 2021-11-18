@@ -9,10 +9,9 @@ menu:
 ---
 
 {{% pageinfo %}}
-This is a placeholder page that shows you how to use this template site.
+You're encouraged to make pull requests to enhance any wholes that you may find in the documentation.
 {{% /pageinfo %}}
 
+Welcome to the LambdaStack documentation center. At this moment, the documentation is on https://github.com/lambdastack/lambdastack/README.md.
 
-This section is where the user documentation for LambdaStack will be living - all the information your users need to understand and successfully use LambdaStacl. At this moment, the documentation is on https://github.com/lambdastack/lambdastack/README.md.
-
-This will all be updated by the day!
+>This will all be updated by the day!

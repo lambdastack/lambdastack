@@ -1,16 +1,3 @@
----
-title: "Examples"
-linkTitle: "Examples"
-weight: 3
-date: 2021-11-15
-description: >
-  There are different examples available for both Applications and Clusters
----
-
-{{% pageinfo %}}
-The examples are located at https://www.lambdastackio.com/examples
-{{% /pageinfo %}}
-
 # Examples
 
 The full documentation for the examples is located at [Examples](https://www.lambdastackio.com/docs/examples). The basic information for Applications and Clusters is listed in this readme.
@@ -82,5 +69,3 @@ The default is to build out an IaaS environment where you will manage your own K
 ### On-Premise
 
 Only IaaS is an available option for on-premise virtualized environments like VMware, OpenStack or something like Oracle Cloud.
-
-## More to come!!

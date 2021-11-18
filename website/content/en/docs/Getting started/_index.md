@@ -1,15 +1,15 @@
 ---
 categories: ["Examples", "Placeholders"]
-tags: ["test","docs"] 
+tags: ["docs"] 
 title: "Getting Started"
 linkTitle: "Getting Started"
 weight: 2
 description: >
-  What does your user need to know to try your project?
+  Simple to get start with LambdaStack
 ---
 
 {{% pageinfo %}}
-This is a placeholder page that shows you how to use this template site.
+LambdaStack comes with a number of simple defaults that only require Cloud vendor Key/Secret or UserID/Password!
 {{% /pageinfo %}}
 
 Information in this section helps your user try your project themselves.
@@ -20,9 +20,24 @@ Information in this section helps your user try your project themselves.
 
 Consider using the headings below for your getting started page. You can delete any that are not applicable to your project.
 
-## Prerequisites
+## Prerequisites (Runtime only - no development)
 
-Are there any system requirements for using your project? What languages are supported (if any)? Do users need to already have any software or tools installed?
+LambdaStack works on OSX, Windows, and Linux. You can launch it from your desktop/laptop or from build/jump servers. The following are the basic requirements:
+* Docker
+* Git (only if using GitHub fork/cloning to download the source code)
+* Internet access (can be executed in an air-gapped environment - details in documentation)
+* Python 3.x is **NOT** required. It's listed here just to illustrate it's not actually required. The LambdaStack container has it already built in
+
+## Prerequisites (Development)
+
+If you plan to contribute to the LambdaStack project by doing development then you will need a development and build environment. LambdaStack works on OSX, Windows, and Linux. You can launch it from your desktop/laptop or from build/jump servers. The following are the basic requirements for development:
+* Docker
+* Git
+* GitHub account - Free or paid. You will need to Fork LambdaStack to your GitHub account, make changes, commit, and issue a pull request. The development documentation details this for you with examples
+* Internet access (can be executed in an air-gapped environment - details in documentation). If your environment requires proxies then see documentation on how to set that up)
+* Python 3.x
+* IDE (Visual Code or PyCharm are good environments). We use Visual Code since it's open source. We recommend a few plugin extensions but they get automatically installed if you follow the instructions in the documention on setting up your development environment using Visual Code
+* Forked and cloned LambdaStack source code - Start contributing!
 
 ## Installation
 
@@ -34,4 +49,9 @@ Is there any initial setup users need to do after installation to try your proje
 
 ## Try it out!
 
-Can your users test their installation, for example by running a command or deploying a Hello World example?
+>As of LambdaStack v1.3, there are two ways to get started:
+* Fork/Clone the LambdaStack GitHub repo at https://github.com/lambdastack/lambdastack
+* Simply issue a `Docker run ...` command
+
+>The newest version, LambdaStack v2.0 soon to be pre-released, will have a full Admin UI that will use the default APIs/CLI to manage the full automation of Kubernetes
+

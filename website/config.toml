@@ -157,12 +157,12 @@ github_repo = "https://github.com/lambdastack/lambdastack"
 github_project_repo = "https://github.com/lambdastack/lambdastack"
 
 # Specify a value here if your content directory is not in your repo's root directory
-# github_subdir = "website"
+github_subdir = "website"
 
 # Uncomment this if you have a newer GitHub repo with "main" as the default branch,
 # or specify a new value if you want to reference another branch in your GitHub links
 # github_branch= "main"
-githubbranch = "main"
+github_branch = "main"
 
 time_format_blog = "Monday, January 02, 2006"
 time_format_default = "January 2, 2006"
@@ -237,8 +237,8 @@ enable = true
 [params.links]
 # End user relevant links. These will show up on left side of footer and in the community page if you have one.
 [[params.links.user]]
-	name = "User mailing list"
-	url = "https://example.org/mail"
+	name = "Mailing list"
+	url = "/#email"
 	icon = "fa fa-envelope"
         desc = "Sign up for LambdaStack announcements"
 [[params.links.user]]

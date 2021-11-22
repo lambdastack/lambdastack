@@ -3,36 +3,21 @@ title: "LambdaStack Cluster Config"
 provider: aws
 name: "default"
 build_path: "build/path"  # This gets dynamically built
-
-#### Begin - Add your info HERE
-
-cloud_credentials_key: &cloud_credentials_key "XXXXXXXXXXXXX"        # Your AWS Subscription Key
-cloud_credentials_secret: &cloud_credentials_secret "XXXXXXXXXXXXX"     # Your AWS Subscription Secret
-
-admin_user_name: &admin_user_name "ubuntu"                     # <ubuntu> for AWS Ubuntu or <operations> for all other OS
-admin_user_key_path: &admin_user_key_path "lambdastack-operations" # You can leave it and make your SSH keys this name or change the name to your SSH key name
-cloud_use_public_ips: &cloud_use_public_ips True                    # SECURITY - Change this to False if you have a VPN or direct connect
-cloud_region: &cloud_region "us-east-1"
-
-specification_prefix: &specification_prefix "staging"               # Can be anything you want that helps quickly identify the cluster
-
-#### End - Add your info HERE
-
 specification:
-  prefix: *specification_prefix  # Can be anything you want that helps quickly identify the cluster
+  prefix: staging  # Can be anything you want that helps quickly identify the cluster
   name: lambdastack
   admin_user:
-    name: *admin_user_name # YOUR-ADMIN-USERNAME
-    key_path: *admin_user_key_path # YOUR-SSH-KEY-FILE-NAME
+    name: ubuntu # YOUR-ADMIN-USERNAME
+    key_path: lambdastack-operations # YOUR-SSH-KEY-FILE-NAME
     path: "/shared/build/<name of cluster>/keys/ssh/lambdastack-operations" # Will get dynamically created
   cloud:
     k8s_as_cloud_service: False
     vnet_address_pool: 10.1.0.0/20
-    region: *cloud_region
-    use_public_ips: *cloud_use_public_ips # When not using public IPs you have to provide connectivity via private IPs (VPN)
+    region: us-east-1
+    use_public_ips: True # When not using public IPs you have to provide connectivity via private IPs (VPN)
     credentials:
-      key: *cloud_credentials_key # AWS Subscription Key
-      secret: *cloud_credentials_secret # AWS Subscription Secret
+      key: XXXXXXXXXX # AWS Subscription Key
+      secret: XXXXXXXXXXX # AWS Subscription Secret
     network:
       use_network_security_groups: True
     default_os_image: default

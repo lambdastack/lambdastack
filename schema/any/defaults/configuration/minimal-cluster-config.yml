@@ -3,12 +3,22 @@ title: "LambdaStack Cluster Config"
 provider: any
 name: "default"
 build_path: "build/path" # This gets dynamically built
+
+#### Begin - Add your info HERE
+
+admin_user_name: &admin_user_name "operations"                     # <ubuntu> for AWS Ubuntu or <operations> for all other OS
+admin_user_key_path: &admin_user_key_path "lambdastack-operations" # You can leave it and make your SSH keys this name or change the name to your SSH key name
+
+specification_prefix: &specification_prefix "staging"               # Can be anything you want that helps quickly identify the cluster
+
+#### End - Add your info HERE
+
 specification:
   name: lambdastack
-  prefix: staging  # Can be anything you want that helps quickly identify the cluster
+  prefix: *specification_prefix  # Can be anything you want that helps quickly identify the cluster
   admin_user:
-    name: operations # YOUR-ADMIN-USERNAME
-    key_path: lambdastack-operations # YOUR-SSH-KEY-FILE-NAME
+    name: *admin_user_name # YOUR-ADMIN-USERNAME
+    key_path: *admin_user_key_path # YOUR-SSH-KEY-FILE-NAME
     path: "/shared/build/<name of cluster>/keys/ssh/lambdastack-operations" # Will get dynamically created
   components:
     repository:

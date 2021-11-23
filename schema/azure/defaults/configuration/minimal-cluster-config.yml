@@ -13,6 +13,7 @@ specification:
   cloud:
     k8s_as_cloud_service: False
     use_public_ips: True # When not using public IPs you have to provide connectivity via private IPs (VPN)
+    region: East US
     default_os_image: default
   components:
     repository:

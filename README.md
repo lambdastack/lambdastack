@@ -6,6 +6,10 @@
 
 > Ubuntu has released an updated LTS version - 20.04.03. Testing is in place for this release and once certified, it will become the default standard. Upgrading to this release is documented by Ubuntu but we will have an upgrade option here as well.
 
+## Documentation
+
+LambdaStack full documentation can be found at https://www.lambdastackio.com! Feel free to contribute to the documentation (website - https://github.com/lambdastack/website) or LambdaStack itself (here - https://github.com/lambdastack/lambdastack)
+
 ## Overview
 
 LambdaStack at its core is a full automation of Kubernetes and Docker plus additional builtin services/components like:
@@ -130,3 +134,5 @@ Find more information using table of contents below - especially the [How-to gui
   - [Git Workflow](docs/home/GITWORKFLOW.md)
 
 <!-- TOC -->
+
+IMPORTANT - The latest version of LambdaStack is based on a fork of Epiphany, which I started in 2018, and being used by high-profile industries that require cross platform scalability and resiliency. There are a few diagrams using the text Epiphany instead of LambdaStack (note - any broken links or diagrams due to this fork will be corrected). Going forward, LambdaStack will be addressing many industries and not just industrial Energy. Actually, LFEnergy (Linux Foundation Energy) should look at [Epiphany](https://github.com/epiphany-platform/epiphany) as their standard going forward. The team I created at Hitachi Energy for Epiphany is very good and the entirely focused on the Energy sector.

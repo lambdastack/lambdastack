@@ -8,7 +8,7 @@
 
 ## Documentation
 
-LambdaStack full documentation can be found at https://www.lambdastackio.com! Feel free to contribute to the documentation (website - https://github.com/lambdastack/website) or LambdaStack itself (here - https://github.com/lambdastack/lambdastack)
+LambdaStack full documentation can be found at https://www.lambdastackio.com! Feel free to contribute to the documentation (website - https://github.com/lambdastack/website).
 
 ## Overview
 
@@ -23,18 +23,15 @@ LambdaStack at its core is a full automation of Kubernetes and Docker plus addit
 - Vault (MVP) for protecting secrets and other sensitive data
 - Helm as package manager for Kubernetes
 
-The following target platforms are available: AWS, Azure and on-prem installation.
+The following target platforms are available: AWS, Azure and on-prem installation. GCP (Google Cloud Platform) is in development now.
 
 LambdaStack can run on as few as one node (laptop, desktop, server) but the real value comes from running 3 or more nodes for scale and HA. Everything is data driven so simply changing the manifest data and running the automation will modify the environment.
-Kubernetes hosts (masters, nodes) and component VMs can be added depending on data in the initial manifest. More information [here](https://github.com/lambdastack/lambdastack/blob/master/docs/home/howto/CLUSTER.md#how-to-scale-or-cluster-components).
 
-Please note that currently LambdaStack supports only creating new masters and nodes and adding them to the Kubernetes cluster. It doesn't support downscale. To remove them from Kubernetes cluster you have to do it manually.
+Kubernetes hosts (control plane (formally master), nodes) and component VMs can be added depending on data in the initial manifest. More information [here](https://www.lambdastackio.com/docs/concepts/howto/cluster/).
+
+Please note that currently LambdaStack supports only creating new control planes and nodes and adding them to the Kubernetes cluster. It doesn't support downscale. To remove them from Kubernetes cluster you have to do it manually.
 
 We currently use Terraform and Ansible for our automation orchestration. All automation is idempotent so you can run it as many times as you wish and it will maintain the same state unless you change the data. If someone makes a "snow flake" change to the environment (you should never do this) then simply running the automation again will put the environment back to the desired state.
-
-## Note about documentation
-
-- The documentation is a moving target. Always check the latest documentation on the develop branch. There is a big chance that whatever you are looking for is already added/updated or improved there.
 
 ## Quickstart
 
@@ -60,7 +57,7 @@ docker run -it -v $PWD:/shared --rm lambdastack/lambdastack:latest
 lambdastack --help
 ```
 
-Generate a new minimum cluster definition:
+Generate a new minimum cluster definition `(using AWS for the demo here)`:
 
 ```shell
 lambdastack init -p aws -n demo
@@ -92,7 +89,7 @@ Once you are done with `demo.yml` you can start the cluster deployment by execut
 lambdastack apply -f demo.yml
 ```
 
-You will be asked for a password that will be used for encryption of some of build artifacts. More information [here](docs/home/howto/SECURITY.md#how-to-run-lambdastack-with-password)
+You will be asked for a password that will be used for encryption of some of build artifacts. More information [here](https://www.lambdastackio.com/docs/concepts/howto/security/#how-to-run-lambdastack-with-password)
 
 The build process can take awhile (up to an hour+ depending on options and cloud provider). Let it run and complete. Once complete you will now have a full environment ready to test out. Before moving to a production system, make sure to follow the security guidelines in the docs.
 
@@ -135,4 +132,4 @@ Find more information using table of contents below - especially the [How-to gui
 
 <!-- TOC -->
 
-IMPORTANT - The latest version of LambdaStack is based on a fork of Epiphany, which I started in 2018, and being used by high-profile industries that require cross platform scalability and resiliency. There are a few diagrams using the text Epiphany instead of LambdaStack (note - any broken links or diagrams due to this fork will be corrected). Going forward, LambdaStack will be addressing many industries and not just industrial Energy. Actually, LFEnergy (Linux Foundation Energy) should look at [Epiphany](https://github.com/epiphany-platform/epiphany) as their standard going forward. The team I created at Hitachi Energy for Epiphany is very good and the entirely focused on the Energy sector.
+IMPORTANT - The latest version of LambdaStack is based on a fork of Epiphany, which I started in 2018, and being used by high-profile industries that require cross platform scalability and resiliency. There are a few diagrams using the text Epiphany instead of LambdaStack (note - any broken links or diagrams due to this fork will be corrected). Going forward, LambdaStack will be addressing many industries and not just industrial Energy. Actually, LFEnergy (Linux Foundation Energy) should look at [Epiphany](https://github.com/epiphany-platform/epiphany) as their standard going forward. The team I created at Hitachi Energy for Epiphany is very good and they are focused on the Energy sector.

@@ -1,3 +1,0 @@
-# KEEP this .gitignore in the examples directory with !clusters. This overrides the default of excluding clusters directory.
-
-!clusters

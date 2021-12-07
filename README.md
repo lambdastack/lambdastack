@@ -93,7 +93,7 @@ You will be asked for a password that will be used for encryption of some of bui
 
 The build process can take awhile (up to an hour+ depending on options and cloud provider). Let it run and complete. Once complete you will now have a full environment ready to test out. Before moving to a production system, make sure to follow the security guidelines in the docs.
 
-Since version 0.7, lambdastack has an option to backup/recovery some of its components. More information [here](https://github.com/lambdastack/lambdastack/blob/master/docs/home/howto/BACKUP.md). This is an `option` for testing but you will want to do this for any staging or production like environments.
+Since version 0.7, lambdastack has an option to backup/recovery some of its components. More information [here](https://www.lambdastackio.com/docs/concepts/howto/backup/). This is an `option` for testing but you will want to do this for any staging or production like environments.
 
 ```shell
 lambdastack backup -f <file.yml> -b <build_folder>
@@ -106,30 +106,6 @@ To delete all deployed components, the following command should be used
 lambdastack delete -b <build_folder>
 ```
 
-Find more information using table of contents below - especially the [How-to guides](docs/home/HOWTO.md).
-
-## Documentation
-
-<!-- TOC -->
-
-- LambdaStack
-  - [Resources](docs/home/RESOURCES.md)
-  - [How-to guides](docs/home/HOWTO.md)
-  - [Components](docs/home/COMPONENTS.md)
-  - [Security](docs/home/SECURITY.md)
-  - [Troubleshooting](docs/home/TROUBLESHOOTING.md)
-  - [Kubernetes](docs/home/howto/KUBERNETES.md)
-  - [Changelog](CHANGELOG.md)
-  - [Release policy and lifecycle](docs/home/LIFECYCLE.md)
-- Architecture
-  - [Logical View](docs/architecture/logical-view.md)
-  - [Process View](docs/architecture/process-view.md)
-  - [Physical View](docs/architecture/physical-view.md)
-- Contributing
-  - [Governance model](docs/home/GOVERNANCE.md)
-  - [Development environment](docs/home/DEVELOPMENT.md)
-  - [Git Workflow](docs/home/GITWORKFLOW.md)
-
-<!-- TOC -->
+Find out more by referencing the [Documentation](https://www.lambdastackio.com/docs/).
 
 IMPORTANT - The latest version of LambdaStack is based on a fork of Epiphany, which I started in 2018, and being used by high-profile industries that require cross platform scalability and resiliency. There are a few diagrams using the text Epiphany instead of LambdaStack (note - any broken links or diagrams due to this fork will be corrected). Going forward, LambdaStack will be addressing many industries and not just industrial Energy. Actually, LFEnergy (Linux Foundation Energy) should look at [Epiphany](https://github.com/epiphany-platform/epiphany) as their standard going forward. The team I created at Hitachi Energy for Epiphany is very good and they are focused on the Energy sector.

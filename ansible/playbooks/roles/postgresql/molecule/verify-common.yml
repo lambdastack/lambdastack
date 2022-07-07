@@ -6,8 +6,8 @@
 - name: Verify that postgresql service exists and is running
   vars:
     _services:
-      Debian: postgresql@13-main.service
-      RedHat: postgresql-13.service
+      Debian: postgresql@14-main.service
+      RedHat: postgresql-14.service
   assert:
     that:
       - "{{ _services[ansible_os_family] in ansible_facts.services }}"

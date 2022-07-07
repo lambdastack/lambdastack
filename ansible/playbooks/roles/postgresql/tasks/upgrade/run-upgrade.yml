@@ -1,5 +1,5 @@
 ---
-# Upgrade procedure based on steps from: https://www.postgresql.org/docs/13/pgupgrade.html
+# Upgrade procedure based on steps from: https://www.postgresql.org/docs/14/pgupgrade.html
 
 # Flow:
 # 1) Run prepare-upgrade tasks on all nodes in parallel (rollback unneeded)

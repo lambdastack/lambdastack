@@ -128,9 +128,9 @@ run_cmd_with_retries() {
 }
 
 POSTGRESQL_REPO_CONF=$(cat <<'EOF'
-[pgdg13]
-name=PostgreSQL 13 for RHEL/CentOS $releasever - $basearch
-baseurl=https://download.postgresql.org/pub/repos/yum/13/redhat/rhel-$releasever-$basearch
+[pgdg14]
+name=PostgreSQL 14 for RHEL/CentOS $releasever - $basearch
+baseurl=https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-$releasever-$basearch
 enabled=1
 gpgcheck=1
 gpgkey=https://download.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG
@@ -147,7 +147,7 @@ gpgkey=https://download.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG
 EOF
 )
 
-add_repo_as_file 'postgresql-13' "$POSTGRESQL_REPO_CONF"
+add_repo_as_file 'postgresql-14' "$POSTGRESQL_REPO_CONF"
 add_repo_as_file 'postgresql-common' "$POSTGRESQL_COMMON_REPO_CONF"          # for pgbouncer
-add_repo_from_script 'https://dl.2ndquadrant.com/default/release/get/13/rpm' # for repmgr
-disable_repo '2ndquadrant-dl-default-release-pg13-debug'                     # script adds 2 repositories, only 1 is required
+add_repo_from_script 'https://dl.2ndquadrant.com/default/release/get/14/rpm' # for repmgr
+disable_repo '2ndquadrant-dl-default-release-pg14-debug'                     # script adds 2 repositories, only 1 is required

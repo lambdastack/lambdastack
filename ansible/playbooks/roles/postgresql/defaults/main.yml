@@ -4,16 +4,16 @@ pg:
     Debian: /var/lib/postgresql
     RedHat: /var/lib/pgsql
   bin_dir:
-    Debian: /usr/lib/postgresql/13/bin
-    RedHat: /usr/pgsql-13/bin
+    Debian: /usr/lib/postgresql/14/bin
+    RedHat: /usr/pgsql-14/bin
   config_dir:
-    Debian: /etc/postgresql/13/main
-    RedHat: /var/lib/pgsql/13/data
+    Debian: /etc/postgresql/14/main
+    RedHat: /var/lib/pgsql/14/data
   data_dir:
-    Debian: /var/lib/postgresql/13/main
-    RedHat: /var/lib/pgsql/13/data
+    Debian: /var/lib/postgresql/14/main
+    RedHat: /var/lib/pgsql/14/data
   instantiated_service_name:
-    Debian: postgresql@13-main
+    Debian: postgresql@14-main
     RedHat: null
   packages:
     common:
@@ -23,19 +23,19 @@ pg:
       RedHat: []
     version_specific:
       Debian:
-        - postgresql-13
-        - postgresql-client-13
+        - postgresql-14
+        - postgresql-client-14
       RedHat:
-        - postgresql13-server
+        - postgresql14-server
   service_name:
     Debian: postgresql
-    RedHat: postgresql-13
-  version: 13
+    RedHat: postgresql-14
+  version: 14
 
 pgaudit:
   package_name:
-    Debian: postgresql-13-pgaudit
-    RedHat: pgaudit15_13
+    Debian: postgresql-14-pgaudit
+    RedHat: pgaudit15_14
   version:
     Debian: "1.5.0"
     RedHat: "1.5.0"
@@ -43,16 +43,16 @@ pgaudit:
 repmgr:
   bin_dir:
     Debian: /usr/bin
-    RedHat: /usr/pgsql-13/bin
+    RedHat: /usr/pgsql-14/bin
   config_dir:
-    Debian: /etc/postgresql/13/main
-    RedHat: /etc/repmgr/13
+    Debian: /etc/postgresql/14/main
+    RedHat: /etc/repmgr/14
   package_name:
-    Debian: postgresql-13-repmgr
-    RedHat: repmgr13
+    Debian: postgresql-14-repmgr
+    RedHat: repmgr14
   service_name:
     Debian: repmgrd
-    RedHat: repmgr13
+    RedHat: repmgr14
   version:
     Debian: "5.2.1"
     RedHat: "5.2.1"

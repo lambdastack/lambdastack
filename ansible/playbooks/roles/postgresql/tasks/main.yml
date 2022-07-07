@@ -45,11 +45,11 @@
       Debian:
         - postgresql-client-common
         - postgresql-common
-        - postgresql-client-13
-        - postgresql-13
+        - postgresql-client-14
+        - postgresql-14
         - python-psycopg2 # required for PostgreSQL ansible management
       RedHat:
-        - postgresql13-server
+        - postgresql14-server
         - python-psycopg2 # required for PostgreSQL ansible management
   module_defaults:
     yum: { lock_timeout: "{{ yum_lock_timeout }}" }

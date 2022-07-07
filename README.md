@@ -6,6 +6,8 @@
 
 > Ubuntu has released an updated LTS version - 20.04.03. Testing is in place for this release and once certified, it will become the default standard. Upgrading to this release is documented by Ubuntu but we will have an upgrade option here as well.
 
+> PostgresSQL is being upgraded to 14+.
+
 ## Documentation
 
 LambdaStack full documentation can be found at https://www.lambdastackio.com! Feel free to contribute to the documentation (website - https://github.com/lambdastack/website).

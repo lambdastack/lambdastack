@@ -98,7 +98,7 @@ quota # for nfs-utils
 rabbitmq-server-3.8.9
 #rh-haproxy18
 #rh-haproxy18-haproxy-syspaths
-postgresql13-server
+postgresql14-server
 samba-client
 samba-client-libs # for samba-client
 samba-common

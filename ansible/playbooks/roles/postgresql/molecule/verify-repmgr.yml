@@ -11,7 +11,7 @@
       vars:
         _services:
           Debian: repmgrd.service
-          RedHat: repmgr13.service
+          RedHat: repmgr14.service
       assert:
         that:
           - "{{ _services[ansible_os_family] in ansible_facts.services }}"
